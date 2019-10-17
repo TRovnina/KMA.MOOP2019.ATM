@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ATM_Simulator.Tools.Manager;
+using ATM_Simulator.Tools.Navigation;
+using ATM_Simulator.ViewModel;
 
 namespace ATM_Simulator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IContent
     {
         public ContentControl ContentControl
         {
@@ -34,9 +25,9 @@ namespace ATM_Simulator
 
         private void InitializeApplication()
         {
-            StationManager.Initialize(new SerializedDataStorage());
+            StaticManager.Initialize();
             NavigationManager.Instance.Initialize(new NavigationInitialization(this));
-            NavigationManager.Instance.Navigate(ViewType.MainPage);
+            NavigationManager.Instance.Navigate(ViewType.ActivateATM);
         }
     }
 }
