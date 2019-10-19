@@ -3,7 +3,9 @@ namespace ATM_Simulator.Tools.Navigation
 {
     internal enum ViewType
     {
-        ActivateAtm
+        ActivateAtm,
+        CheckCard,
+        AtmView
     }
 
     interface INavigation

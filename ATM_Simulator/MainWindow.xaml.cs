@@ -26,8 +26,8 @@ namespace ATM_Simulator
         private void InitializeApplication()
         {
             StaticManager.Initialize();
-            NavigationManager.Instance.Initialize(new NavigationInitialization(this));
-            NavigationManager.Instance.Navigate(ViewType.ActivateATM);
+            NavigationManager.Instance.Initialize(new NavigationInit(this));
+            NavigationManager.Instance.Navigate(ViewType.ActivateAtm);
         }
     }
 }

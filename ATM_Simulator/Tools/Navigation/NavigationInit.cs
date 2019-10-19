@@ -3,9 +3,9 @@ using ATM_Simulator.View;
 
 namespace ATM_Simulator.Tools.Navigation
 {
-    internal class NavigationInitialization : NavigationModel
+    internal class NavigationInit : NavigationModel
     {
-        public NavigationInitialization(IContent content) : base(content)
+        public NavigationInit(IContent content) : base(content)
         {
 
         }
@@ -17,6 +17,9 @@ namespace ATM_Simulator.Tools.Navigation
                 case ViewType.ActivateAtm:
                     ViewsDictionary.Add(viewType, new ActivateATM_View());
                     break;
+                //case ViewType.CheckCard:
+                //    ViewsDictionary.Add(viewType, new CheckCard_View());
+                //    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(viewType), viewType, null);
             }
