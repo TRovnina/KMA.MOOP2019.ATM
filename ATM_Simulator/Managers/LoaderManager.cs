@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using ATM_Simulator.Tools;
+using System.Windows;
 
-namespace ATM_Simulator.Tools.Manager
+namespace ATM_Simulator.Managers
 {
     internal class LoaderManager
     {

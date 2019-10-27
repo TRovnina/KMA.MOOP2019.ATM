@@ -2,11 +2,11 @@
 using System.Windows;
 using ATM_Simulator.Models;
 
-namespace ATM_Simulator.Tools.Manager
+namespace ATM_Simulator.Managers
 {
     internal static class StaticManager
     {
-        internal static ATM CurrentATM { get; set; }
+        internal static Atm CurrentAtm { get; set; }
 
         internal static void Initialize()
         {

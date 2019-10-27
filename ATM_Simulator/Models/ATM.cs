@@ -1,40 +1,25 @@
-﻿using System;
-
-namespace ATM_Simulator.Models
+﻿namespace ATM_Simulator.Models
 {
-    internal class ATM
+    internal class Atm
     {
-        #region Fields
-
-        private string _code;
-        private string _password;
-
-        #endregion
-
         #region Properties
 
         internal string Code
         {
-            get { return _code; }
-            set
-            {
-                _code = value;
-            }
+            get;
+            set;
         }
 
         internal string Password
         {
-            get { return _password; }
-            set
-            {
-                _password = value;
-            }
+            get;
+            set;
         }
 
         #endregion
         
 
-        public ATM(string code, string password)
+        public Atm(string code, string password)
         {
             Code = code;
             Password = password;

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ATM_Simulator.Tools.Navigation
+namespace ATM_Simulator.Tools
 {
     internal interface IContent
     {
