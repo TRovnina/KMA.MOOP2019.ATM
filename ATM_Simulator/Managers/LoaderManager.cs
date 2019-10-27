@@ -36,12 +36,12 @@ namespace ATM_Simulator.Managers
         internal void ShowLoader()
         {
             _loader.LoaderVisibility = Visibility.Visible;
-            _loader.IsControlEnabled = false;
+            _loader.IsEnabled = false;
         }
         internal void HideLoader()
         {
             _loader.LoaderVisibility = Visibility.Hidden;
-            _loader.IsControlEnabled = true;
+            _loader.IsEnabled = true;
         }
     }
 }

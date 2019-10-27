@@ -1,5 +1,5 @@
 ﻿using System;
-using ATM_Simulator.View;
+using ATM_Simulator.View.Authentication;
 
 namespace ATM_Simulator.Tools
 {
@@ -13,7 +13,7 @@ namespace ATM_Simulator.Tools
     internal class NavigationModel
     {
         private readonly IContent _content;
-        private ActivateATM_View _activateAtmView;
+        private ActivateAtmView _activateAtmView;
 
         internal NavigationModel(IContent contentWindow)
         {
@@ -25,11 +25,8 @@ namespace ATM_Simulator.Tools
             switch (mode)
             {
                 case ModesEnum.ActivateAtm:
-                    _content.ContentControl.Content = _activateAtmView ?? (_activateAtmView = new ActivateATM_View());
+                    _content.ContentControl.Content = _activateAtmView ?? (_activateAtmView = new ActivateAtmView());
                     break;
-                //case ViewType.CheckCard:
-                //    ViewsDictionary.Add(viewType, new CheckCard_View());
-                //    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }

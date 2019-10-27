@@ -1,15 +1,12 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
+using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
-using ATM_Simulator.Tools.Manager;
-using ATM_Simulator.Tools.Navigation;
 
 namespace ATM_Simulator.ViewModel
 {
-    internal class ActivateATM_ViewModel : BasicViewModel
+    internal class ActivateAtmViewModel : BasicViewModel
     {
         #region Fields
 
@@ -81,8 +78,8 @@ namespace ATM_Simulator.ViewModel
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                var atm = new ATM(Code, Password);
-                StaticManager.CurrentATM = atm;
+                var atm = new Atm(Code, Password);
+                StaticManager.CurrentAtm = atm;
             });
 
             LoaderManager.Instance.HideLoader();

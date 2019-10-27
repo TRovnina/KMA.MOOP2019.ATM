@@ -1,41 +1,51 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using ATM_Simulator.Tools;
-using ATM_Simulator.Tools.Manager;
+using ATM_Simulator.Managers;
 
 namespace ATM_Simulator.ViewModel
 {
-    internal class MainWindowViewModel : BasicViewModel, ILoader
+    public class MainWindowViewModel : ILoader
     {
-        #region Fields
-        private Visibility _loaderVisibility = Visibility.Hidden;
-        private bool _isControlEnabled = true;
-        #endregion
+        private Visibility _visibility = Visibility.Hidden;
+        private bool _isEnabled = true;
 
-        #region Properties
         public Visibility LoaderVisibility
         {
-            get { return _loaderVisibility; }
+            get { return _visibility; }
             set
             {
-                _loaderVisibility = value;
+                _visibility = value;
                 OnPropertyChanged();
             }
         }
 
-        public bool IsControlEnabled
+        public bool IsEnabled
         {
-            get { return _isControlEnabled; }
+            get { return _isEnabled; }
             set
             {
-                _isControlEnabled = value;
+                _isEnabled = value;
                 OnPropertyChanged();
             }
         }
-        #endregion
 
         public MainWindowViewModel()
         {
             LoaderManager.Instance.Initialize(this);
+        }
+
+        internal void StartApplication()
+        {
+            NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
