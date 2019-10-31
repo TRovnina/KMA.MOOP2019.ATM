@@ -1,0 +1,8 @@
+.vs/*
+ATM/bin/*
+ATM/obj/*
+ATM_Simulator/bin/*
+ATM_Simulator/obj/*
+ATM_WCFService/bin/*
+ATM_WCFService/obj/*
+ATM.sln.DotSettings.user
