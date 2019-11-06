@@ -83,7 +83,7 @@ namespace ATM_Simulator.ViewModel
             });
 
             LoaderManager.Instance.HideLoader();
-            //NavigationManager.Instance.Navigate(ViewType.CheckCard);
+            NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
         }
 
 

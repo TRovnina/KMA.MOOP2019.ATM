@@ -6,14 +6,18 @@ namespace ATM_Simulator.Tools
     internal enum ModesEnum
     {
         ActivateAtm,
-        CheckCard,
-        AtmView
+        CardNumber,
+        CardPassword,
+        ClientMenu,
+        ManagerMenu
     }
 
     internal class NavigationModel
     {
         private readonly IContent _content;
         private ActivateAtmView _activateAtmView;
+        private CardNumberView _cardNumberView;
+        private CardPasswordView _cardPasswordView;
 
         internal NavigationModel(IContent contentWindow)
         {
@@ -26,6 +30,12 @@ namespace ATM_Simulator.Tools
             {
                 case ModesEnum.ActivateAtm:
                     _content.ContentControl.Content = _activateAtmView ?? (_activateAtmView = new ActivateAtmView());
+                    break;
+                case ModesEnum.CardNumber:
+                    _content.ContentControl.Content = _cardNumberView ?? (_cardNumberView = new CardNumberView());
+                    break;
+                case ModesEnum.CardPassword:
+                    _content.ContentControl.Content = _cardPasswordView ?? (_cardPasswordView = new CardPasswordView());
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
