@@ -1,21 +1,32 @@
-﻿namespace DBModels
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
+
+namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class Manager
     {
         #region Fields
 
+        [DataMember]
         private string _managerId;
+        [DataMember]
         private string _firstName;
+        [DataMember]
         private string _lastName;
+        [DataMember]
         private string _password;
+
+        [DataMember]
+        private List<ATMManagerAction> _atmManagerActions;
 
         #endregion
 
         #region Constructors
 
-        public Manager()
+        private Manager()
         {
-
+            _atmManagerActions = new List<ATMManagerAction>();
         }
 
         public Manager(string managerId, string firstName, string lastName, string password) : this()
@@ -33,7 +44,7 @@
         public string ManagerId
         {
             get { return _managerId; }
-            set { _managerId = value; }
+            private set { _managerId = value; }
         }
 
         public string FirstName
@@ -51,7 +62,13 @@
         public string Password
         {
             get { return _password; }
-            set { _password = value; }
+            private set { _password = value; }
+        }
+
+        public List<ATMManagerAction> ATMManagerActions
+        {
+            get { return _atmManagerActions; }
+            private set { _atmManagerActions = value; }
         }
 
         #endregion

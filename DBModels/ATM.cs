@@ -21,15 +21,18 @@ namespace DBModels
         private List<Action> _actions;
         [DataMember]
         private List<ATMManagerAction> _atmManagerActions;
+        [DataMember]
+        private List<Banknote> _banknotes;
 
         #endregion
 
         #region constructors
-        
+
         private ATM()
         {
             _actions = new List<Action>();
             _atmManagerActions = new List<ATMManagerAction>();
+            _banknotes = new List<Banknote>();
         }
 
         public ATM(string atmCode, string password, string atmAddress) : this()
@@ -66,6 +69,24 @@ namespace DBModels
         {
             get { return _atmAddress; }
             set { _atmAddress = value; }
+        }
+
+        public List<Action> Actions
+        {
+            get { return _actions; }
+            private set { _actions = value; }
+        }
+
+        public List<ATMManagerAction> AtmManagerActions
+        {
+            get { return _atmManagerActions; }
+            private set { _atmManagerActions = value; }
+        }
+
+        public List<Banknote> Banknotes
+        {
+            get { return _banknotes; }
+            private set { _banknotes = value; }
         }
 
         #endregion

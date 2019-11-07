@@ -1,25 +1,49 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class DepositAccount : Account
     {
+        #region Fields
+
+        [DataMember]
         private DateTime _depositDate;
+        [DataMember]
         private DateTime _storegedDate;
+        [DataMember]
         private int _persentage;
+        [DataMember]
         private DateTime _availableDate; // Дата коли гроші будуть доступні = Deposit_Date + Storage_Date
 
+        // TODO 
+       // private CurrentAccount _currentAccount;
+
+        #endregion
+
+        #region Constructors
+
         public DepositAccount(string cardNumber, string cardPassword, Client client,
-            DateTime depositDate, DateTime storegedDate, int persentage, DateTime availableDate) 
+            DateTime depositDate, DateTime storegedDate, int persentage)
             : base(cardNumber, cardPassword, client)
         {
             _depositDate = depositDate;
             _storegedDate = storegedDate;
             _persentage = persentage;
-            _availableDate = availableDate;
+            _availableDate = CalculateAvailableDate();
         }
 
-        public DateTime _DepositDate
+        private DepositAccount()
+        {
+
+        }
+
+        #endregion
+
+        #region Properties
+
+        public DateTime DepositDate
         {
             get { return _depositDate; }
             set { _depositDate = value; }
@@ -39,8 +63,16 @@ namespace DBModels
 
         public DateTime AvailableDate
         {
-            get { return _availableDate = _depositDate.AddSeconds(_storegedDate.Second); }
+            get { return _availableDate = CalculateAvailableDate(); }
             private set { _availableDate = value; }
         }
+
+        #endregion
+
+        private DateTime CalculateAvailableDate()
+        {
+            return DepositDate.AddSeconds(StoregedDate.Second);
+        }
+
     }
 }

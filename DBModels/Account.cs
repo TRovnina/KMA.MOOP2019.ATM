@@ -1,31 +1,49 @@
-﻿using System;
+﻿using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class Account
     {
+        #region Fields
+
+        [DataMember]
         protected string _cardNumber;
+        [DataMember]
         protected string _cardPassword;
+        [DataMember]
         protected bool _isActive;
+        [DataMember]
         protected double _availableSum;
+
+        [DataMember]
         protected Client _client;
+        [DataMember]
         protected string _clientITN;
+
+        #endregion
+
+        #region Constructors
 
         public Account(string cardNumber, string cardPassword, Client client) : this()
         {
             _cardNumber = cardNumber;
             _cardPassword = cardPassword;
-            _isActive = true;
-            _availableSum = 0;
             _client = client;
         }
 
         public Account()
         {
-            
+            _isActive = true;
+            _availableSum = 0;
         }
 
-        protected string CardNumber
+        #endregion
+
+
+        #region Properties
+
+        public string CardNumber
         {
             get => _cardNumber;
             set => _cardNumber = value;
@@ -60,6 +78,9 @@ namespace DBModels
             get => _clientITN;
             protected set => _clientITN = value;
         }
+
+        #endregion
+
 
         public override  string ToString()
         {

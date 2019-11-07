@@ -1,31 +1,44 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class RegularPayment
     {
         #region Fields
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // TODO i don`t know how it works
         private int _regularPaymentId;
+        [DataMember]
         private DateTime _firstRegularPaymentDate;
+        [DataMember]
         private PeriodRegularPayment _periodRegularPayment;
+        [DataMember]
         private string _regularPaymentName;
+
+        [DataMember]
+        private CurrentAccount _currentAccount;
+        [DataMember]
+        private string _currentAccountNum;
 
         #endregion
 
         #region Constructors
 
-        public RegularPayment()
+        private RegularPayment()
         {
-            
+            _firstRegularPaymentDate = DateTime.Now;
         }
 
-        public RegularPayment(int regularPaymentId, PeriodRegularPayment periodRegularPayment, string regularPaymentName)
+        public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName, 
+            CurrentAccount currentAccount) : this()
         {
-            _regularPaymentId = regularPaymentId;
-            _firstRegularPaymentDate = DateTime.Now;
             _periodRegularPayment = periodRegularPayment;
             _regularPaymentName = regularPaymentName;
+            _currentAccount = currentAccount;
+            _currentAccountNum = currentAccount.CardNumber;
         }
 
         #endregion
@@ -35,7 +48,7 @@ namespace DBModels
         public int RegularPaymentId
         {
             get { return _regularPaymentId; }
-            set { _regularPaymentId = value; }
+            private set { _regularPaymentId = value; }
         }
 
         public DateTime FirstRegularPaymentDate
@@ -47,13 +60,25 @@ namespace DBModels
         public PeriodRegularPayment PeriodRegularPayment
         {
             get { return _periodRegularPayment; }
-            set { _periodRegularPayment = value; }
+            private set { _periodRegularPayment = value; }
         }
 
         public string RegularPaymentName
         {
             get { return _regularPaymentName; }
-            set { _regularPaymentName = value; }
+            private set { _regularPaymentName = value; }
+        }
+
+        public CurrentAccount CurrentAccount
+        {
+            get { return _currentAccount; }
+            private set { _currentAccount = value; }
+        }
+
+        public string CurrentAccountNum
+        {
+            get { return _currentAccountNum; }
+            private set { _currentAccountNum = value; }
         }
 
         #endregion
