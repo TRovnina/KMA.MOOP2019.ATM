@@ -20,9 +20,9 @@
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Please, Enter a Withdrawal Amount"/>
 
-        <Label Name="Text" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Normal" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Text}"/>
+        <Label Name="Text" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Normal" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Content="{Binding Text}"/>
 
-        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Height="40" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextAlignment="Center" FontSize="18" VerticalAlignment="Center" Width="160" Height="40" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         
         <Button Grid.Row="3" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>
         <Button Grid.Row="3" Grid.Column="1" Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding MenuCommand}"/>
