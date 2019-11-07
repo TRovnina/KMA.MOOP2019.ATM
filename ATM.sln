@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_Simulator", "ATM_Simula
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_WCFService", "ATM_WCFService\ATM_WCFService.csproj", "{394666D8-6A11-46ED-94FF-ED52166CD748}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBModels", "DBModels\DBModels.csproj", "{8DA3B908-DDCA-49FD-9E5A-7641EA56CB35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{394666D8-6A11-46ED-94FF-ED52166CD748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{394666D8-6A11-46ED-94FF-ED52166CD748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{394666D8-6A11-46ED-94FF-ED52166CD748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA3B908-DDCA-49FD-9E5A-7641EA56CB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA3B908-DDCA-49FD-9E5A-7641EA56CB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA3B908-DDCA-49FD-9E5A-7641EA56CB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA3B908-DDCA-49FD-9E5A-7641EA56CB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

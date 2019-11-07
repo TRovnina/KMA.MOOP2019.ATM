@@ -5,4 +5,6 @@ ATM_Simulator/bin/*
 ATM_Simulator/obj/*
 ATM_WCFService/bin/*
 ATM_WCFService/obj/*
+DBModels/bin/*
+DBModels/obj/*
 ATM.sln.DotSettings.user
