@@ -73,6 +73,9 @@ namespace ATM_Simulator.Tools
                 case ModesEnum.BalanceInquiry:
                     _content.ContentControl.Content = new BalanceInquiryView();
                     break;
+                case ModesEnum.CashSurplus:
+                    _content.ContentControl.Content = new CashSurplusView();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }
