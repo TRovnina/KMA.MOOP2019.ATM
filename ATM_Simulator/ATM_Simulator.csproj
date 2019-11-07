@@ -63,6 +63,7 @@
     <Compile Include="Models\Atm.cs" />
     <Compile Include="Managers\LoaderManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
+    <Compile Include="Models\Transfer.cs" />
     <Compile Include="Tools\BasicViewModel.cs" />
     <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
       <DependentUpon>LabelAndPasswordControl.xaml</DependentUpon>
@@ -83,6 +84,7 @@
     <Compile Include="ViewModel\ClientServices\CashWithdrawal\OtherWithdrawalViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ClientServicesViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ContinueViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Transfer\TransferViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\Authentication\ActivateAtmView.xaml.cs">
       <DependentUpon>ActivateAtmView.xaml</DependentUpon>
@@ -104,6 +106,9 @@
     </Compile>
     <Compile Include="View\ClientServices\ContinueView.xaml.cs">
       <DependentUpon>ContinueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Transfer\TransferView.xaml.cs">
+      <DependentUpon>TransferView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientServices\ContinueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Transfer\TransferView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

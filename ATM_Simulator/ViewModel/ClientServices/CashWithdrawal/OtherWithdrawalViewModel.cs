@@ -49,12 +49,6 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
             NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
         }
 
-        private void GetMoney(int n)
-        {
-            MessageBox.Show("You have successfully been issued " + n + " points!");
-            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
-        }
-
         public ICommand EndCommand
         {
             get { return _endCommand ?? (_endCommand = new RelayCommand<object>(End)); }

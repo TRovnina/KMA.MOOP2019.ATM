@@ -2,6 +2,7 @@
 using ATM_Simulator.View.Authentication;
 using ATM_Simulator.View.ClientServices;
 using ATM_Simulator.View.ClientServices.CashWithdrawal;
+using ATM_Simulator.View.ClientServices.Transfer;
 
 namespace ATM_Simulator.Tools
 {
@@ -19,7 +20,8 @@ namespace ATM_Simulator.Tools
         RegularPayment,
         CashSurplus,
         ChangePin,
-        AskContinue
+        AskContinue,
+        CheckInfo
     }
 
     internal class NavigationModel
@@ -58,6 +60,9 @@ namespace ATM_Simulator.Tools
                     break;
                 case ModesEnum.OtherWithdrawal:
                     _content.ContentControl.Content = new OtherWithdrawalView();
+                    break;
+                case ModesEnum.Transfer:
+                    _content.ContentControl.Content = new TransferView();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);

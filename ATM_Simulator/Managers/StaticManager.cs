@@ -7,7 +7,7 @@ namespace ATM_Simulator.Managers
     internal static class StaticManager
     {
         internal static Atm CurrentAtm { get; set; }
-        internal static Atm CurrentCard { get; set; }
+        internal static Transfer CurrentTransfer { get; set; }
 
         internal static void Initialize()
         {
