@@ -3,10 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ATM_Simulator.View.ClientServices"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Balance Inquiry"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Center" FontWeight="Bold" FontSize="18" VerticalAlignment="Top" HorizontalAlignment="Center" Text="{Binding Card}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Normal" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Available Amount"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Center" FontWeight="Normal" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Text}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextAlignment="Center" FontSize="25" VerticalAlignment="Center" Width="160" Height="40" Text="{Binding Amount}"/>
+
+        <Button Grid.Row="5" Grid.Column="1" Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding MenuCommand}"/>
+        <Button Grid.Row="5" Grid.Column="0" Content="END Session" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding EndCommand}"/>
+
     </Grid>
 </UserControl>

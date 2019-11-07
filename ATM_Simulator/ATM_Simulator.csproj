@@ -80,6 +80,7 @@
     <Compile Include="ViewModel\Authentication\ActivateAtmViewModel.cs" />
     <Compile Include="ViewModel\Authentication\CardNumberViewModel.cs" />
     <Compile Include="ViewModel\Authentication\CardPinViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\BalanceInquiryViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\CashWithdrawal\CashWithdrawalViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\CashWithdrawal\OtherWithdrawalViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ChangePinViewModel.cs" />
@@ -96,6 +97,9 @@
     </Compile>
     <Compile Include="View\Authentication\CardPinView.xaml.cs">
       <DependentUpon>CardPinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\BalanceInquiryView.xaml.cs">
+      <DependentUpon>BalanceInquiryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClientServices\CashWithdrawal\CashWithdrawalView.xaml.cs">
       <DependentUpon>CashWithdrawalView.xaml</DependentUpon>
@@ -147,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Authentication\CardPinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\BalanceInquiryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
