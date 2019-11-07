@@ -1,16 +1,17 @@
-﻿namespace ATM_Simulator.Models
+﻿
+namespace ATM_Simulator.Models
 {
-    internal class Transfer
+    internal class RegularPayment
     {
         #region Properties
 
-        internal string RecipientCard
+        internal string Card
         {
             get;
             set;
         }
 
-        internal string RecipientName
+        internal string Name
         {
             get;
             set;
@@ -22,7 +23,7 @@
             set;
         }
 
-        internal double Commission
+        internal string Period
         {
             get;
             set;
@@ -37,13 +38,13 @@
         #endregion
 
 
-        public Transfer(string recipient, int amount, string description)
+        public RegularPayment(string name, string card, int amount, string period, string description)
         {
-            RecipientCard = recipient;
+            Card = card;
+            Name = name;
             Amount = amount;
             Description = description;
-            RecipientName = "Petrov Petr";
-            Commission = 0.05;
-        } 
+            Period = period;
+        }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="Models\Atm.cs" />
     <Compile Include="Managers\LoaderManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
+    <Compile Include="Models\RegularPayment.cs" />
     <Compile Include="Models\Transfer.cs" />
     <Compile Include="Tools\BasicViewModel.cs" />
     <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
@@ -87,6 +88,8 @@
     <Compile Include="ViewModel\ClientServices\ChangePinViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ClientServicesViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ContinueViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\CreatePaymentViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\RegularPaymentViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Transfer\CheckTransferViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Transfer\TransferViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -119,6 +122,12 @@
     </Compile>
     <Compile Include="View\ClientServices\ContinueView.xaml.cs">
       <DependentUpon>ContinueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\CreatePaymentView.xaml.cs">
+      <DependentUpon>CreatePaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml.cs">
+      <DependentUpon>RegularPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClientServices\Transfer\CheckTransferView.xaml.cs">
       <DependentUpon>CheckTransferView.xaml</DependentUpon>
@@ -183,6 +192,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientServices\ContinueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Regular Payment\CreatePaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
