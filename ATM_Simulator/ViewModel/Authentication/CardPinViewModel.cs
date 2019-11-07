@@ -3,30 +3,31 @@ using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
 
-namespace ATM_Simulator.ViewModel
+namespace ATM_Simulator.ViewModel.Authentication
 {
-    internal class CardNumberViewModel : BasicViewModel
+    internal class CardPinViewModel : BasicViewModel
     {
         #region Fields
 
-        private string _number;
+        private string _pin;
 
         #endregion
 
         #region Commands
 
         private ICommand _nextCommand;
+        private ICommand _closeCommand;
 
         #endregion
 
         #region Properties
 
-        public string Number
+        public string Pin
         {
-            get { return _number; }
+            get { return _pin; }
             set
             {
-                _number = value;
+                _pin = value;
                 OnPropertyChanged();
             }
         }
@@ -44,11 +45,20 @@ namespace ATM_Simulator.ViewModel
             }
         }
 
+
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close));
+            }
+        }
+
         #endregion
 
         private bool CanNextExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_number);
+            return !string.IsNullOrWhiteSpace(_pin);
         }
 
         private async void NextImplementation(object obj)
@@ -56,11 +66,18 @@ namespace ATM_Simulator.ViewModel
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                
+               
             });
 
             LoaderManager.Instance.HideLoader();
-            NavigationManager.Instance.Navigate(ModesEnum.CardPassword);
+            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            //NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
+        }
+
+
+        private void Close(object obj)
+        {
+            NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
         }
     }
 }

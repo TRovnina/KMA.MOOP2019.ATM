@@ -4,7 +4,7 @@ using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 
-namespace ATM_Simulator.ViewModel
+namespace ATM_Simulator.ViewModel.Authentication
 {
     internal class ActivateAtmViewModel : BasicViewModel
     {

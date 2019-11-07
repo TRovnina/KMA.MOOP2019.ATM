@@ -76,9 +76,13 @@
     <Compile Include="Tools\NavigationModel.cs" />
     <Compile Include="Tools\IContent.cs" />
     <Compile Include="Tools\PasswordBoxAssistant.cs" />
-    <Compile Include="ViewModel\ActivateAtmViewModel.cs" />
-    <Compile Include="ViewModel\CardNumberViewModel.cs" />
-    <Compile Include="ViewModel\CardPasswordViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\ActivateAtmViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\CardNumberViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\CardPinViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashWithdrawal\CashWithdrawalViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashWithdrawal\OtherWithdrawalViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\ClientServicesViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\ContinueViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="View\Authentication\ActivateAtmView.xaml.cs">
       <DependentUpon>ActivateAtmView.xaml</DependentUpon>
@@ -86,8 +90,20 @@
     <Compile Include="View\Authentication\CardNumberView.xaml.cs">
       <DependentUpon>CardNumberView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Authentication\CardPasswordView.xaml.cs">
-      <DependentUpon>CardPasswordView.xaml</DependentUpon>
+    <Compile Include="View\Authentication\CardPinView.xaml.cs">
+      <DependentUpon>CardPinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\CashWithdrawal\CashWithdrawalView.xaml.cs">
+      <DependentUpon>CashWithdrawalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\CashWithdrawal\OtherWithdrawalView.xaml.cs">
+      <DependentUpon>OtherWithdrawalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\ClientServicesView.xaml.cs">
+      <DependentUpon>ClientServicesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\ContinueView.xaml.cs">
+      <DependentUpon>ContinueView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,7 +133,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Authentication\CardPasswordView.xaml">
+    <Page Include="View\Authentication\CardPinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\CashWithdrawal\CashWithdrawalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\CashWithdrawal\OtherWithdrawalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\ClientServicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\ContinueView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,5 +181,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
