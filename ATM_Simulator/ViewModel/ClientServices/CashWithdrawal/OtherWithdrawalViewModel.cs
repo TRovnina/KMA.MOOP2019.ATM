@@ -30,7 +30,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         public ICommand ConfirmCommand
         {
-            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(GetMoney)); }
+            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(GetMoney, CanConfirmExecute)); }
+        }
+
+        private bool CanConfirmExecute(object obj)
+        {
+            return _amount != 0;
         }
 
         private void GetMoney(object obj)

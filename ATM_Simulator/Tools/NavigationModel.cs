@@ -21,7 +21,7 @@ namespace ATM_Simulator.Tools
         CashSurplus,
         ChangePin,
         AskContinue,
-        CheckInfo
+        CheckTransferInfo
     }
 
     internal class NavigationModel
@@ -63,6 +63,15 @@ namespace ATM_Simulator.Tools
                     break;
                 case ModesEnum.Transfer:
                     _content.ContentControl.Content = new TransferView();
+                    break;
+                case ModesEnum.CheckTransferInfo:
+                    _content.ContentControl.Content = new CheckTransferView();
+                    break;
+                case ModesEnum.ChangePin:
+                    _content.ContentControl.Content = new ChangePinView();
+                    break;
+                case ModesEnum.BalanceInquiry:
+                    _content.ContentControl.Content = new BalanceInquiryView();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);

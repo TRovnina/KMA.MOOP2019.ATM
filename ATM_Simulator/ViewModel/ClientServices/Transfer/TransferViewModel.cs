@@ -7,7 +7,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
     internal class TransferViewModel : BasicViewModel
     {
         private string _recipient;
-        private double _amount;
+        private int _amount;
         private string _description;
 
         private ICommand _confirmCommand;
@@ -24,7 +24,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             }
         }
 
-        public double Amount
+        public int Amount
         {
             get { return _amount; }
             set
@@ -46,13 +46,18 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         public ICommand ConfirmCommand
         {
-            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm)); }
+            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm, CanConfirmExecute)); }
         }
 
         private void Confirm(object obj)
         {
             StaticManager.CurrentTransfer = new Models.Transfer(Recipient, Amount, Description);
-            NavigationManager.Instance.Navigate(ModesEnum.CheckInfo);
+            NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
+        }
+
+        private bool CanConfirmExecute(object obj)
+        {
+            return !string.IsNullOrWhiteSpace(_recipient) && _amount != 0;
         }
 
         public ICommand MenuCommand

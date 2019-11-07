@@ -4,13 +4,25 @@
     {
         #region Properties
 
-        internal string Recipient
+        internal string RecipientCard
+        {
+            get;
+            set;
+        }
+
+        internal string RecipientName
         {
             get;
             set;
         }
 
         internal double Amount
+        {
+            get;
+            set;
+        }
+
+        internal double Commission
         {
             get;
             set;
@@ -27,9 +39,11 @@
 
         public Transfer(string recipient, double amount, string description)
         {
-            Recipient = recipient;
+            RecipientCard = recipient;
             Amount = amount;
             Description = description;
-        }
+            RecipientName = "Petrov Petr";
+            Commission = 0.05;
+        } 
     }
 }

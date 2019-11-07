@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ATM_Simulator.View.ClientServices.Transfer.CheckTransferView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Check Transfer Information"/>
+
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Content="Recipient's card number:"/>
+        <TextBlock Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" Text="{Binding RecipientCard, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Content="Recipient's name:"/>
+        <TextBlock Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" Text="{Binding RecipientName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Content="Payment description:"/>
+        <TextBlock Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" Text="{Binding Description, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Content="Commission:"/>
+        <TextBlock Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" Text="{Binding Commission, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Content="Amount:"/>
+        <TextBlock Grid.Row="5" Grid.Column="1"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="30" Margin="5" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" Text="{Binding Amount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+        <Button Grid.Row="6" Grid.Column="0" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding CancelCommand}"/>
+        <Button Grid.Row="6" Grid.Column="1" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>
+    </Grid>
+</UserControl>
