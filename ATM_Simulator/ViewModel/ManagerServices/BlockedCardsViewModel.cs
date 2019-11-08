@@ -10,6 +10,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         //private ObservableCollection<Amount> _cards;
         //private Amount _selectedCard;
 
+        private ICommand _unlockCommand;
         private ICommand _menuCommand;
 
         //public ObservableCollection<Amount> Cards
@@ -32,6 +33,17 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         //        OnPropertyChanged();
         //    }
         //}
+
+        public ICommand UnlockCommand
+        {
+            get { return _unlockCommand ?? (_unlockCommand = new RelayCommand<object>(Unlock)); }
+        }
+
+        private void Unlock(object obj)
+        {
+            //make card unlock
+            NavigationManager.Instance.Navigate(ModesEnum.BlockedCards);
+        }
 
         public ICommand MenuCommand
         {

@@ -48,10 +48,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         public ICommand CloseCommand
         {
-            get
-            {
-                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close));
-            }
+            get { return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close)); }
         }
 
         #endregion
@@ -66,12 +63,15 @@ namespace ATM_Simulator.ViewModel.Authentication
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-               
+                //check PIN
             });
 
             LoaderManager.Instance.HideLoader();
-            //NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
-            NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
+
+            if (_pin == "1")
+                NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            else
+                NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
         }
 
 

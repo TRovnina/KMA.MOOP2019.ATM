@@ -26,10 +26,10 @@ namespace ATM_Simulator.ViewModel.ManagerServices
             }
         }
 
-        private int Hundred
+        public int Hundred
         {
             // get { return _hundred = CurrentAtm.Hundred; }
-            get { return 200; }
+            get { return 100; }
             set
             {
                 _hundred = value;
@@ -40,7 +40,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         public int TwoHundred
         {
             // get { return _twoHundred = CurrentAtm.TwoHundred; }
-            get { return 100; }
+            get { return 200; }
             set
             {
                 _twoHundred = value;

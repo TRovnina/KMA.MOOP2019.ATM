@@ -24,7 +24,7 @@
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Enter Card Number"/>
         <controls:LabelAndTextControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                      Caption="" Margin="135, 110, 155, 120" Grid.RowSpan="2"></controls:LabelAndTextControl>
+                                      Margin="135, 110, 155, 120" Grid.RowSpan="2"></controls:LabelAndTextControl>
 
         <Button Grid.Row="2" Grid.Column="1" Content="Next" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding NextCommand}"/>
     </Grid>

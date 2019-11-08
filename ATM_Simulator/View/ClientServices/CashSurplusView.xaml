@@ -7,7 +7,7 @@
              d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="70"/>

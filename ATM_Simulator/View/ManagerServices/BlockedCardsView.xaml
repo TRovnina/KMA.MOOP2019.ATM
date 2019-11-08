@@ -3,10 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ATM_Simulator.View.ManagerServices"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+              d:DesignHeight="550" d:DesignWidth="700" x:ClassModifier="internal">
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Blocked Cards"/>
+
+        <DataGrid Name="DataGrid" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemsSource="{Binding Payments, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPayment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Owner" Binding="{Binding Owner}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="2" Grid.Column="0" Content="Unlock" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding UnlockCommand}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding MenuCommand}"/>
     </Grid>
 </UserControl>
