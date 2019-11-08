@@ -70,8 +70,8 @@ namespace ATM_Simulator.ViewModel.Authentication
             });
 
             LoaderManager.Instance.HideLoader();
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
-            //NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
+            //NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
         }
 
 

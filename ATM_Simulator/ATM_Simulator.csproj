@@ -89,10 +89,12 @@
     <Compile Include="ViewModel\ClientServices\ClientServicesViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ContinueViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Regular Payment\CreatePaymentViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\PaymentTemplatesViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Regular Payment\RegularPaymentViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Transfer\CheckTransferViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Transfer\TransferViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\ManagerServicesViewModel.cs" />
     <Compile Include="View\Authentication\ActivateAtmView.xaml.cs">
       <DependentUpon>ActivateAtmView.xaml</DependentUpon>
     </Compile>
@@ -126,6 +128,9 @@
     <Compile Include="View\ClientServices\Regular Payment\CreatePaymentView.xaml.cs">
       <DependentUpon>CreatePaymentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\PaymentTemplatesView.xaml.cs">
+      <DependentUpon>PaymentTemplatesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml.cs">
       <DependentUpon>RegularPaymentView.xaml</DependentUpon>
     </Compile>
@@ -134,6 +139,9 @@
     </Compile>
     <Compile Include="View\ClientServices\Transfer\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\ManagerServicesView.xaml.cs">
+      <DependentUpon>ManagerServicesView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ClientServices\Regular Payment\PaymentTemplatesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClientServices\Transfer\TransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerServices\ManagerServicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,5 +256,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,9 +9,9 @@
 
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -22,7 +22,7 @@
         <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Pin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Caption="" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
 
-        <Button Grid.Row="2" Grid.Column="0" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding NextCommand}"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding CloseCommand}"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding NextCommand}"/>
     </Grid>
 </UserControl>

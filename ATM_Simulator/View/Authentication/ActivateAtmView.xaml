@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ATM_Simulator.Tools.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
+             d:DesignHeight="550" d:DesignWidth="500" x:ClassModifier="internal">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,7 +24,7 @@
         <controls:LabelAndPasswordControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
 
-        <Button Grid.Row="3" Grid.Column="0" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding ActivateCommand}"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding CloseCommand}"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ActivateCommand}"/>
     </Grid>
 </UserControl>

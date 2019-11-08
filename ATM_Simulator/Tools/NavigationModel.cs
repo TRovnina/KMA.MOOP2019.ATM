@@ -4,6 +4,7 @@ using ATM_Simulator.View.ClientServices;
 using ATM_Simulator.View.ClientServices.CashWithdrawal;
 using ATM_Simulator.View.ClientServices.Regular_Payment;
 using ATM_Simulator.View.ClientServices.Transfer;
+using ATM_Simulator.View.ManagerServices;
 
 namespace ATM_Simulator.Tools
 {
@@ -24,7 +25,9 @@ namespace ATM_Simulator.Tools
         AskContinue,
         CheckTransferInfo,
         PaymentTemplates,
-        CreatePayment
+        CreatePayment,
+        AddMoney,
+        BlockedCards
     }
 
     internal class NavigationModel
@@ -85,6 +88,12 @@ namespace ATM_Simulator.Tools
                     break;
                 case ModesEnum.CreatePayment:
                     _content.ContentControl.Content = new CreatePaymentView();
+                    break;
+                case ModesEnum.PaymentTemplates:
+                    _content.ContentControl.Content = new PaymentTemplatesView();
+                    break;
+                case ModesEnum.ManagerMenu:
+                    _content.ContentControl.Content = new ManagerServicesView();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
