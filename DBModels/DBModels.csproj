@@ -57,7 +57,6 @@
     <Compile Include="Enums\ActionType.cs" />
     <Compile Include="ATM.cs" />
     <Compile Include="ATMManagerAction.cs" />
-    <Compile Include="Banknote.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CreditAccount.cs" />
     <Compile Include="DepositAccount.cs" />

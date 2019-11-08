@@ -16,11 +16,10 @@ namespace DBModels
         [DataMember]
         private double _creditSum; // вже використана клієнтом кредитна сума
         [DataMember]
-        private int _percentage;
+        private int _percentageCredit;
         [DataMember]
         private double _debt; // Борг банку = _creditSum + _creditSum* _percentage
         
-
         #endregion
 
 
@@ -33,7 +32,7 @@ namespace DBModels
             _endOfGracePeriod = endOfGracePeriod;
             _maxCreditSum = maxCreditSum;
             _creditSum = creditSum;
-            _percentage = percentage;
+            _percentageCredit = percentage;
             _debt = CalculateDebt();
             client.Accounts.Add(this);
         }
@@ -65,10 +64,10 @@ namespace DBModels
             set => _creditSum = value;
         }
 
-        public int Percentage
+        public int PercentageCredit
         {
-            get => _percentage;
-            set => _percentage = value;
+            get => _percentageCredit;
+            set => _percentageCredit = value;
         }
 
         public double Debt
@@ -81,7 +80,7 @@ namespace DBModels
 
         private double CalculateDebt()
         {
-            return CreditSum + CreditSum * Percentage;
+            return CreditSum + CreditSum * PercentageCredit;
         }
 
         #region EntityConfiguration
@@ -103,8 +102,8 @@ namespace DBModels
                 Property(c => c.CreditSum)
                     .HasColumnName("CreditSum")
                     .IsRequired();
-                Property(c => c.Percentage)
-                    .HasColumnName("Percentage")
+                Property(c => c.PercentageCredit)
+                    .HasColumnName("PercentageCredit")
                     .IsRequired();
                 Property(c => c.Debt)
                     .HasColumnName("Debt")

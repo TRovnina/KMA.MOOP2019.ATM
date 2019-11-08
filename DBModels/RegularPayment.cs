@@ -19,11 +19,15 @@ namespace DBModels
         private int _periodRegularPaymentId;
         [DataMember]
         private string _regularPaymentName;
+        [DataMember]
+        private double _sum;
+        [DataMember]
+        private string _destinationAccount;
 
         [DataMember]
         private CurrentAccount _currentAccount;
         [DataMember]
-        private string _currentAccountNum;
+        private string _cardNumber;
 
         #endregion
 
@@ -35,12 +39,14 @@ namespace DBModels
         }
 
         public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName, 
-            CurrentAccount currentAccount) : this()
+            CurrentAccount currentAccount, double sum, string destinationAccount) : this()
         {
             _periodRegularPayment = periodRegularPayment;
             _regularPaymentName = regularPaymentName;
             _currentAccount = currentAccount;
-            _currentAccountNum = currentAccount.CardNumber;
+            _cardNumber = currentAccount.CardNumber;
+            _sum = sum;
+            _destinationAccount = destinationAccount;
         }
 
         #endregion
@@ -77,19 +83,36 @@ namespace DBModels
             private set => _regularPaymentName = value;
         }
 
+        public double Sum
+        {
+            get => _sum;
+            private set => _sum = value;
+        }
+
+        public string DestinationAccount
+        {
+            get => _destinationAccount;
+            private set => _destinationAccount = value;
+        }
+
         public CurrentAccount CurrentAccount
         {
             get => _currentAccount;
             private set => _currentAccount = value;
         }
 
-        public string CurrentAccountNum
+        public string CardNumber
         {
-            get => _currentAccountNum;
-            private set => _currentAccountNum = value;
+            get => _cardNumber;
+            private set => _cardNumber = value;
         }
 
         #endregion
+
+        public void DeleteDatabaseValues()
+        {
+            _currentAccount = null;
+        }
 
         #region EntityConfiguration
 
@@ -113,6 +136,12 @@ namespace DBModels
                 Ignore(a => a.PeriodRegularPayment);
                 Property(a => a.RegularPaymentName)
                     .HasColumnName("RegularPaymentName")
+                    .IsRequired();
+                Property(a => a.Sum)
+                    .HasColumnName("Sum")
+                    .IsRequired();
+                Property(a => a.DestinationAccount)
+                    .HasColumnName("DestinationAccount")
                     .IsRequired();
             }
         }

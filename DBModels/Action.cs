@@ -114,6 +114,12 @@ namespace DBModels
 
         #endregion
 
+        public void DeleteDatabaseValues()
+        {
+            _atm = null;
+            _account = null;
+        }
+
         #region EntityConfiguration
 
         public class ActionEntityConfiguration : EntityTypeConfiguration<Action>

@@ -27,8 +27,6 @@ namespace DBModels
         {
 
             _accounts = new List<Account>();
-           // _depositAccounts = new List<DepositAccount>();
-            //_creditAccounts = new List<CreditAccount>();
         }
 
         public Client(string itm, string firstName, string lastName) : this()
@@ -66,20 +64,6 @@ namespace DBModels
             get => _accounts;
             set => _accounts = value;
         }
-
-        /*public List<CreditAccount> CreditAccounts
-        {
-            get => _creditAccounts;
-            set => _creditAccounts = value;
-        }
-
-        public List<DepositAccount> DepositAccounts
-        {
-            get => _depositAccounts;
-            set => _depositAccounts = value;
-        }*/
-
-
 
         #endregion
 

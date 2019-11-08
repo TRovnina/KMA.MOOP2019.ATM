@@ -99,7 +99,7 @@ namespace DBModels
 
                 HasMany(a => a.RegularPayments)
                     .WithRequired(act => act.CurrentAccount)
-                    .HasForeignKey(act => act.CurrentAccountNum)
+                    .HasForeignKey(act => act.CardNumber)
                     .WillCascadeOnDelete(true);
             }
         }
