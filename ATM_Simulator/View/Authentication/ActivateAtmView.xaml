@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ATM_Simulator.Tools.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
+             d:DesignHeight="550" d:DesignWidth="700" x:ClassModifier="internal">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,11 +20,11 @@
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="ATM Activation"/>
         <controls:LabelAndTextControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Code, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                      Caption="Code" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
+                                      Caption="Code" Margin="10" Grid.RowSpan="2" Width="500"></controls:LabelAndTextControl>
         <controls:LabelAndPasswordControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                          Caption="Password" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
+                                          Caption="Password" Margin="10" Grid.RowSpan="2" Width="500"></controls:LabelAndPasswordControl>
 
-        <Button Grid.Row="3" Grid.Column="0" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding CloseCommand}"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Command="{Binding ActivateCommand}"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="Cancel" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding CloseCommand}"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Confirm" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ActivateCommand}"/>
     </Grid>
 </UserControl>

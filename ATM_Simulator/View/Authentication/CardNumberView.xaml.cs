@@ -1,4 +1,4 @@
-﻿using ATM_Simulator.ViewModel;
+﻿using ATM_Simulator.ViewModel.Authentication;
 
 namespace ATM_Simulator.View.Authentication
 {

@@ -63,6 +63,8 @@
     <Compile Include="Models\Atm.cs" />
     <Compile Include="Managers\LoaderManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
+    <Compile Include="Models\RegularPayment.cs" />
+    <Compile Include="Models\Transfer.cs" />
     <Compile Include="Tools\BasicViewModel.cs" />
     <Compile Include="Tools\Controls\LabelAndPasswordControl.xaml.cs">
       <DependentUpon>LabelAndPasswordControl.xaml</DependentUpon>
@@ -76,18 +78,78 @@
     <Compile Include="Tools\NavigationModel.cs" />
     <Compile Include="Tools\IContent.cs" />
     <Compile Include="Tools\PasswordBoxAssistant.cs" />
-    <Compile Include="ViewModel\ActivateAtmViewModel.cs" />
-    <Compile Include="ViewModel\CardNumberViewModel.cs" />
-    <Compile Include="ViewModel\CardPasswordViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\ActivateAtmViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\CardNumberViewModel.cs" />
+    <Compile Include="ViewModel\Authentication\CardPinViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\BalanceInquiryViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashSurplusViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashWithdrawal\CashWithdrawalViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashWithdrawal\OtherWithdrawalViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\ChangePinViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\ClientServicesViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\ContinueViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\CreatePaymentViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\PaymentTemplatesViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Regular Payment\RegularPaymentViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Transfer\CheckTransferViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\Transfer\TransferViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\AddMoneyViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\BlockedCardsViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\ManagerServicesViewModel.cs" />
     <Compile Include="View\Authentication\ActivateAtmView.xaml.cs">
       <DependentUpon>ActivateAtmView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Authentication\CardNumberView.xaml.cs">
       <DependentUpon>CardNumberView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Authentication\CardPasswordView.xaml.cs">
-      <DependentUpon>CardPasswordView.xaml</DependentUpon>
+    <Compile Include="View\Authentication\CardPinView.xaml.cs">
+      <DependentUpon>CardPinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\BalanceInquiryView.xaml.cs">
+      <DependentUpon>BalanceInquiryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\CashSurplusView.xaml.cs">
+      <DependentUpon>CashSurplusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\CashWithdrawal\CashWithdrawalView.xaml.cs">
+      <DependentUpon>CashWithdrawalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\CashWithdrawal\OtherWithdrawalView.xaml.cs">
+      <DependentUpon>OtherWithdrawalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\ChangePinView.xaml.cs">
+      <DependentUpon>ChangePinView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\ClientServicesView.xaml.cs">
+      <DependentUpon>ClientServicesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\ContinueView.xaml.cs">
+      <DependentUpon>ContinueView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\CreatePaymentView.xaml.cs">
+      <DependentUpon>CreatePaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\PaymentTemplatesView.xaml.cs">
+      <DependentUpon>PaymentTemplatesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml.cs">
+      <DependentUpon>RegularPaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Transfer\CheckTransferView.xaml.cs">
+      <DependentUpon>CheckTransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientServices\Transfer\TransferView.xaml.cs">
+      <DependentUpon>TransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\AddMoneyView.xaml.cs">
+      <DependentUpon>AddMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\BlockedCardsView.xaml.cs">
+      <DependentUpon>BlockedCardsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\ManagerServicesView.xaml.cs">
+      <DependentUpon>ManagerServicesView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -117,7 +179,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Authentication\CardPasswordView.xaml">
+    <Page Include="View\Authentication\CardPinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\BalanceInquiryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\CashSurplusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\CashWithdrawal\CashWithdrawalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\CashWithdrawal\OtherWithdrawalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\ChangePinView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\ClientServicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\ContinueView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Regular Payment\CreatePaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Regular Payment\PaymentTemplatesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Regular Payment\RegularPaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Transfer\CheckTransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientServices\Transfer\TransferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerServices\AddMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerServices\BlockedCardsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerServices\ManagerServicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +270,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\continueImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

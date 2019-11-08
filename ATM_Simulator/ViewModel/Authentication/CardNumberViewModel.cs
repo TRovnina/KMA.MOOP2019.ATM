@@ -1,34 +1,32 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
-using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 
-namespace ATM_Simulator.ViewModel
+namespace ATM_Simulator.ViewModel.Authentication
 {
-    internal class CardPasswordViewModel : BasicViewModel
+    internal class CardNumberViewModel : BasicViewModel
     {
         #region Fields
 
-        private string _pin;
+        private string _number;
 
         #endregion
 
         #region Commands
 
         private ICommand _nextCommand;
-        private ICommand _closeCommand;
 
         #endregion
 
         #region Properties
 
-        public string Pin
+        public string Number
         {
-            get { return _pin; }
+            get { return _number; }
             set
             {
-                _pin = value;
+                _number = value;
                 OnPropertyChanged();
             }
         }
@@ -46,20 +44,11 @@ namespace ATM_Simulator.ViewModel
             }
         }
 
-
-        public ICommand CloseCommand
-        {
-            get
-            {
-                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close));
-            }
-        }
-
         #endregion
 
         private bool CanNextExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_pin);
+            return !string.IsNullOrWhiteSpace(_number);
         }
 
         private async void NextImplementation(object obj)
@@ -67,18 +56,11 @@ namespace ATM_Simulator.ViewModel
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-               
+                
             });
 
             LoaderManager.Instance.HideLoader();
-            //NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
-            //NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
-        }
-
-
-        private void Close(object obj)
-        {
-            NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
     }
 }
