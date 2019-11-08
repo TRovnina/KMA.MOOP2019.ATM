@@ -11,35 +11,20 @@ namespace DBAdapter
     {
         static void Main(string[] args)
         {
-            Client cl01 = new Client("123456", "Paule", "Jons");
+            using (var context = new ATMDbContext())
+            {
+                ATM atm01 = new ATM("1111111111111111", "1111111111111111", "Kyiv, Ukraine");
+                context.ATMs.Add(atm01);
+                context.SaveChanges();
 
-            CreditAccount credit01 = new CreditAccount("", "", cl01, 
-                DateTime.Today, 2000, 0, 0);
-            CurrentAccount current01 = new CurrentAccount("", "", cl01, 
-                0, PeriodHandingCashSurplus.None);
-            DepositAccount deposit01 = new DepositAccount("", "", cl01,
-                DateTime.Today, DateTime.Today, 0);
+                foreach (var atm in context.ATMs)
+                {
+                    Console.WriteLine(atm.ToString());
+                }
 
-            TryCast(deposit01);
-
-            Console.WriteLine("Finishing . . .");
-            Console.ReadKey();
-        }
-
-        private static void TryCast(Account account)
-        {
-            CreditAccount cr02 = account as CreditAccount;
-            CurrentAccount c02 = account as CurrentAccount;
-            DepositAccount d02 = account as DepositAccount;
-
-            if(cr02 != null)
-                Console.WriteLine("credit");
-
-            if (c02 != null)
-                Console.WriteLine("current");
-
-            if (d02 != null)
-                Console.WriteLine("deposit");
+                Console.WriteLine("Finishing . . .");
+                Console.ReadKey();
+            }
         }
     }
 }

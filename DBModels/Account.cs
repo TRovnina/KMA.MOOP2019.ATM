@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 
 namespace DBModels
 {
@@ -23,8 +25,8 @@ namespace DBModels
         public Account(string cardNumber, string cardPassword, Client client) : this()
         {
             _cardNumber = cardNumber;
-            _cardPassword = cardPassword;
             _client = client;
+            SetPassword(cardPassword);
         }
 
         public Account()
@@ -83,10 +85,57 @@ namespace DBModels
 
         #endregion
 
+        private void SetPassword(string password)
+        {
+            _cardPassword = Encrypting.GetMd5HashForString(password);
+        }
+
+        public bool CheckPassword(string password)
+        {
+            try
+            {
+                string res2 = Encrypting.GetMd5HashForString(password);
+                return _cardPassword == res2;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public override  string ToString()
         {
             return _cardNumber;
         }
+
+        #region EntityConfiguration
+
+        public class AccountEntityConfiguration : EntityTypeConfiguration<Account>
+        {
+            public AccountEntityConfiguration()
+            {
+                ToTable("Account");
+                HasKey(c => c.CardNumber);
+
+                Property(c => c.CardNumber)
+                    .HasColumnName("CardNumber")
+                    .IsRequired();
+                Property(c => c.CardPassword)
+                    .HasColumnName("CardPassword")
+                    .IsRequired();
+                Property(c => c.IsActive)
+                    .HasColumnName("IsActive")
+                    .IsRequired();
+                Property(c => c.AvailableSum)
+                    .HasColumnName("AvailableSum")
+                    .IsRequired();
+
+                HasMany(a => a.Actions)
+                    .WithRequired(act => act.Account)
+                    .HasForeignKey(act => act.AccountNum)
+                    .WillCascadeOnDelete(true);
+            }
+        }
+        #endregion
     }
 }

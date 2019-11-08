@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
@@ -35,7 +36,7 @@ namespace DBModels
             _managerId = managerId;
             _firstName = firstName;
             _lastName = lastName;
-            _password = password;
+            SetPassword(password);
         }
 
         #endregion
@@ -73,6 +74,24 @@ namespace DBModels
         }
 
         #endregion
+
+        private void SetPassword(string password)
+        {
+            _password = Encrypting.GetMd5HashForString(password);
+        }
+
+        public bool CheckPassword(string password)
+        {
+            try
+            {
+                string res2 = Encrypting.GetMd5HashForString(password);
+                return _password == res2;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public override string ToString()
         {

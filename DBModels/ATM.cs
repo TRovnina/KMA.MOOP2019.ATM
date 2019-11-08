@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
@@ -39,9 +40,10 @@ namespace DBModels
         public ATM(string atmCode, string password, string atmAddress) : this()
         {
             _atmCode = atmCode;
-            _password = password;
             _status = false;
             _atmAddress = atmAddress;
+
+            SetPassword(password);
         }
 
         #endregion
@@ -91,6 +93,24 @@ namespace DBModels
         }
 
         #endregion
+
+        private void SetPassword(string password)
+        {
+            _password = Encrypting.GetMd5HashForString(password);
+        }
+
+        public bool CheckPassword(string password)
+        {
+            try
+            {
+                string res2 = Encrypting.GetMd5HashForString(password);
+                return _password == res2;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public override string ToString()
         {

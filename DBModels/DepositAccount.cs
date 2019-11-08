@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
@@ -18,11 +19,6 @@ namespace DBModels
         [DataMember]
         private DateTime _availableDate; // Дата коли гроші будуть доступні = Deposit_Date + Storage_Date
 
-        [DataMember]
-        private CurrentAccount _currentAccount;
-        [DataMember]
-        private string _currentAccountNum;
-
         #endregion
 
         #region Constructors
@@ -36,8 +32,7 @@ namespace DBModels
             _percentage = percentage;
             _availableDate = CalculateAvailableDate();
 
-            client.DepositAccount = this;
-            client.DepositAccountNum = cardNumber;
+            client.Accounts.Add(this);
         }
 
         private DepositAccount()
@@ -73,18 +68,6 @@ namespace DBModels
             private set => _availableDate = value;
         }
 
-        public CurrentAccount CurrentAccount
-        {
-            get => _currentAccount;
-            set => _currentAccount = value;
-        }
-
-        public string CurrentAccountNum
-        {
-            get => _currentAccountNum;
-            set => _currentAccountNum = value;
-        }
-
         #endregion
 
         private DateTime CalculateAvailableDate()
@@ -99,20 +82,6 @@ namespace DBModels
             public DepositAccountEntityConfiguration()
             {
                 ToTable("DepositAccount");
-                HasKey(c => c.CardNumber);
-
-                Property(c => c.CardNumber)
-                    .HasColumnName("CardNumber")
-                    .IsRequired();
-                Property(c => c.CardPassword)
-                    .HasColumnName("CardPassword")
-                    .IsRequired();
-                Property(c => c.IsActive)
-                    .HasColumnName("IsActive")
-                    .IsRequired();
-                Property(c => c.AvailableSum)
-                    .HasColumnName("AvailableSum")
-                    .IsRequired();
 
                 Property(c => c.DepositDate)
                     .HasColumnName("DepositDate")
@@ -129,14 +98,6 @@ namespace DBModels
                     .HasColumnName("AvailableDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
-
-                HasRequired(c => c.Client)
-                    .WithRequiredPrincipal(c => c.DepositAccount);
-
-                HasMany(a => a.Actions)
-                    .WithRequired(act => act.DepositAccount)
-                    .HasForeignKey(act => act.AccountNum)
-                    .WillCascadeOnDelete(true);
             }
         }
         #endregion

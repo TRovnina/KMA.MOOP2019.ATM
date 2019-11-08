@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -16,18 +17,7 @@ namespace DBModels
         private string _lastName;
 
         [DataMember]
-        private CurrentAccount _currentAccount;
-        [DataMember]
-        private CreditAccount _creditAccount;
-        [DataMember]
-        private DepositAccount _depositAccount;
-
-        [DataMember]
-        private string _currentAccountNum;
-        [DataMember]
-        private string _creditAccountNum;
-        [DataMember]
-        private string _depositAccountNum;
+        private List<Account> _accounts;
 
         #endregion
 
@@ -35,7 +25,10 @@ namespace DBModels
 
         public Client()
         {
-            
+
+            _accounts = new List<Account>();
+           // _depositAccounts = new List<DepositAccount>();
+            //_creditAccounts = new List<CreditAccount>();
         }
 
         public Client(string itm, string firstName, string lastName) : this()
@@ -68,41 +61,25 @@ namespace DBModels
             set => _lastName = value;
         }
 
-        public CurrentAccount CurrentAccount
+        public List<Account> Accounts
         {
-            get => _currentAccount;
-            set => _currentAccount = value;
+            get => _accounts;
+            set => _accounts = value;
         }
 
-        public CreditAccount CreditAccount
+        /*public List<CreditAccount> CreditAccounts
         {
-            get => _creditAccount;
-            set => _creditAccount = value;
+            get => _creditAccounts;
+            set => _creditAccounts = value;
         }
 
-        public DepositAccount DepositAccount
+        public List<DepositAccount> DepositAccounts
         {
-            get => _depositAccount;
-            set => _depositAccount = value;
-        }
+            get => _depositAccounts;
+            set => _depositAccounts = value;
+        }*/
 
-        public string CurrentAccountNum
-        {
-            get => _currentAccountNum;
-            set => _currentAccountNum = value;
-        }
 
-        public string CreditAccountNum
-        {
-            get => _creditAccountNum;
-            set => _creditAccountNum = value;
-        }
-
-        public string DepositAccountNum
-        {
-            get => _depositAccountNum;
-            set => _depositAccountNum = value;
-        }
 
         #endregion
 
@@ -130,6 +107,11 @@ namespace DBModels
                     .HasColumnName("LastName")
                     .IsRequired();
 
+                HasMany(a => a.Accounts)
+                    .WithRequired(act => act.Client)
+                    .HasForeignKey(act => act.ClientITN)
+                    .WillCascadeOnDelete(true);
+                
             }
         }
         #endregion

@@ -35,8 +35,12 @@ namespace DBModels
             _creditSum = creditSum;
             _percentage = percentage;
             _debt = CalculateDebt();
-            client.CreditAccount = this;
-            client.CreditAccountNum = cardNumber;
+            client.Accounts.Add(this);
+        }
+
+        private CreditAccount()
+        {
+            
         }
 
         #endregion
@@ -88,20 +92,6 @@ namespace DBModels
             {
                 
                 ToTable("CreditAccount");
-                HasKey(c => c.CardNumber);
-
-                Property(c => c.CardNumber)
-                    .HasColumnName("CardNumber")
-                    .IsRequired();
-                Property(c => c.CardPassword)
-                    .HasColumnName("CardPassword")
-                    .IsRequired();
-                Property(c => c.IsActive)
-                    .HasColumnName("IsActive")
-                    .IsRequired();
-                Property(c => c.AvailableSum)
-                    .HasColumnName("AvailableSum")
-                    .IsRequired();
 
                 Property(c => c.EndOfGracePeriod)
                     .HasColumnName("EndOfGracePeriod")
@@ -119,14 +109,7 @@ namespace DBModels
                 Property(c => c.Debt)
                     .HasColumnName("Debt")
                     .IsRequired();
-
-                HasRequired(c => c.Client)
-                    .WithRequiredPrincipal(c => c.CreditAccount);
-
-                HasMany(a => a.Actions)
-                    .WithRequired(act => act.CreditAccount)
-                    .HasForeignKey(act => act.AccountNum)
-                    .WillCascadeOnDelete(true);
+                
             }
         }
         #endregion

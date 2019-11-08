@@ -17,12 +17,8 @@ namespace DBModels
         private int _periodCashSurplusId;
         [DataMember]
         private bool _isHandingCashSurplus; // похідний атрибут
-                                            // Якщо значення _thresholdAmount, _periodCashSurplus і _depositAccountNum не NULL, тоді True, інакше Fasle
+                                            // Якщо значення  _periodCashSurplus не None, тоді True, інакше Fasle
 
-        [DataMember]
-        private DepositAccount _depositAccount;
-        [DataMember]
-        private string _depositAccountNum;
         [DataMember]
         private List<RegularPayment> _regularPayments;
         #endregion
@@ -34,11 +30,10 @@ namespace DBModels
         {
             _thresholdAmount = thresholdAmount;
             _periodCashSurplus = periodCashSurplus;
-            _isHandingCashSurplus = _depositAccount != null;
+            _isHandingCashSurplus = _periodCashSurplus != PeriodHandingCashSurplus.None;
             _regularPayments = new List<RegularPayment>();
 
-            client.CurrentAccount = this;
-            client.CurrentAccountNum = cardNumber;
+            client.Accounts.Add(this);
         }
 
         private CurrentAccount()
@@ -70,20 +65,8 @@ namespace DBModels
 
         public bool IsHandingCashSurplus
         {
-            get { return _isHandingCashSurplus = DepositAccount != null; }
+            get { return _isHandingCashSurplus = PeriodCashSurplus != PeriodHandingCashSurplus.None; }
             set => _isHandingCashSurplus = value;
-        }
-
-        public DepositAccount DepositAccount
-        {
-            get => _depositAccount;
-            set => _depositAccount = value;
-        }
-
-        public string DepositAccountNum
-        {
-            get => _depositAccountNum;
-            set => _depositAccountNum = value;
         }
 
         public List<RegularPayment> RegularPayments
@@ -101,20 +84,6 @@ namespace DBModels
             public CurrentAccountEntityConfiguration()
             {
                 ToTable("CurrentAccount");
-                HasKey(c => c.CardNumber);
-
-                Property(c => c.CardNumber)
-                    .HasColumnName("CardNumber")
-                    .IsRequired();
-                Property(c => c.CardPassword)
-                    .HasColumnName("CardPassword")
-                    .IsRequired();
-                Property(c => c.IsActive)
-                    .HasColumnName("IsActive")
-                    .IsRequired();
-                Property(c => c.AvailableSum)
-                    .HasColumnName("AvailableSum")
-                    .IsRequired();
 
                 Property(c => c.ThresholdAmount)
                     .HasColumnName("ThresholdAmount")
@@ -127,17 +96,6 @@ namespace DBModels
                     .IsRequired();
 
                 Ignore(c => c.PeriodCashSurplus);
-
-                HasRequired(c => c.Client)
-                    .WithRequiredPrincipal(c => c.CurrentAccount);
-
-                HasOptional(c => c.DepositAccount)
-                    .WithOptionalPrincipal(c => c.CurrentAccount);
-
-                HasMany(a => a.Actions)
-                    .WithRequired(act => act.CurrentAccount)
-                    .HasForeignKey(act => act.AccountNum)
-                    .WillCascadeOnDelete(true);
 
                 HasMany(a => a.RegularPayments)
                     .WithRequired(act => act.CurrentAccount)
