@@ -56,21 +56,21 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
             NavigationManager.Instance.Navigate(ModesEnum.OtherWithdrawal);
         }
 
-        public ICommand MenuCommand
-        {
-            get { return _menuCommand ?? (_menuCommand = new RelayCommand<object>(Menu)); }
-        }
-
-        private void Menu(object obj)
-        {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
-        }
-
-        private void GetMoney(int n)
+       private void GetMoney(int n)
         {
             MessageBox.Show("You have successfully been issued " + n + " points!");
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
+
+       public ICommand MenuCommand
+       {
+           get { return _menuCommand ?? (_menuCommand = new RelayCommand<object>(Menu)); }
+       }
+
+       private void Menu(object obj)
+       {
+           NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+       }
 
         public ICommand EndCommand
         {

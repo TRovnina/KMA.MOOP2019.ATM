@@ -95,6 +95,12 @@ namespace ATM_Simulator.Tools
                 case ModesEnum.ManagerMenu:
                     _content.ContentControl.Content = new ManagerServicesView();
                     break;
+                case ModesEnum.AddMoney:
+                    _content.ContentControl.Content = new AddMoneyView();
+                    break;
+                case ModesEnum.BlockedCards:
+                    _content.ContentControl.Content = new BlockedCardsView();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(mode), mode, null);
             }

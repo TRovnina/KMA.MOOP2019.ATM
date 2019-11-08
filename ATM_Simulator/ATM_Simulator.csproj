@@ -94,6 +94,8 @@
     <Compile Include="ViewModel\ClientServices\Transfer\CheckTransferViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\Transfer\TransferViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\AddMoneyViewModel.cs" />
+    <Compile Include="ViewModel\ManagerServices\BlockedCardsViewModel.cs" />
     <Compile Include="ViewModel\ManagerServices\ManagerServicesViewModel.cs" />
     <Compile Include="View\Authentication\ActivateAtmView.xaml.cs">
       <DependentUpon>ActivateAtmView.xaml</DependentUpon>
@@ -139,6 +141,12 @@
     </Compile>
     <Compile Include="View\ClientServices\Transfer\TransferView.xaml.cs">
       <DependentUpon>TransferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\AddMoneyView.xaml.cs">
+      <DependentUpon>AddMoneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ManagerServices\BlockedCardsView.xaml.cs">
+      <DependentUpon>BlockedCardsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManagerServices\ManagerServicesView.xaml.cs">
       <DependentUpon>ManagerServicesView.xaml</DependentUpon>
@@ -223,6 +231,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ManagerServices\AddMoneyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ManagerServices\BlockedCardsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerServices\ManagerServicesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,6 +274,9 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
