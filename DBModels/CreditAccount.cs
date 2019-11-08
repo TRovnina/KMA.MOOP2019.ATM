@@ -86,6 +86,7 @@ namespace DBModels
         {
             public CreditAccountEntityConfiguration()
             {
+                
                 ToTable("CreditAccount");
                 HasKey(c => c.CardNumber);
 
@@ -123,7 +124,7 @@ namespace DBModels
                     .WithRequiredPrincipal(c => c.CreditAccount);
 
                 HasMany(a => a.Actions)
-                    .WithRequired(act => act.Account as CreditAccount)
+                    .WithRequired(act => act.CreditAccount)
                     .HasForeignKey(act => act.AccountNum)
                     .WillCascadeOnDelete(true);
             }

@@ -135,7 +135,7 @@ namespace DBModels
                     .WithOptionalPrincipal(c => c.CurrentAccount);
 
                 HasMany(a => a.Actions)
-                    .WithRequired(act => act.Account as CurrentAccount)
+                    .WithRequired(act => act.CurrentAccount)
                     .HasForeignKey(act => act.AccountNum)
                     .WillCascadeOnDelete(true);
 

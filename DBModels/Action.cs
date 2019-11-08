@@ -23,7 +23,11 @@ namespace DBModels
         [DataMember]
         private string _atmCode;
         [DataMember]
-        private Account _account;
+        private CreditAccount _creditAccount;
+        [DataMember]
+        private CurrentAccount _currentAccount;
+        [DataMember]
+        private DepositAccount _depositAccount;
         [DataMember]
         private string _accountNum;
 
@@ -45,7 +49,9 @@ namespace DBModels
             _actionType = actionType;
             _atm = atm;
             _atmCode = atm.ATMCode;
-            _account = account;
+            _creditAccount = account as CreditAccount;
+            _currentAccount = account as CurrentAccount;
+            _depositAccount = account as DepositAccount;
             _accountNum = account.CardNumber;
         }
 
@@ -94,10 +100,22 @@ namespace DBModels
             private set => _atmCode = value;
         }
 
-        public Account Account
+        public CreditAccount CreditAccount
         {
-            get => _account;
-            private set => _account = value;
+            get => _creditAccount;
+            private set => _creditAccount = value;
+        }
+
+        public CurrentAccount CurrentAccount
+        {
+            get => _currentAccount;
+            private set => _currentAccount = value;
+        }
+
+        public DepositAccount DepositAccount
+        {
+            get => _depositAccount;
+            private set => _depositAccount = value;
         }
 
         public string AccountNum

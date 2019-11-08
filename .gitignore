@@ -7,4 +7,6 @@ ATM_WCFService/bin/*
 ATM_WCFService/obj/*
 DBModels/bin/*
 DBModels/obj/*
+DBAdapter/bin/*
+DBAdapter/obj/*
 ATM.sln.DotSettings.user
