@@ -1,18 +1,33 @@
 ﻿using System.Data.Entity.ModelConfiguration;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [DataContract(IsReference = true)]
     public class Client
     {
         #region Fields
 
+        [DataMember]
         private string _itn;
+        [DataMember]
         private string _firstName;
+        [DataMember]
         private string _lastName;
 
+        [DataMember]
         private CurrentAccount _currentAccount;
+        [DataMember]
         private CreditAccount _creditAccount;
+        [DataMember]
         private DepositAccount _depositAccount;
+
+        [DataMember]
+        private string _currentAccountNum;
+        [DataMember]
+        private string _creditAccountNum;
+        [DataMember]
+        private string _depositAccountNum;
 
         #endregion
 
@@ -23,16 +38,12 @@ namespace DBModels
             
         }
 
-        public Client(string itm, string firstName, string lastName,
-            CurrentAccount currentAccount, CreditAccount creditAccount, DepositAccount depositAccount) : this()
+        public Client(string itm, string firstName, string lastName) : this()
         {
             _itn = itm;
             _firstName = firstName;
             _lastName = lastName;
-
-            _currentAccount = currentAccount;
-            _creditAccount = creditAccount;
-            _depositAccount = depositAccount;
+            
         }
 
         #endregion
@@ -41,38 +52,56 @@ namespace DBModels
 
         public string ITN
         {
-            get { return _itn;}
-            set { _itn = value; }
+            get => _itn;
+            set => _itn = value;
         }
 
         public string FirstName
         {
-            get { return _firstName; }
-            set { _firstName = value; }
+            get => _firstName;
+            set => _firstName = value;
         }
 
         public string LastName
         {
-            get { return _lastName; }
-            set { _lastName = value; }
+            get => _lastName;
+            set => _lastName = value;
         }
 
         public CurrentAccount CurrentAccount
         {
-            get { return _currentAccount; }
-            set { _currentAccount = value; }
+            get => _currentAccount;
+            set => _currentAccount = value;
         }
 
         public CreditAccount CreditAccount
         {
-            get { return _creditAccount; }
-            set { _creditAccount = value; }
+            get => _creditAccount;
+            set => _creditAccount = value;
         }
 
         public DepositAccount DepositAccount
         {
-            get { return _depositAccount; }
-            set { _depositAccount = value; }
+            get => _depositAccount;
+            set => _depositAccount = value;
+        }
+
+        public string CurrentAccountNum
+        {
+            get => _currentAccountNum;
+            set => _currentAccountNum = value;
+        }
+
+        public string CreditAccountNum
+        {
+            get => _creditAccountNum;
+            set => _creditAccountNum = value;
+        }
+
+        public string DepositAccountNum
+        {
+            get => _depositAccountNum;
+            set => _depositAccountNum = value;
         }
 
         #endregion

@@ -35,6 +35,8 @@ namespace DBModels
             _creditSum = creditSum;
             _percentage = percentage;
             _debt = CalculateDebt();
+            client.CreditAccount = this;
+            client.CreditAccountNum = cardNumber;
         }
 
         #endregion
@@ -99,6 +101,7 @@ namespace DBModels
                 Property(c => c.AvailableSum)
                     .HasColumnName("AvailableSum")
                     .IsRequired();
+
                 Property(c => c.EndOfGracePeriod)
                     .HasColumnName("EndOfGracePeriod")
                     .HasColumnType("datetime2")

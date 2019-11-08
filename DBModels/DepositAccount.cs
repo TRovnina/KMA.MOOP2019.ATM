@@ -35,6 +35,9 @@ namespace DBModels
             _storegedDate = storegedDate;
             _percentage = percentage;
             _availableDate = CalculateAvailableDate();
+
+            client.DepositAccount = this;
+            client.DepositAccountNum = cardNumber;
         }
 
         private DepositAccount()
@@ -115,16 +118,13 @@ namespace DBModels
                     .HasColumnName("DepositDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
-
                 Property(c => c.StoregedDate)
                     .HasColumnName("StoregedDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
-
                 Property(c => c.Percentage)
                     .HasColumnName("Percentage")
                     .IsRequired();
-
                 Property(c => c.AvailableDate)
                     .HasColumnName("AvailableDate")
                     .HasColumnType("datetime2")

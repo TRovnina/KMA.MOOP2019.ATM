@@ -1,28 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace DBModels
 {
-    [DataContract(IsReference = true)]
     public class Account
     {
         #region Fields
-
-        [DataMember]
+        
         protected string _cardNumber;
-        [DataMember]
         protected string _cardPassword;
-        [DataMember]
         protected bool _isActive;
-        [DataMember]
         protected double _availableSum;
-
-        [DataMember]
+        
         protected Client _client;
-        [DataMember]
         protected string _clientITN;
-
-        [DataMember]
+        
         private List<Action> _actions;
 
         #endregion

@@ -36,6 +36,9 @@ namespace DBModels
             _periodCashSurplus = periodCashSurplus;
             _isHandingCashSurplus = _depositAccount != null;
             _regularPayments = new List<RegularPayment>();
+
+            client.CurrentAccount = this;
+            client.CurrentAccountNum = cardNumber;
         }
 
         private CurrentAccount()

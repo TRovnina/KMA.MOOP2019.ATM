@@ -105,6 +105,7 @@ namespace DBModels
                     .IsRequired();
                 Property(a => a.FirstRegularPaymentDate)
                     .HasColumnName("FirstRegularPaymentDate")
+                    .HasColumnType("datetime2")
                     .IsRequired();
                 Property(a => a.PeriodRegularPaymentId)
                     .HasColumnName("PeriodRegularPaymentId")

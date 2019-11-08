@@ -13,6 +13,7 @@ namespace DBModels
         private int _atmManagerActionId;
         [DataMember]
         private DateTime _actionDate;
+
         [DataMember]
         private Manager _manager;
         [DataMember]
