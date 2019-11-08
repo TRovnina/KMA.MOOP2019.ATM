@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Data.Entity.ModelConfiguration;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
@@ -40,29 +41,48 @@ namespace DBModels
 
         public int BanknoteValue
         {
-            get { return _banknoteValue; }
-            private set { _banknoteValue = value; }
+            get => _banknoteValue;
+            private set => _banknoteValue = value;
         }
 
         public int BanknoteAmount
         {
-            get { return _banknoteAmount; }
-            set { _banknoteAmount = value; }
+            get => _banknoteAmount;
+            set => _banknoteAmount = value;
         }
 
         public ATM ATM
         {
-            get { return _atm; }
-            set { _atm = value; }
+            get => _atm;
+            set => _atm = value;
         }
 
         public string ATMCode
         {
-            get { return _atmCode; }
-            set { _atmCode = value; }
+            get => _atmCode;
+            set => _atmCode = value;
         }
 
         #endregion
 
+        #region EntityConfiguration
+
+        public class BanknoteEntityConfiguration : EntityTypeConfiguration<Banknote>
+        {
+            public BanknoteEntityConfiguration()
+            {
+                ToTable("Banknote");
+                HasKey(b => new { b.BanknoteValue, b.ATMCode});
+
+                Property(b => b.BanknoteValue)
+                    .HasColumnName("BanknoteValue")
+                    .IsRequired();
+                Property(b => b.BanknoteAmount)
+                    .HasColumnName("BanknoteAmount")
+                    .IsRequired();
+                
+            }
+        }
+        #endregion
     }
 }

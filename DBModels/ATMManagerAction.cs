@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -8,8 +9,7 @@ namespace DBModels
     public class ATMManagerAction
     {
         #region Fields
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DataMember]
         private int _atmManagerActionId;
         [DataMember]
         private DateTime _actionDate;
@@ -45,40 +45,62 @@ namespace DBModels
 
         public int ATMManagerActionId
         {
-            get { return _atmManagerActionId; }
-            private set { _atmManagerActionId = value; }
+            get => _atmManagerActionId;
+            private set => _atmManagerActionId = value;
         }
 
         public DateTime ActionDate
         {
-            get { return _actionDate;}
-            private set { _actionDate = value; }
+            get => _actionDate;
+            private set => _actionDate = value;
         }
 
         public Manager Manager
         {
-            get { return _manager; }
-            private set { _manager = value; }
+            get => _manager;
+            private set => _manager = value;
         }
 
         public string ManagerId
         {
-            get { return _managerId; }
-            private set { _managerId = value; }
+            get => _managerId;
+            private set => _managerId = value;
         }
 
         public ATM ATM
         {
-            get { return _atm; }
-            private set { _atm = value; }
+            get => _atm;
+            private set => _atm = value;
         }
 
         public string ATMCode
         {
-            get { return _atmCode; }
-            private set { _atmCode = value; }
+            get => _atmCode;
+            private set => _atmCode = value;
         }
 
+        #endregion
+
+        #region EntityConfiguration
+
+        public class ATMManagerActionEntityConfiguration : EntityTypeConfiguration<ATMManagerAction>
+        {
+            public ATMManagerActionEntityConfiguration()
+            {
+                ToTable("ATMManagerAction");
+                HasKey(a => a.ATMManagerActionId);
+
+                Property(a => a.ATMManagerActionId)
+                    .HasColumnName("ATMManagerActionId")
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                    .IsRequired();
+                Property(a => a.ActionDate)
+                    .HasColumnName("ActionDate")
+                    .HasColumnType("datetime2")
+                    .IsRequired();
+
+            }
+        }
         #endregion
     }
 }

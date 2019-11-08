@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -18,6 +19,7 @@ namespace DBModels
         private int _percentage;
         [DataMember]
         private double _debt; // Борг банку = _creditSum + _creditSum* _percentage
+        
 
         #endregion
 
@@ -41,32 +43,32 @@ namespace DBModels
 
         public DateTime EndOfGracePeriod
         {
-            get { return _endOfGracePeriod; }
-            set { _endOfGracePeriod = value; }
+            get => _endOfGracePeriod;
+            set => _endOfGracePeriod = value;
         }
 
         public double MaxCreditSum
         {
-            get { return _maxCreditSum; }
-            set { _maxCreditSum = value; }
+            get => _maxCreditSum;
+            set => _maxCreditSum = value;
         }
 
         public double CreditSum
         {
-            get { return _creditSum; }
-            set { _creditSum = value; }
+            get => _creditSum;
+            set => _creditSum = value;
         }
 
         public int Percentage
         {
-            get { return _percentage; }
-            set { _percentage = value; }
+            get => _percentage;
+            set => _percentage = value;
         }
 
         public double Debt
         {
             get { return _debt = CalculateDebt(); }
-            private set { _debt = value; }
+            private set => _debt = value;
         }
 
         #endregion
@@ -75,5 +77,54 @@ namespace DBModels
         {
             return CreditSum + CreditSum * Percentage;
         }
+
+        #region EntityConfiguration
+
+        public class CreditAccountEntityConfiguration : EntityTypeConfiguration<CreditAccount>
+        {
+            public CreditAccountEntityConfiguration()
+            {
+                ToTable("CreditAccount");
+                HasKey(c => c.CardNumber);
+
+                Property(c => c.CardNumber)
+                    .HasColumnName("CardNumber")
+                    .IsRequired();
+                Property(c => c.CardPassword)
+                    .HasColumnName("CardPassword")
+                    .IsRequired();
+                Property(c => c.IsActive)
+                    .HasColumnName("IsActive")
+                    .IsRequired();
+                Property(c => c.AvailableSum)
+                    .HasColumnName("AvailableSum")
+                    .IsRequired();
+                Property(c => c.EndOfGracePeriod)
+                    .HasColumnName("EndOfGracePeriod")
+                    .HasColumnType("datetime2")
+                    .IsRequired();
+                Property(c => c.MaxCreditSum)
+                    .HasColumnName("MaxCreditSum")
+                    .IsRequired();
+                Property(c => c.CreditSum)
+                    .HasColumnName("CreditSum")
+                    .IsRequired();
+                Property(c => c.Percentage)
+                    .HasColumnName("Percentage")
+                    .IsRequired();
+                Property(c => c.Debt)
+                    .HasColumnName("Debt")
+                    .IsRequired();
+
+                HasRequired(c => c.Client)
+                    .WithRequiredPrincipal(c => c.CreditAccount);
+
+                HasMany(a => a.Actions)
+                    .WithRequired(act => act.Account as CreditAccount)
+                    .HasForeignKey(act => act.AccountNum)
+                    .WillCascadeOnDelete(true);
+            }
+        }
+        #endregion
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace DBModels
+﻿using System.Data.Entity.ModelConfiguration;
+
+namespace DBModels
 {
     public class Client
     {
@@ -11,8 +13,6 @@
         private CurrentAccount _currentAccount;
         private CreditAccount _creditAccount;
         private DepositAccount _depositAccount;
-
-        // TODO if i need key of this accounts here
 
         #endregion
 
@@ -81,5 +81,28 @@
         {
             return FirstName + " " + LastName + "; ITN: " + ITN;
         }
+
+        #region EntityConfiguration
+
+        public class ClientEntityConfiguration : EntityTypeConfiguration<Client>
+        {
+            public ClientEntityConfiguration()
+            {
+                ToTable("Client");
+                HasKey(a => a.ITN);
+
+                Property(a => a.ITN)
+                    .HasColumnName("ITN")
+                    .IsRequired();
+                Property(a => a.FirstName)
+                    .HasColumnName("FirstName")
+                    .IsRequired();
+                Property(a => a.LastName)
+                    .HasColumnName("LastName")
+                    .IsRequired();
+
+            }
+        }
+        #endregion
     }
 }

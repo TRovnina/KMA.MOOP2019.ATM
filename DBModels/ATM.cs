@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -49,44 +50,44 @@ namespace DBModels
 
         public string ATMCode
         {
-            get { return _atmCode; }
-            set { _atmCode = value; }
+            get => _atmCode;
+            set => _atmCode = value;
         }
 
         public string Password
         {
-            get { return _password; }
-            set { _password = value; }
+            get => _password;
+            set => _password = value;
         }
 
         public bool Status
         {
-            get { return _status; }
-            set { _status = value; }
+            get => _status;
+            set => _status = value;
         }
 
         public string ATMAddress
         {
-            get { return _atmAddress; }
-            set { _atmAddress = value; }
+            get => _atmAddress;
+            set => _atmAddress = value;
         }
 
         public List<Action> Actions
         {
-            get { return _actions; }
-            private set { _actions = value; }
+            get => _actions;
+            private set => _actions = value;
         }
 
         public List<ATMManagerAction> AtmManagerActions
         {
-            get { return _atmManagerActions; }
-            private set { _atmManagerActions = value; }
+            get => _atmManagerActions;
+            private set => _atmManagerActions = value;
         }
 
         public List<Banknote> Banknotes
         {
-            get { return _banknotes; }
-            private set { _banknotes = value; }
+            get => _banknotes;
+            private set => _banknotes = value;
         }
 
         #endregion
@@ -95,5 +96,46 @@ namespace DBModels
         {
             return "ATM number: " + _atmCode + "; Address: " + _atmAddress + "; ATM Status: " + _status;
         }
+
+        #region EntityConfiguration
+
+        public class ATMEntityConfiguration : EntityTypeConfiguration<ATM>
+        {
+            public ATMEntityConfiguration()
+            {
+                ToTable("ATM");
+                HasKey(a => a.ATMCode);
+
+                Property(a => a.ATMCode)
+                    .HasColumnName("ATMCode")
+                    .IsRequired();
+                Property(a => a.Password)
+                    .HasColumnName("Password")
+                    .IsRequired();
+                Property(a => a.Status)
+                    .HasColumnName("Status")
+                    .IsRequired();
+                Property(a => a.ATMAddress)
+                    .HasColumnName("ATMAddress")
+                    .IsRequired();
+
+
+                HasMany(a => a.Actions)
+                    .WithRequired(act => act.ATM)
+                    .HasForeignKey(act => act.ATMCode)
+                    .WillCascadeOnDelete(true);
+
+                HasMany(a => a.AtmManagerActions)
+                    .WithRequired(act => act.ATM)
+                    .HasForeignKey(act => act.ATMCode)
+                    .WillCascadeOnDelete(true);
+
+                HasMany(a => a.Banknotes)
+                    .WithRequired(act => act.ATM)
+                    .HasForeignKey(act => act.ATMCode)
+                    .WillCascadeOnDelete(true);
+            }
+        }
+        #endregion
     }
 }

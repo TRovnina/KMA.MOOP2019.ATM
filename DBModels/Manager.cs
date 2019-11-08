@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -43,32 +44,32 @@ namespace DBModels
 
         public string ManagerId
         {
-            get { return _managerId; }
-            private set { _managerId = value; }
+            get => _managerId;
+            private set => _managerId = value;
         }
 
         public string FirstName
         {
-            get { return _firstName; }
-            set { _firstName = value; }
+            get => _firstName;
+            set => _firstName = value;
         }
 
         public string LastName
         {
-            get { return _lastName; }
-            set { _lastName = value; }
+            get => _lastName;
+            set => _lastName = value;
         }
 
         public string Password
         {
-            get { return _password; }
-            private set { _password = value; }
+            get => _password;
+            private set => _password = value;
         }
 
         public List<ATMManagerAction> ATMManagerActions
         {
-            get { return _atmManagerActions; }
-            private set { _atmManagerActions = value; }
+            get => _atmManagerActions;
+            private set => _atmManagerActions = value;
         }
 
         #endregion
@@ -77,5 +78,35 @@ namespace DBModels
         {
             return "Manager " + FirstName + " " + LastName + "; ID: " + ManagerId;
         }
+
+        #region EntityConfiguration
+
+        public class ManagerEntityConfiguration : EntityTypeConfiguration<Manager>
+        {
+            public ManagerEntityConfiguration()
+            {
+                ToTable("Manager");
+                HasKey(m => m.ManagerId);
+
+                Property(m => m.ManagerId)
+                    .HasColumnName("ManagerId")
+                    .IsRequired();
+                Property(a => a.Password)
+                    .HasColumnName("Password")
+                    .IsRequired();
+                Property(a => a.FirstName)
+                    .HasColumnName("FirstName")
+                    .IsRequired();
+                Property(a => a.LastName)
+                    .HasColumnName("LastName")
+                    .IsRequired();
+
+                HasMany(m => m.ATMManagerActions)
+                    .WithRequired(act => act.Manager)
+                    .HasForeignKey(act => act.ManagerId)
+                    .WillCascadeOnDelete(true);
+            }
+        }
+        #endregion
     }
 }

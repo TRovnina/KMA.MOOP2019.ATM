@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
@@ -21,6 +22,9 @@ namespace DBModels
         [DataMember]
         protected string _clientITN;
 
+        [DataMember]
+        private List<Action> _actions;
+
         #endregion
 
         #region Constructors
@@ -36,6 +40,7 @@ namespace DBModels
         {
             _isActive = true;
             _availableSum = 0;
+            _actions = new List<Action>();
         }
 
         #endregion
@@ -77,6 +82,12 @@ namespace DBModels
         {
             get => _clientITN;
             protected set => _clientITN = value;
+        }
+
+        public List<Action> Actions
+        {
+            get => _actions;
+            private set => _actions = value;
         }
 
         #endregion

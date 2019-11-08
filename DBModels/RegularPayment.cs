@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -8,13 +8,15 @@ namespace DBModels
     public class RegularPayment
     {
         #region Fields
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // TODO i don`t know how it works
+        
+        [DataMember]
         private int _regularPaymentId;
         [DataMember]
         private DateTime _firstRegularPaymentDate;
         [DataMember]
         private PeriodRegularPayment _periodRegularPayment;
+        [DataMember]
+        private int _periodRegularPaymentId;
         [DataMember]
         private string _regularPaymentName;
 
@@ -47,41 +49,72 @@ namespace DBModels
 
         public int RegularPaymentId
         {
-            get { return _regularPaymentId; }
-            private set { _regularPaymentId = value; }
+            get => _regularPaymentId;
+            private set => _regularPaymentId = value;
         }
 
         public DateTime FirstRegularPaymentDate
         {
-            get { return _firstRegularPaymentDate; }
-            private set { _firstRegularPaymentDate = value; }
+            get => _firstRegularPaymentDate;
+            private set => _firstRegularPaymentDate = value;
         }
 
         public PeriodRegularPayment PeriodRegularPayment
         {
-            get { return _periodRegularPayment; }
-            private set { _periodRegularPayment = value; }
+            get => _periodRegularPayment;
+            private set => _periodRegularPayment = value;
+        }
+
+        public int PeriodRegularPaymentId
+        {
+            get => (int)_periodRegularPayment;
+            private set => _periodRegularPayment = (PeriodRegularPayment)value;
         }
 
         public string RegularPaymentName
         {
-            get { return _regularPaymentName; }
-            private set { _regularPaymentName = value; }
+            get => _regularPaymentName;
+            private set => _regularPaymentName = value;
         }
 
         public CurrentAccount CurrentAccount
         {
-            get { return _currentAccount; }
-            private set { _currentAccount = value; }
+            get => _currentAccount;
+            private set => _currentAccount = value;
         }
 
         public string CurrentAccountNum
         {
-            get { return _currentAccountNum; }
-            private set { _currentAccountNum = value; }
+            get => _currentAccountNum;
+            private set => _currentAccountNum = value;
         }
 
         #endregion
 
+        #region EntityConfiguration
+
+        public class RegularPaymentEntityConfiguration : EntityTypeConfiguration<RegularPayment>
+        {
+            public RegularPaymentEntityConfiguration()
+            {
+                ToTable("RegularPayment");
+                HasKey(a => a.RegularPaymentId);
+
+                Property(a => a.RegularPaymentId)
+                    .HasColumnName("RegularPaymentId")
+                    .IsRequired();
+                Property(a => a.FirstRegularPaymentDate)
+                    .HasColumnName("FirstRegularPaymentDate")
+                    .IsRequired();
+                Property(a => a.PeriodRegularPaymentId)
+                    .HasColumnName("PeriodRegularPaymentId")
+                    .IsRequired();
+                Ignore(a => a.PeriodRegularPayment);
+                Property(a => a.RegularPaymentName)
+                    .HasColumnName("RegularPaymentName")
+                    .IsRequired();
+            }
+        }
+        #endregion
     }
 }

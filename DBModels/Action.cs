@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -9,10 +10,11 @@ namespace DBModels
     {
         #region Fields
         [DataMember]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         private int _actionId;
         [DataMember]
         private ActionType _actionType;
+        [DataMember]
+        private int _actionTypeId;
         [DataMember]
         private DateTime _actionDate;
 
@@ -26,7 +28,7 @@ namespace DBModels
         private string _accountNum;
 
         [DataMember]
-        private Account _destinationAccount; // if ActionType != ActionType.Transfer then null
+        private string _destinationAccountNum; // if ActionType != ActionType.Transfer then null
 
         #endregion
 
@@ -49,7 +51,7 @@ namespace DBModels
 
         public Action(ATM atm, Account account, Account destinationAccount) : this(ActionType.Transfer, atm, account)
         {
-            _destinationAccount = destinationAccount;
+            _destinationAccountNum = destinationAccount.CardNumber;
         }
 
         #endregion
@@ -58,53 +60,88 @@ namespace DBModels
 
         public int ActionId
         {
-            get { return _actionId;}
-            private set { _actionId = value; }
+            get => _actionId;
+            private set => _actionId = value;
         }
 
         public ActionType ActionType
         {
-            get { return _actionType; }
-            private set { _actionType = value; }
+            get => _actionType;
+            private set => _actionType = value;
+        }
+
+        public int ActionTypeId
+        {
+            get => (int)_actionType;
+            private set => _actionType = (ActionType)value;
         }
 
         public DateTime ActionDate
         {
-            get { return _actionDate; }
-            private set { _actionDate = value; }
+            get => _actionDate;
+            private set => _actionDate = value;
         }
 
         public ATM ATM
         {
-            get { return _atm; }
-            private set { _atm = value; }
+            get => _atm;
+            private set => _atm = value;
         }
 
         public string ATMCode
         {
-            get { return _atmCode; }
-            private set { _atmCode = value; }
+            get => _atmCode;
+            private set => _atmCode = value;
         }
 
         public Account Account
         {
-            get { return _account; }
-            private set { _account = value; }
+            get => _account;
+            private set => _account = value;
         }
 
         public string AccountNum
         {
-            get { return _accountNum; }
-            private set { _accountNum = value; }
+            get => _accountNum;
+            private set => _accountNum = value;
         }
 
-        public Account DestinationAccount
+        public string DestinationAccountNum
         {
-            get { return _destinationAccount; }
-            private set { _destinationAccount = value; }
+            get => _destinationAccountNum;
+            private set => _destinationAccountNum = value;
         }
 
         #endregion
 
+        #region EntityConfiguration
+
+        public class ActionEntityConfiguration : EntityTypeConfiguration<Action>
+        {
+            public ActionEntityConfiguration()
+            {
+                ToTable("Action");
+                HasKey(a => a.ActionId);
+
+                Property(a => a.ActionId)
+                    .HasColumnName("ActionId")
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                    .IsRequired();
+                Property(a => a.ActionDate)
+                    .HasColumnName("ActionDate")
+                    .HasColumnType("datetime2")
+                    .IsRequired();
+                Property(a => a.ActionTypeId)
+                    .HasColumnName("ActionTypeId")
+                    .IsRequired();
+                Property(a => a.DestinationAccountNum)
+                    .HasColumnName("DestinationAccountNum")
+                    .IsOptional();
+
+                Ignore(a => a.ActionType);
+
+            }
+        }
+        #endregion
     }
 }
