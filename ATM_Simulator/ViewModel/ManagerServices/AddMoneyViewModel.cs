@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
@@ -13,15 +14,13 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         private int _hundred;
         private int _twoHundred;
         private int _fiveHundred;
-        private readonly List<Banknote> _money = StaticManager.CurrentAtm.Banknotes;
         private ICommand _confirmCommand;
         private ICommand _menuCommand;
 
 
         public int Fifty
         {
-            //get { return _fifty = _money.; }
-            get { return 500; }
+            get { return _fifty = StaticManager.CurrentAtm.Banknote50; }
             set
             {
                 _fifty = value;
@@ -31,8 +30,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int Hundred
         {
-            // get { return _hundred = CurrentAtm.Hundred; }
-            get { return 100; }
+            get { return _hundred = StaticManager.CurrentAtm.Banknote100; }
             set
             {
                 _hundred = value;
@@ -42,8 +40,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int TwoHundred
         {
-            // get { return _twoHundred = CurrentAtm.TwoHundred; }
-            get { return 200; }
+            get { return _twoHundred = StaticManager.CurrentAtm.Banknote200; }
             set
             {
                 _twoHundred = value;
@@ -53,8 +50,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int FiveHundred
         {
-            // get { return _fiveHundred = CurrentAtm.FiveHundred; }
-            get { return 500; }
+            get { return _fiveHundred = StaticManager.CurrentAtm.Banknote500; ; }
             set
             {
                 _fiveHundred = value;
@@ -67,10 +63,18 @@ namespace ATM_Simulator.ViewModel.ManagerServices
             get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(PutMoney)); }
         }
 
-        private void PutMoney(object obj)
+        private async void PutMoney(object obj)
         {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                StaticManager.CurrentAtm.Banknote50 = _fifty;
+                StaticManager.CurrentAtm.Banknote100 = _hundred;
+                StaticManager.CurrentAtm.Banknote200 = _twoHundred;
+                StaticManager.CurrentAtm.Banknote500 = _fiveHundred;
+            });
+            LoaderManager.Instance.HideLoader();
             MessageBox.Show("Operation was successful!");
-            //put money in ATM
             NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
         }
 

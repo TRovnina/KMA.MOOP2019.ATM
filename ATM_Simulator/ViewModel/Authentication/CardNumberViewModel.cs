@@ -54,14 +54,25 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private async void NextImplementation(object obj)
         {
+            bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-            
+                //var client = getClient (_number)
+                //var manager = getManager(_number)
+                //if(client != null){
+                // StaticManager.CurrentClient = client;
+                // StaticManager.CurrentAccount = getAccount(_number);
+                //}else if (manager != null)
+                // StaticManager.CurrentManager = manager;
+                //else{
+                //  correct = false;
+                //  MessageBox.Show("Wrong Card Number!");
+                //}
             });
-
             LoaderManager.Instance.HideLoader();
-            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
+            if(correct)
+                NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
     }
 }

@@ -5,7 +5,7 @@ using ATM_Simulator.Tools;
 
 namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 {
-    internal class OtherWithdrawalViewModel : BasicViewModel
+    internal class OtherWithdrawalViewModel : CashModel
     {
         private int _amount;
 
@@ -15,7 +15,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         public string Text
         {
-            get { return "Maximum available sum is " + 4000 + "\nEnter a sum multiple of " + 50; }
+            get { return "Maximum available sum is " + AllCash() + "\nEnter a sum multiple of " + CheckMultiplicity(); }
         }
 
         public int Amount
@@ -40,8 +40,18 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private void GetMoney(object obj)
         {
-            MessageBox.Show("You have successfully been issued " + Amount + " points!");
-            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+            var result = Multiplicity(Amount, Banknotes);
+            if (result == null)
+            {
+                MessageBox.Show("ATM has not banknotes for this sum!");
+                NavigationManager.Instance.Navigate(ModesEnum.OtherWithdrawal);
+            }
+            else
+            {
+                RemoveBanknotes(result);
+                MessageBox.Show("You have successfully been issued " + Amount + " points! \nBanknotes " + result);
+                NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+            }
         }
 
         public ICommand MenuCommand
