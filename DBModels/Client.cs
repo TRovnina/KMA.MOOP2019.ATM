@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -27,8 +28,6 @@ namespace DBModels
         {
 
             _accounts = new List<Account>();
-           // _depositAccounts = new List<DepositAccount>();
-            //_creditAccounts = new List<CreditAccount>();
         }
 
         public Client(string itm, string firstName, string lastName) : this()
@@ -67,26 +66,29 @@ namespace DBModels
             set => _accounts = value;
         }
 
-        /*public List<CreditAccount> CreditAccounts
+        #endregion
+
+        public CurrentAccount CurrentAccount()
         {
-            get => _creditAccounts;
-            set => _creditAccounts = value;
+            return Accounts.OfType<CurrentAccount>().FirstOrDefault();
         }
 
-        public List<DepositAccount> DepositAccounts
+        public CreditAccount CreditAccount()
         {
-            get => _depositAccounts;
-            set => _depositAccounts = value;
-        }*/
+            return Accounts.OfType<CreditAccount>().FirstOrDefault();
+        }
 
-
-
-        #endregion
+        public DepositAccount DepositAccount()
+        {
+            return Accounts.OfType<DepositAccount>().FirstOrDefault();
+        }
 
         public override string ToString()
         {
             return FirstName + " " + LastName + "; ITN: " + ITN;
         }
+
+        
 
         #region EntityConfiguration
 

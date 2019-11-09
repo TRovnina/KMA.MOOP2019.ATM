@@ -15,7 +15,7 @@ namespace DBModels
         [DataMember]
         private DateTime _storegedDate;
         [DataMember]
-        private int _percentage;
+        private int _percentageDeposit;
         [DataMember]
         private DateTime _availableDate; // Дата коли гроші будуть доступні = Deposit_Date + Storage_Date
 
@@ -29,7 +29,7 @@ namespace DBModels
         {
             _depositDate = depositDate;
             _storegedDate = storegedDate;
-            _percentage = percentage;
+            _percentageDeposit = percentage;
             _availableDate = CalculateAvailableDate();
 
             client.Accounts.Add(this);
@@ -56,10 +56,10 @@ namespace DBModels
             set => _storegedDate = value;
         }
 
-        public int Percentage
+        public int PercentageDeposit
         {
-            get => _percentage;
-            set => _percentage = value;
+            get => _percentageDeposit;
+            set => _percentageDeposit = value;
         }
 
         public DateTime AvailableDate
@@ -91,8 +91,8 @@ namespace DBModels
                     .HasColumnName("StoregedDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
-                Property(c => c.Percentage)
-                    .HasColumnName("Percentage")
+                Property(c => c.PercentageDeposit)
+                    .HasColumnName("PercentageDeposit")
                     .IsRequired();
                 Property(c => c.AvailableDate)
                     .HasColumnName("AvailableDate")

@@ -20,11 +20,14 @@ namespace DBModels
         private string _atmAddress;
 
         [DataMember]
-        private List<Action> _actions;
+        private List<ATMAccountAction> _actions;
         [DataMember]
         private List<ATMManagerAction> _atmManagerActions;
-        [DataMember]
-        private List<Banknote> _banknotes;
+
+        private int _banknote50;
+        private int _banknote100;
+        private int _banknote200;
+        private int _banknote500;
 
         #endregion
 
@@ -32,9 +35,12 @@ namespace DBModels
 
         private ATM()
         {
-            _actions = new List<Action>();
+            _actions = new List<ATMAccountAction>();
             _atmManagerActions = new List<ATMManagerAction>();
-            _banknotes = new List<Banknote>();
+            _banknote50 = 0;
+            _banknote100 = 0;
+            _banknote200 = 0;
+            _banknote500 = 0;
         }
 
         public ATM(string atmCode, string password, string atmAddress) : this()
@@ -74,7 +80,7 @@ namespace DBModels
             set => _atmAddress = value;
         }
 
-        public List<Action> Actions
+        public List<ATMAccountAction> Actions
         {
             get => _actions;
             private set => _actions = value;
@@ -86,10 +92,28 @@ namespace DBModels
             private set => _atmManagerActions = value;
         }
 
-        public List<Banknote> Banknotes
+        public int Banknote50
         {
-            get => _banknotes;
-            private set => _banknotes = value;
+            get => _banknote50;
+            set => _banknote50 = value;
+        }
+
+        public int Banknote100
+        {
+            get => _banknote100;
+            set => _banknote100 = value;
+        }
+
+        public int Banknote200
+        {
+            get => _banknote200;
+            set => _banknote200 = value;
+        }
+
+        public int Banknote500
+        {
+            get => _banknote500;
+            set => _banknote500 = value;
         }
 
         #endregion
@@ -138,6 +162,18 @@ namespace DBModels
                 Property(a => a.ATMAddress)
                     .HasColumnName("ATMAddress")
                     .IsRequired();
+                Property(a => a.Banknote50)
+                    .HasColumnName("Banknote50")
+                    .IsRequired();
+                Property(a => a.Banknote100)
+                    .HasColumnName("Banknote100")
+                    .IsRequired();
+                Property(a => a.Banknote200)
+                    .HasColumnName("Banknote200")
+                    .IsRequired();
+                Property(a => a.Banknote500)
+                    .HasColumnName("Banknote500")
+                    .IsRequired();
 
 
                 HasMany(a => a.Actions)
@@ -149,11 +185,7 @@ namespace DBModels
                     .WithRequired(act => act.ATM)
                     .HasForeignKey(act => act.ATMCode)
                     .WillCascadeOnDelete(true);
-
-                HasMany(a => a.Banknotes)
-                    .WithRequired(act => act.ATM)
-                    .HasForeignKey(act => act.ATMCode)
-                    .WillCascadeOnDelete(true);
+                
             }
         }
         #endregion

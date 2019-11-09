@@ -16,7 +16,7 @@ namespace DBModels
         protected Client _client;
         protected string _clientITN;
         
-        private List<Action> _actions;
+        private List<ATMAccountAction> _actions;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace DBModels
         {
             _isActive = true;
             _availableSum = 0;
-            _actions = new List<Action>();
+            _actions = new List<ATMAccountAction>();
         }
 
         #endregion
@@ -77,7 +77,7 @@ namespace DBModels
             protected set => _clientITN = value;
         }
 
-        public List<Action> Actions
+        public List<ATMAccountAction> Actions
         {
             get => _actions;
             private set => _actions = value;

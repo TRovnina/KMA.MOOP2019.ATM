@@ -82,6 +82,12 @@ namespace DBModels
 
         #endregion
 
+        public void DeleteDatabaseValues()
+        {
+            _manager = null;
+            _atm = null;
+        }
+
         #region EntityConfiguration
 
         public class ATMManagerActionEntityConfiguration : EntityTypeConfiguration<ATMManagerAction>
