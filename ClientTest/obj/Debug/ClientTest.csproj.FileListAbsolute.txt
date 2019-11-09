@@ -1,0 +1,6 @@
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\bin\Debug\ClientTest.exe.config
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\bin\Debug\ClientTest.exe
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\bin\Debug\ClientTest.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\obj\Debug\ClientTest.csproj.CoreCompileInputs.cache
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\obj\Debug\ClientTest.exe
+C:\Projects\MOOP\KMA.MOOP2019.ATM\ClientTest\obj\Debug\ClientTest.pdb
