@@ -184,4 +184,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllBlockedAccounts">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllBlockedAccountsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetAllBlockedAccountsResult" nillable="true" type="q13:ArrayOfAccount" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

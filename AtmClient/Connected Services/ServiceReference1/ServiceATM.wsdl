@@ -92,6 +92,12 @@
   <wsdl:message name="IServiceATM_GetRegularPayments_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRegularPaymentsResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllBlockedAccounts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBlockedAccounts" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllBlockedAccounts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllBlockedAccountsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceATM">
     <wsdl:operation name="GetATMByCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetATMByCode" message="tns:IServiceATM_GetATMByCode_InputMessage" />
@@ -148,6 +154,10 @@
     <wsdl:operation name="GetRegularPayments">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetRegularPayments" message="tns:IServiceATM_GetRegularPayments_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse" message="tns:IServiceATM_GetRegularPayments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBlockedAccounts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetAllBlockedAccounts" message="tns:IServiceATM_GetAllBlockedAccounts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetAllBlockedAccountsResponse" message="tns:IServiceATM_GetAllBlockedAccounts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceATM" type="tns:IServiceATM">
@@ -271,6 +281,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRegularPayments">
       <soap:operation soapAction="http://tempuri.org/IServiceATM/GetRegularPayments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBlockedAccounts">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/GetAllBlockedAccounts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

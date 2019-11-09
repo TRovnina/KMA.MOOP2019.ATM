@@ -97,5 +97,11 @@ namespace AtmClient
             }
             return regularPayments;
         }
+
+        public static List<Account> GetAllBlockedAccounts()
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            return client.GetAllBlockedAccounts().ToList();
+        }
     }
 }

@@ -80,6 +80,11 @@ namespace WcfService
             return new List<object>(res);
         }
 
+        public List<Account> GetAllBlockedAccounts()
+        {
+            return EntityWrapper.GetAllBlockedAccounts();
+        }
+
         public void AddATM(ATM atm)
         {
             EntityWrapper.AddATM(atm);

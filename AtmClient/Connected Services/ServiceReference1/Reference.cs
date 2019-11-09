@@ -143,6 +143,12 @@ namespace AtmClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
         System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllBlockedAccounts", ReplyAction="http://tempuri.org/IServiceATM/GetAllBlockedAccountsResponse")]
+        DBModels.Account[] GetAllBlockedAccounts();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllBlockedAccounts", ReplyAction="http://tempuri.org/IServiceATM/GetAllBlockedAccountsResponse")]
+        System.Threading.Tasks.Task<DBModels.Account[]> GetAllBlockedAccountsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -282,6 +288,14 @@ namespace AtmClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum) {
             return base.Channel.GetRegularPaymentsAsync(accountNum);
+        }
+        
+        public DBModels.Account[] GetAllBlockedAccounts() {
+            return base.Channel.GetAllBlockedAccounts();
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Account[]> GetAllBlockedAccountsAsync() {
+            return base.Channel.GetAllBlockedAccountsAsync();
         }
     }
 }

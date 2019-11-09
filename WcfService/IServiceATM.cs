@@ -54,5 +54,8 @@ namespace WcfService
 
         [OperationContract]
         List<object> GetRegularPayments(string accountNum);
+
+        [OperationContract]
+        List<Account> GetAllBlockedAccounts();
     }
 }

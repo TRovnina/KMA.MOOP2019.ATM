@@ -86,6 +86,10 @@
       <xs:element minOccurs="0" name="_atmAddress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_atmManagerActions" nillable="true" type="tns:ArrayOfATMManagerAction" />
+      <xs:element minOccurs="0" name="_banknote100" type="xs:int" />
+      <xs:element minOccurs="0" name="_banknote200" type="xs:int" />
+      <xs:element minOccurs="0" name="_banknote50" type="xs:int" />
+      <xs:element minOccurs="0" name="_banknote500" type="xs:int" />
       <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_status" type="xs:boolean" />
     </xs:sequence>

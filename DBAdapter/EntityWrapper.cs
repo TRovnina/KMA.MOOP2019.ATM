@@ -143,5 +143,13 @@ namespace DBAdapter
                 return context.RegularPayments.Where(r => r.CardNumber == accountNum).ToList();
             }
         }
+
+        public static List<Account> GetAllBlockedAccounts()
+        {
+            using (var context = new ATMDbContext())
+            {
+                return context.Accounts.Where(r => r.IsActive == false).ToList();
+            }
+        }
     }
 }

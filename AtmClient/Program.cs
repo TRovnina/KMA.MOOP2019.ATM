@@ -82,6 +82,12 @@ namespace AtmClient
             DbManager.AddATMAccountAction(new ATMAccountAction(ActionType.CashWithdrawal, atm, account));
             DbManager.AddATMAccountAction(new ATMAccountAction(ActionType.Transfer, atm, account, DbManager.GetAccountByNum("02")));
 */
+
+     foreach (var blockedAccount in DbManager.GetAllBlockedAccounts())
+     {
+         Console.WriteLine(blockedAccount.ToString());
+     }
+
             Console.WriteLine("-----");
             Console.ReadKey();
             /*Console.WriteLine("Start");
