@@ -57,12 +57,18 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public ICommand CashSurplusCommand
         {
-            get { return _cashSurplusCommand ?? (_cashSurplusCommand = new RelayCommand<object>(CashSurplus)); }
+            get { return _cashSurplusCommand ?? (_cashSurplusCommand = new RelayCommand<object>(CashSurplus, CanCashSurplusExecute)); }
         }
 
         private void CashSurplus(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.CashSurplus);
+        }
+
+        private bool CanCashSurplusExecute(object obj)
+        {
+            return true;
+            //check type of card
         }
 
         public ICommand ChangePinCommand

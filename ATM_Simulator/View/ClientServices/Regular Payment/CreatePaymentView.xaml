@@ -12,8 +12,8 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,7 +28,7 @@
         <controls:LabelAndTextControl Grid.Row="3" Grid.Column="0"  Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       Caption="Amount" Margin="10" Width="150" Grid.RowSpan="2"></controls:LabelAndTextControl>
         <Label Grid.Row="3" Grid.Column="1" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Period"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" SelectedItem="{Binding Period}" ItemsSource="{Binding Periods}" />
+        <ComboBox Grid.Row="3" Grid.Column="1" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="25" SelectedItem="{Binding Period}" ItemsSource="{Binding Periods}" />
 
         <Button Grid.Row="4" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding MenuCommand}"/>

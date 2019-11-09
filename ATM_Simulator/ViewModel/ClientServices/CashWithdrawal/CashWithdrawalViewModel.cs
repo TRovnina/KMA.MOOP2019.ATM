@@ -18,7 +18,13 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         public ICommand HundredCommand
         {
-            get { return _hundredCommand ?? (_hundredCommand = new RelayCommand<object>(Hundred)); }
+            get { return _hundredCommand ?? (_hundredCommand = new RelayCommand<object>(Hundred, CanHundredExecute)); }
+        }
+
+        private bool CanHundredExecute(object obj)
+        {
+            return true;
+            //return Atm banknotes >= 100
         }
 
         private void Hundred(object obj)
@@ -28,7 +34,13 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         public ICommand TwoHundredCommand
         {
-            get { return _twoHundredCommand ?? (_twoHundredCommand = new RelayCommand<object>(TwoHundred)); }
+            get { return _twoHundredCommand ?? (_twoHundredCommand = new RelayCommand<object>(TwoHundred, CanTwoHundredExecute)); }
+        }
+
+        private bool CanTwoHundredExecute(object obj)
+        {
+            return true;
+            //return Atm banknotes >= 200
         }
 
         private void TwoHundred(object obj)
@@ -38,7 +50,13 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         public ICommand FiveHundredCommand
         {
-            get { return _fiveHundredCommand ?? (_fiveHundredCommand = new RelayCommand<object>(FiveHundred)); }
+            get { return _fiveHundredCommand ?? (_fiveHundredCommand = new RelayCommand<object>(FiveHundred, CanFiveHundredExecute)); }
+        }
+
+        private bool CanFiveHundredExecute(object obj)
+        {
+            return true;
+            //return Atm banknotes >= 500
         }
 
         private void FiveHundred(object obj)
@@ -58,6 +76,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
        private void GetMoney(int n)
         {
+            //take money from ATM
             MessageBox.Show("You have successfully been issued " + n + " points!");
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

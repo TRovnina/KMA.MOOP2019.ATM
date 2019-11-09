@@ -39,7 +39,7 @@ namespace ATM_Simulator.ViewModel
         internal void StartApplication()
         {
             //NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
-            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
+            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
