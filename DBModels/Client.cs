@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace DBModels
@@ -67,10 +68,27 @@ namespace DBModels
 
         #endregion
 
+        public CurrentAccount CurrentAccount()
+        {
+            return Accounts.OfType<CurrentAccount>().FirstOrDefault();
+        }
+
+        public CreditAccount CreditAccount()
+        {
+            return Accounts.OfType<CreditAccount>().FirstOrDefault();
+        }
+
+        public DepositAccount DepositAccount()
+        {
+            return Accounts.OfType<DepositAccount>().FirstOrDefault();
+        }
+
         public override string ToString()
         {
             return FirstName + " " + LastName + "; ITN: " + ITN;
         }
+
+        
 
         #region EntityConfiguration
 

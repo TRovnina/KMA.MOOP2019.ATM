@@ -20,7 +20,7 @@ namespace DBModels
         private string _atmAddress;
 
         [DataMember]
-        private List<Action> _actions;
+        private List<ATMAccountAction> _actions;
         [DataMember]
         private List<ATMManagerAction> _atmManagerActions;
 
@@ -35,7 +35,7 @@ namespace DBModels
 
         private ATM()
         {
-            _actions = new List<Action>();
+            _actions = new List<ATMAccountAction>();
             _atmManagerActions = new List<ATMManagerAction>();
             _banknote50 = 0;
             _banknote100 = 0;
@@ -80,7 +80,7 @@ namespace DBModels
             set => _atmAddress = value;
         }
 
-        public List<Action> Actions
+        public List<ATMAccountAction> Actions
         {
             get => _actions;
             private set => _actions = value;

@@ -114,6 +114,11 @@ namespace DBModels
             _currentAccount = null;
         }
 
+        public override string ToString()
+        {
+            return RegularPaymentName;
+        }
+
         #region EntityConfiguration
 
         public class RegularPaymentEntityConfiguration : EntityTypeConfiguration<RegularPayment>

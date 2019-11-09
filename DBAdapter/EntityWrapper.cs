@@ -54,12 +54,12 @@ namespace DBAdapter
             }
         }
 
-        public static void AddAction(Action action)
+        public static void AddATMAccountAction(ATMAccountAction action)
         {
             using (var context = new ATMDbContext())
             {
                 action.DeleteDatabaseValues();
-                context.Actions.Add(action);
+                context.ATMAccountActions.Add(action);
                 context.SaveChanges();
             }
         }
