@@ -1,4 +1,5 @@
-﻿using DBModels;
+﻿using AtmClient.ServiceReference1;
+using DBModels;
 
 namespace AtmClient
 {
@@ -6,10 +7,14 @@ namespace AtmClient
     {
         public static ATM GetATMByCode(string atmCode)
         {
-            /*ServiceReference1.AtmServiceClient client = new AtmServiceClient();
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             return client.GetATMByCode(atmCode);
-            */
-            return null;
+        }
+
+        public static void AddATM(ATM atm)
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            client.AddATM(atm);
         }
     }
 }

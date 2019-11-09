@@ -20,7 +20,7 @@ namespace DBModels
         private string _atmAddress;
 
         [DataMember]
-        private List<ATMAccountAction> _actions;
+        private List<ATMAccountAction> _atmAccountAction;
         [DataMember]
         private List<ATMManagerAction> _atmManagerActions;
 
@@ -35,7 +35,7 @@ namespace DBModels
 
         private ATM()
         {
-            _actions = new List<ATMAccountAction>();
+            _atmAccountAction = new List<ATMAccountAction>();
             _atmManagerActions = new List<ATMManagerAction>();
             _banknote50 = 0;
             _banknote100 = 0;
@@ -80,10 +80,10 @@ namespace DBModels
             set => _atmAddress = value;
         }
 
-        public List<ATMAccountAction> Actions
+        public List<ATMAccountAction> ATMAccountAction
         {
-            get => _actions;
-            private set => _actions = value;
+            get => _atmAccountAction;
+            private set => _atmAccountAction = value;
         }
 
         public List<ATMManagerAction> AtmManagerActions
@@ -176,7 +176,7 @@ namespace DBModels
                     .IsRequired();
 
 
-                HasMany(a => a.Actions)
+                HasMany(a => a.ATMAccountAction)
                     .WithRequired(act => act.ATM)
                     .HasForeignKey(act => act.ATMCode)
                     .WillCascadeOnDelete(true);

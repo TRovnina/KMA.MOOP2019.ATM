@@ -16,10 +16,20 @@ namespace WcfService
         ATM GetATMByCode(string atmCode);
 
         [OperationContract]
+        void AddATM(ATM atm);
+
+        [OperationContract]
         Manager GetManagerById(string managerId);
 
         [OperationContract]
+        void AddManager(Manager manager);
+
+        [OperationContract]
         Account GetAccountByNum(string accountNum);
+        
+
+        [OperationContract]
+        void AddClient(Client client);
 
         [OperationContract]
         bool AccountExist(string accountNum);

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using DBAdapter;
 using DBModels;
 
@@ -23,9 +19,19 @@ namespace WcfService
             return EntityWrapper.GetManagerById(managerId);
         }
 
+        public void AddManager(Manager manager)
+        {
+            EntityWrapper.AddManager(manager);
+        }
+
         public Account GetAccountByNum(string accountNum)
         {
             return EntityWrapper.GetAccountByNum(accountNum);
+        }
+
+        public void AddClient(Client client)
+        {
+            EntityWrapper.AddClient(client);
         }
 
         public bool AccountExist(string accountNum)
@@ -65,6 +71,11 @@ namespace WcfService
         public void SaveAccount(Account account)
         {
             EntityWrapper.SaveAccount(account);
+        }
+
+        public void AddATM(ATM atm)
+        {
+            EntityWrapper.AddATM(atm);
         }
     }
 }

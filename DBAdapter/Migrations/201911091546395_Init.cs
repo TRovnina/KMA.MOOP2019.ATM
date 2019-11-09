@@ -3,7 +3,7 @@ namespace DBAdapter.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDataBase : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +19,7 @@ namespace DBAdapter.Migrations
                         EndOfGracePeriod = c.DateTime(),
                         MaxCreditSum = c.Double(),
                         CreditSum = c.Double(),
-                        Percentage = c.Int(),
+                        PercentageCredit = c.Int(),
                         Debt = c.Double(),
                         ThresholdAmount = c.Double(),
                         PeriodCashSurplus = c.Int(),
@@ -27,7 +27,7 @@ namespace DBAdapter.Migrations
                         IsHandingCashSurplus = c.Boolean(),
                         DepositDate = c.DateTime(),
                         StoregedDate = c.DateTime(),
-                        Percentage1 = c.Int(),
+                        PercentageDeposit = c.Int(),
                         AvailableDate = c.DateTime(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
@@ -36,7 +36,7 @@ namespace DBAdapter.Migrations
                 .Index(t => t.ClientITN);
             
             CreateTable(
-                "dbo.Action",
+                "dbo.ATMAccountAction",
                 c => new
                     {
                         ActionId = c.Int(nullable: false, identity: true),
@@ -60,6 +60,10 @@ namespace DBAdapter.Migrations
                         Password = c.String(nullable: false),
                         Status = c.Boolean(nullable: false),
                         ATMAddress = c.String(nullable: false),
+                        Banknote50 = c.Int(nullable: false),
+                        Banknote100 = c.Int(nullable: false),
+                        Banknote200 = c.Int(nullable: false),
+                        Banknote500 = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ATMCode);
             
@@ -90,18 +94,6 @@ namespace DBAdapter.Migrations
                 .PrimaryKey(t => t.ManagerId);
             
             CreateTable(
-                "dbo.Banknote",
-                c => new
-                    {
-                        BanknoteValue = c.Int(nullable: false),
-                        ATMCode = c.String(nullable: false, maxLength: 128),
-                        BanknoteAmount = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.BanknoteValue, t.ATMCode })
-                .ForeignKey("dbo.ATM", t => t.ATMCode, cascadeDelete: true)
-                .Index(t => t.ATMCode);
-            
-            CreateTable(
                 "dbo.Client",
                 c => new
                     {
@@ -112,45 +104,43 @@ namespace DBAdapter.Migrations
                 .PrimaryKey(t => t.ITN);
             
             CreateTable(
-                "dbo.RegularPayments",
+                "dbo.RegularPayment",
                 c => new
                     {
                         RegularPaymentId = c.Int(nullable: false, identity: true),
                         FirstRegularPaymentDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         PeriodRegularPaymentId = c.Int(nullable: false),
                         RegularPaymentName = c.String(nullable: false),
-                        CurrentAccountNum = c.String(),
-                        CurrentAccount_CardNumber = c.String(maxLength: 128),
+                        Sum = c.Double(nullable: false),
+                        DestinationAccount = c.String(nullable: false),
+                        CardNumber = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.RegularPaymentId)
-                .ForeignKey("dbo.Account", t => t.CurrentAccount_CardNumber)
-                .Index(t => t.CurrentAccount_CardNumber);
+                .ForeignKey("dbo.Account", t => t.CardNumber)
+                .Index(t => t.CardNumber);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.RegularPayments", "CurrentAccount_CardNumber", "dbo.Account");
+            DropForeignKey("dbo.RegularPayment", "CardNumber", "dbo.Account");
             DropForeignKey("dbo.Account", "ClientITN", "dbo.Client");
-            DropForeignKey("dbo.Action", "AccountNum", "dbo.Account");
-            DropForeignKey("dbo.Banknote", "ATMCode", "dbo.ATM");
+            DropForeignKey("dbo.ATMAccountAction", "AccountNum", "dbo.Account");
             DropForeignKey("dbo.ATMManagerAction", "ATMCode", "dbo.ATM");
             DropForeignKey("dbo.ATMManagerAction", "ManagerId", "dbo.Manager");
-            DropForeignKey("dbo.Action", "ATMCode", "dbo.ATM");
-            DropIndex("dbo.RegularPayments", new[] { "CurrentAccount_CardNumber" });
-            DropIndex("dbo.Banknote", new[] { "ATMCode" });
+            DropForeignKey("dbo.ATMAccountAction", "ATMCode", "dbo.ATM");
+            DropIndex("dbo.RegularPayment", new[] { "CardNumber" });
             DropIndex("dbo.ATMManagerAction", new[] { "ATMCode" });
             DropIndex("dbo.ATMManagerAction", new[] { "ManagerId" });
-            DropIndex("dbo.Action", new[] { "AccountNum" });
-            DropIndex("dbo.Action", new[] { "ATMCode" });
+            DropIndex("dbo.ATMAccountAction", new[] { "AccountNum" });
+            DropIndex("dbo.ATMAccountAction", new[] { "ATMCode" });
             DropIndex("dbo.Account", new[] { "ClientITN" });
-            DropTable("dbo.RegularPayments");
+            DropTable("dbo.RegularPayment");
             DropTable("dbo.Client");
-            DropTable("dbo.Banknote");
             DropTable("dbo.Manager");
             DropTable("dbo.ATMManagerAction");
             DropTable("dbo.ATM");
-            DropTable("dbo.Action");
+            DropTable("dbo.ATMAccountAction");
             DropTable("dbo.Account");
         }
     }

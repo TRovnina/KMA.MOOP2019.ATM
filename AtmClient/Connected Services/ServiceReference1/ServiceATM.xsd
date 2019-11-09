@@ -15,6 +15,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddATM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atm" nillable="true" type="q2:ATM" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddATMResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetManagerById">
     <xs:complexType>
       <xs:sequence>
@@ -25,7 +37,7 @@
   <xs:element name="GetManagerByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetManagerByIdResult" nillable="true" type="q2:Manager" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetManagerByIdResult" nillable="true" type="q3:Manager" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -39,7 +51,7 @@
   <xs:element name="GetAccountByNumResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetAccountByNumResult" nillable="true" type="q3:Account" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetAccountByNumResult" nillable="true" type="q4:Account" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -67,14 +79,14 @@
   <xs:element name="GetClientByItnResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetClientByItnResult" nillable="true" type="q4:Client" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetClientByItnResult" nillable="true" type="q5:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddATMAccountAction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="action" nillable="true" type="q5:ATMAccountAction" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="action" nillable="true" type="q6:ATMAccountAction" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -86,7 +98,7 @@
   <xs:element name="AddATMManagerAction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atmManagerAction" nillable="true" type="q6:ATMManagerAction" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atmManagerAction" nillable="true" type="q7:ATMManagerAction" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,7 +124,7 @@
   <xs:element name="SaveATM">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atm" nillable="true" type="q7:ATM" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atm" nillable="true" type="q8:ATM" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -124,7 +136,7 @@
   <xs:element name="SaveAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="account" nillable="true" type="q8:Account" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="account" nillable="true" type="q9:Account" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

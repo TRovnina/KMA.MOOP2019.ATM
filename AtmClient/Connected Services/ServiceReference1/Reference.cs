@@ -21,6 +21,12 @@ namespace AtmClient.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetATMByCode", ReplyAction="http://tempuri.org/IServiceATM/GetATMByCodeResponse")]
         System.Threading.Tasks.Task<DBModels.ATM> GetATMByCodeAsync(string atmCode);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATM", ReplyAction="http://tempuri.org/IServiceATM/AddATMResponse")]
+        void AddATM(DBModels.ATM atm);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATM", ReplyAction="http://tempuri.org/IServiceATM/AddATMResponse")]
+        System.Threading.Tasks.Task AddATMAsync(DBModels.ATM atm);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetManagerById", ReplyAction="http://tempuri.org/IServiceATM/GetManagerByIdResponse")]
         DBModels.Manager GetManagerById(string managerId);
         
@@ -119,6 +125,14 @@ namespace AtmClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBModels.ATM> GetATMByCodeAsync(string atmCode) {
             return base.Channel.GetATMByCodeAsync(atmCode);
+        }
+        
+        public void AddATM(DBModels.ATM atm) {
+            base.Channel.AddATM(atm);
+        }
+        
+        public System.Threading.Tasks.Task AddATMAsync(DBModels.ATM atm) {
+            return base.Channel.AddATMAsync(atm);
         }
         
         public DBModels.Manager GetManagerById(string managerId) {

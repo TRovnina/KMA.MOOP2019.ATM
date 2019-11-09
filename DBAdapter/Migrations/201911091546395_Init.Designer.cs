@@ -7,13 +7,13 @@ namespace DBAdapter.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class PreviousTable : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PreviousTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201911091249513_PreviousTable"; }
+            get { return "201911091546395_Init"; }
         }
         
         string IMigrationMetadata.Source

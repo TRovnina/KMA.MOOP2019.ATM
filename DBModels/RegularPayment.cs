@@ -25,7 +25,7 @@ namespace DBModels
         private string _destinationAccount;
 
         [DataMember]
-        private CurrentAccount _currentAccount;
+        private CurrentAccount _currentAccount; // дає помилку, краще не викликати
         [DataMember]
         private string _cardNumber;
 
@@ -43,6 +43,7 @@ namespace DBModels
         {
             _periodRegularPayment = periodRegularPayment;
             _regularPaymentName = regularPaymentName;
+            currentAccount.RegularPayments.Add(this);
             _currentAccount = currentAccount;
             _cardNumber = currentAccount.CardNumber;
             _sum = sum;

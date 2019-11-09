@@ -3,7 +3,7 @@
   <xs:import schemaLocation="http://localhost:52159/ServiceATM.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ATM">
     <xs:sequence>
-      <xs:element minOccurs="0" name="_actions" nillable="true" type="tns:ArrayOfATMAccountAction" />
+      <xs:element minOccurs="0" name="_atmAccountAction" nillable="true" type="tns:ArrayOfATMAccountAction" />
       <xs:element minOccurs="0" name="_atmAddress" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_atmManagerActions" nillable="true" type="tns:ArrayOfATMManagerAction" />

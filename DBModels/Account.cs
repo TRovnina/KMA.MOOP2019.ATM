@@ -16,7 +16,7 @@ namespace DBModels
         protected Client _client;
         protected string _clientITN;
         
-        private List<ATMAccountAction> _actions;
+        private List<ATMAccountAction> _atmAccountAction;
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace DBModels
         {
             _isActive = true;
             _availableSum = 0;
-            _actions = new List<ATMAccountAction>();
+            _atmAccountAction = new List<ATMAccountAction>();
         }
 
         #endregion
@@ -77,10 +77,10 @@ namespace DBModels
             protected set => _clientITN = value;
         }
 
-        public List<ATMAccountAction> Actions
+        public List<ATMAccountAction> ATMAccountAction
         {
-            get => _actions;
-            private set => _actions = value;
+            get => _atmAccountAction;
+            private set => _atmAccountAction = value;
         }
 
         #endregion
@@ -101,6 +101,11 @@ namespace DBModels
             {
                 return false;
             }
+        }
+
+        public void DeleteDatabaseValues()
+        {
+            _client = null;
         }
 
         public override  string ToString()
@@ -130,7 +135,7 @@ namespace DBModels
                     .HasColumnName("AvailableSum")
                     .IsRequired();
 
-                HasMany(a => a.Actions)
+                HasMany(a => a.ATMAccountAction)
                     .WithRequired(act => act.Account)
                     .HasForeignKey(act => act.AccountNum)
                     .WillCascadeOnDelete(true);

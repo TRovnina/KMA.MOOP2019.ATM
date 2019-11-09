@@ -71,7 +71,7 @@ namespace DBModels
 
         public List<RegularPayment> RegularPayments
         {
-            get => _regularPayments;
+            get { return _regularPayments ?? (_regularPayments = new List<RegularPayment>()); }
             set => _regularPayments = value;
         }
 

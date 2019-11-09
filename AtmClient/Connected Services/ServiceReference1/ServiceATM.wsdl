@@ -13,6 +13,12 @@
   <wsdl:message name="IServiceATM_GetATMByCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetATMByCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceATM_AddATM_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddATM" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_AddATM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddATMResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceATM_GetManagerById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetManagerById" />
   </wsdl:message>
@@ -72,6 +78,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetATMByCode" message="tns:IServiceATM_GetATMByCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetATMByCodeResponse" message="tns:IServiceATM_GetATMByCode_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddATM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/AddATM" message="tns:IServiceATM_AddATM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/AddATMResponse" message="tns:IServiceATM_AddATM_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetManagerById">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetManagerById" message="tns:IServiceATM_GetManagerById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetManagerByIdResponse" message="tns:IServiceATM_GetManagerById_OutputMessage" />
@@ -113,6 +123,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetATMByCode">
       <soap:operation soapAction="http://tempuri.org/IServiceATM/GetATMByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddATM">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/AddATM" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
