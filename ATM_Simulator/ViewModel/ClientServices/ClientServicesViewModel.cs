@@ -1,6 +1,8 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
@@ -37,7 +39,18 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public ICommand TransferCommand
         {
-            get { return _transferCommand ?? (_transferCommand = new RelayCommand<object>(Transfer)); }
+            get
+            {
+                return _transferCommand ?? (_transferCommand = new RelayCommand<object>(Transfer, CanTransferExecute));
+            }
+        }
+
+        private bool CanTransferExecute(object obj)
+        {
+            DepositAccount account = StaticManager.CurrentCard as DepositAccount;
+            if (account != null)
+                return DateTime.Today < account.DepositDate;
+            return true;
         }
 
         private void Transfer(object obj)
@@ -47,7 +60,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public ICommand RegularPaymentCommand
         {
-            get { return _regularPaymentCommand ?? (_regularPaymentCommand = new RelayCommand<object>(RegularPayment)); }
+            get { return _regularPaymentCommand ?? (_regularPaymentCommand = new RelayCommand<object>(RegularPayment, IsCurrentAccount)); }
         }
 
         private void RegularPayment(object obj)
@@ -55,21 +68,21 @@ namespace ATM_Simulator.ViewModel.ClientServices
             NavigationManager.Instance.Navigate(ModesEnum.RegularPayment);
         }
 
+        private bool IsCurrentAccount(object obj)
+        {
+            return (StaticManager.CurrentCard as CurrentAccount) != null;
+        }
+
         public ICommand CashSurplusCommand
         {
-            get { return _cashSurplusCommand ?? (_cashSurplusCommand = new RelayCommand<object>(CashSurplus, CanCashSurplusExecute)); }
+            get { return _cashSurplusCommand ?? (_cashSurplusCommand = new RelayCommand<object>(CashSurplus, IsCurrentAccount)); }
         }
 
         private void CashSurplus(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.CashSurplus);
         }
-
-        private bool CanCashSurplusExecute(object obj)
-        {
-            return true;
-            //check type of card
-        }
+        
 
         public ICommand ChangePinCommand
         {

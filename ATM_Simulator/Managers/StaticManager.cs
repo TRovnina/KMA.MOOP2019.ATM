@@ -17,7 +17,7 @@ namespace ATM_Simulator.Managers
         internal static void Initialize()
         {
         }
-
+        
         internal static void CloseApp()
         {
             MessageBox.Show("Do you want to close program?");

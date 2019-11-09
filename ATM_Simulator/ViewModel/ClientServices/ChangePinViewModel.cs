@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
@@ -56,22 +56,18 @@ namespace ATM_Simulator.ViewModel.ClientServices
             return !string.IsNullOrWhiteSpace(_oldPin) && !string.IsNullOrWhiteSpace(_newPin1) && !string.IsNullOrWhiteSpace(_newPin2);
         }
 
-        private async void ChangePin(object obj)
+        private void ChangePin(object obj)
         {
-            if (_newPin1 != _newPin2)// add check of old pin
+            if (_newPin1 != _newPin2 && !StaticManager.CurrentCard.CheckPassword(_oldPin))
             {
-                MessageBox.Show("Something is wrong! Change all information!");
+                System.Windows.Forms.MessageBox.Show("Something is wrong! Check all information!", "Error!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.ChangePin);
                 return;
             }
 
-            LoaderManager.Instance.ShowLoader();
-            await Task.Run(() =>
-            {
-                
-            });
+            StaticManager.CurrentCard.CardPassword = NewPin1;
 
-            LoaderManager.Instance.HideLoader();
             MessageBox.Show("You PIN was successfully changed!");
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

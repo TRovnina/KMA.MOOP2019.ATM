@@ -1,7 +1,7 @@
-﻿
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
@@ -12,8 +12,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public string Card
         {
-            //get { return Card.Type + " Card"; }
-            get { return "Current Card"; }
+            get { return StaticManager.CurrentCard.GetType().ToString(); }
         }
 
         public string Text
@@ -21,20 +20,27 @@ namespace ATM_Simulator.ViewModel.ClientServices
             get { return GetText();  }
         }
 
-        public int Amount
+        public double Amount
         {
-            //get { return Card.Amount; }
-            get { return 100; }
+            get { return StaticManager.CurrentCard.AvailableSum; }
         }
 
+        //check type of the card and get information
         private string GetText()
         {
-            //check type of the card and get information
             string txt = "";
-            //if(Card.Type == "Credit")
-            //  txt = "Your Credit Amount is " + Card.Credit +"\nAfter " + CreditDate + " will be charged " + Credit.Commission + " % of the amount every month";
-            //else if(Card.Type == "Deposit")
-            // txt = "Every month will be accrued " + Card.Commission + " % of amount \nDate when amount will be available " + Card.Date
+            if (Card == "CreditAccount")
+            {
+                CreditAccount account = StaticManager.CurrentCard as CreditAccount;
+                txt = "Your Credit Amount is " + account.Debt + "\nAfter " + account.EndOfGracePeriod +
+                      " will be charged " + account.PercentageCredit + " % of the amount every month";
+            }
+            else if (Card == "DepositAccount")
+            {
+                DepositAccount account = StaticManager.CurrentCard as DepositAccount;
+                txt = "Every month will be accrued " + account.PercentageDeposit +
+                      " % of amount \nDate when amount will be available " + account.AvailableDate;
+            }
             return txt;
         }
 

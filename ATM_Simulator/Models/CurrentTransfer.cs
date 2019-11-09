@@ -1,49 +1,32 @@
-﻿namespace ATM_Simulator.Models
+﻿using ATM_Simulator.Managers;
+using DBModels;
+
+namespace ATM_Simulator.Models
 {
     internal class CurrentTransfer
     {
         #region Properties
 
-        internal string RecipientCard
-        {
-            get;
-            set;
-        }
+        internal Account RecipientCard { get; set; }
 
-        internal string RecipientName
-        {
-            get;
-            set;
-        }
+        internal string RecipientName { get; set; }
 
-        internal int Amount
-        {
-            get;
-            set;
-        }
+        internal double Amount { get; set; }
 
-        internal double Commission
-        {
-            get;
-            set;
-        }
+        internal double Commission { get; set; }
 
-        internal string Description
-        {
-            get;
-            set;
-        }
+        internal string Description { get; set; }
 
         #endregion
 
 
-        public CurrentTransfer(string recipient, int amount, string description)
+        public CurrentTransfer(Account recipient, int amount, string description)
         {
             RecipientCard = recipient;
-            Amount = amount;
             Description = description;
-            RecipientName = "Petrov Petr";
-            Commission = 0.05;
-        } 
+            RecipientName = recipient.Client.FirstName + " " + recipient.Client.LastName;
+            Commission = (recipient.Client == StaticManager.CurrentClient ? 0 : 1);
+            Amount = amount + Commission/100 * amount;
+        }
     }
 }

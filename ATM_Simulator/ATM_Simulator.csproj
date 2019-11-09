@@ -81,6 +81,7 @@
     <Compile Include="ViewModel\Authentication\CardPinViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\BalanceInquiryViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\CashSurplusViewModel.cs" />
+    <Compile Include="ViewModel\ClientServices\CashWithdrawal\CashModel.cs" />
     <Compile Include="ViewModel\ClientServices\CashWithdrawal\CashWithdrawalViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\CashWithdrawal\OtherWithdrawalViewModel.cs" />
     <Compile Include="ViewModel\ClientServices\ChangePinViewModel.cs" />

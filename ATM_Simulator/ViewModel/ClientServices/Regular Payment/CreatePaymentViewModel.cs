@@ -13,7 +13,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
     {
         private string _name;
         private string _card;
-        private int _amount;
+        private Double _amount;
         private PeriodRegularPayment _period;
 
         private ICommand _confirmCommand;
@@ -32,8 +32,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Card
         {
-            //get { return _card = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.); }
-            get { return _card = ""; }
+            get { return _card = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.DestinationAccount); }
             set
             {
                 _card = value;
@@ -41,10 +40,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             }
         }
 
-        public int Amount
+        public Double Amount
         {
-            // get { return _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.); }
-            get { return _amount = 0; }
+            get { return _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.Sum); }
             set
             {
                 _amount = value;
@@ -74,7 +72,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private void Confirm(object obj)
         {
-            //StaticManager.CurrentPayment = new RegularPayment();
+            StaticManager.CurrentPayment = new RegularPayment(_period, _name, (StaticManager.CurrentCard as CurrentAccount), _amount, _card);
             NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
         }
 

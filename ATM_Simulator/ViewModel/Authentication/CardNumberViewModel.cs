@@ -67,7 +67,7 @@ namespace ATM_Simulator.ViewModel.Authentication
                 // StaticManager.CurrentManager = manager;
                 //else{
                 //  correct = false;
-                //  MessageBox.Show("Wrong Card Number!");
+                //  MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 //}
             });
             LoaderManager.Instance.HideLoader();

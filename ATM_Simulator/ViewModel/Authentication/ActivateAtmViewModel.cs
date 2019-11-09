@@ -73,16 +73,14 @@ namespace ATM_Simulator.ViewModel.Authentication
             return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code);
         }
 
-        private async void ActivateImplementation(object obj)
+        private void ActivateImplementation(object obj)
         {
-            LoaderManager.Instance.ShowLoader();
-            await Task.Run(() =>
-            {
-                //var atm = get ATM(Code, Password);
-                //StaticManager.CurrentAtm = atm;
-            });
-
-            LoaderManager.Instance.HideLoader();
+            //var atm = get ATM(Code, Password);
+            //StaticManager.CurrentAtm = atm;
+            //if(atm == null){
+            //MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            //NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
+            //}else
             NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
         }
 

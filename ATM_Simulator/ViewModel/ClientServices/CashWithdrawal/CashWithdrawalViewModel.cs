@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
@@ -18,7 +17,6 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
         private int[] _result100;
         private int[] _result200;
         private int[] _result500;
-        
 
 
         public ICommand HundredCommand
@@ -66,7 +64,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private bool CanFiveHundredExecute(object obj)
         {
-            return(_result500 = Multiplicity(500, Banknotes)) != null;
+            return (_result500 = Multiplicity(500, Banknotes)) != null;
         }
 
         private void FiveHundred(object obj)
@@ -86,8 +84,16 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private void GetMoney(int n, int[] res)
         {
-            RemoveBanknotes(res);
-            MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + res);
+            if (StaticManager.CurrentCard.AvailableSum >= n)
+            {
+                StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - n;
+                RemoveBanknotes(res);
+                MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + res);
+            }
+            else
+                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
 

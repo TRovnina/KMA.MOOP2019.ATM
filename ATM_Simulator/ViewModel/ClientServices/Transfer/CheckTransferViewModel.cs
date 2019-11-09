@@ -1,7 +1,8 @@
-﻿using System.Windows;
+﻿using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 {
@@ -12,7 +13,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
 
 
-        public string RecipientCard
+        public Account RecipientCard
         {
             get { return StaticManager.CurrentTransfer.RecipientCard; }
         }
@@ -44,7 +45,16 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private void Confirm(object obj)
         {
-            MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
+            if (StaticManager.CurrentCard.AvailableSum >= Amount)
+            {
+                StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - Amount;
+                RecipientCard.AvailableSum = RecipientCard.AvailableSum + Amount;
+                MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
+            }
+            else
+                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
 

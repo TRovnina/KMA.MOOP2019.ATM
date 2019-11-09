@@ -1,6 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Windows.Forms;
+using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 {
@@ -51,8 +54,19 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private void Confirm(object obj)
         {
-            StaticManager.CurrentTransfer = new Models.CurrentTransfer(Recipient, Amount, Description);
-            NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
+            //check RecipientCard
+            Account recipient = null;
+            if (recipient == null)
+            {
+                MessageBox.Show("The card " + Recipient + " does not exist!", "Error!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.Transfer);
+            }
+            else
+            {
+                StaticManager.CurrentTransfer = new CurrentTransfer(recipient, Amount, Description);
+                NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
+            }
         }
 
         private bool CanConfirmExecute(object obj)

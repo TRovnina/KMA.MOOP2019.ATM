@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
-using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -9,7 +9,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 {
     internal class PaymentTemplatesViewModel : BasicViewModel
     {
-        private ObservableCollection<RegularPayment> _payments;
+        private List<RegularPayment> _payments;
         private RegularPayment _selectedPayment;
 
         private ICommand _editCommand;
@@ -17,9 +17,13 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
         private ICommand _menuCommand;
         private ICommand _endCommand;
 
-        public ObservableCollection<RegularPayment> Payments
+        public List<RegularPayment> Payments
         {
-            get { return _payments; }
+            get
+            {
+                CurrentAccount account = StaticManager.CurrentCard as CurrentAccount;
+                return account.RegularPayments;
+            }
             set
             {
                 _payments = value;
@@ -56,7 +60,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private void Delete(object obj)
         {
-            //remove selected payment
+            _payments.Remove(SelectedPayment);
+            MessageBox.Show("Regular Payment was successfully deleted!");
+            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
 
         private bool CanExecute(object obj)
