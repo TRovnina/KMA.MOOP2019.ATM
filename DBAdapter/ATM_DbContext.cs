@@ -11,7 +11,7 @@ namespace DBAdapter
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ATMDbContext, Configuration>(true));
         }
 
-        public DbSet<Action> Actions { get; set; }
+        public DbSet<ATMAccountAction> ATMAccountActions { get; set; }
         public DbSet<ATM> ATMs { get; set; }
         public DbSet<ATMManagerAction> ATMManagerActions { get; set; }
         public DbSet<Client> Clients { get; set; }
@@ -21,7 +21,7 @@ namespace DBAdapter
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new Action.ActionEntityConfiguration());
+            modelBuilder.Configurations.Add(new ATMAccountAction.ATMAccountActionEntityConfiguration());
             modelBuilder.Configurations.Add(new ATM.ATMEntityConfiguration());
             modelBuilder.Configurations.Add(new ATMManagerAction.ATMManagerActionEntityConfiguration());
             modelBuilder.Configurations.Add(new Client.ClientEntityConfiguration());

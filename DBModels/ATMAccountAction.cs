@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 namespace DBModels
 {
     [DataContract(IsReference = true)]
-    public class Action
+    public class ATMAccountAction
     {
         #region Fields
         [DataMember]
@@ -35,23 +35,22 @@ namespace DBModels
 
         #region Constructors
 
-        private Action()
+        private ATMAccountAction()
         {
             _actionDate = DateTime.Now;
         }
 
-        public Action(ActionType actionType, ATM atm, Account account) : this()
+        public ATMAccountAction(ActionType actionType, ATM atm, Account account, Account destinationAccount = null) : this()
         {
             _actionType = actionType;
             _atm = atm;
             _atmCode = atm.ATMCode;
             _account = account;
             _accountNum = account.CardNumber;
-        }
-
-        public Action(ATM atm, Account account, Account destinationAccount) : this(ActionType.Transfer, atm, account)
-        {
-            _destinationAccountNum = destinationAccount.CardNumber;
+            if (destinationAccount != null && actionType == ActionType.Transfer)
+                _destinationAccountNum = destinationAccount.CardNumber;
+            else
+                _destinationAccountNum = null;
         }
 
         #endregion
@@ -120,13 +119,18 @@ namespace DBModels
             _account = null;
         }
 
+        public override string ToString()
+        {
+            return "Action between " + ATMCode + " --- " + AccountNum + "; \nType" + ActionType;
+        }
+
         #region EntityConfiguration
 
-        public class ActionEntityConfiguration : EntityTypeConfiguration<Action>
+        public class ATMAccountActionEntityConfiguration : EntityTypeConfiguration<ATMAccountAction>
         {
-            public ActionEntityConfiguration()
+            public ATMAccountActionEntityConfiguration()
             {
-                ToTable("Action");
+                ToTable("ATMAccountAction");
                 HasKey(a => a.ActionId);
 
                 Property(a => a.ActionId)

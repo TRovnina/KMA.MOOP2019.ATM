@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="ATM_WCFService.ATMService" CodeBehind="ATMService.svc.cs" %>

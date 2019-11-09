@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201911082147180_EditBanknotes.Designer.cs">
       <DependentUpon>201911082147180_EditBanknotes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911090904124_ChangeAction.cs" />
+    <Compile Include="Migrations\201911090904124_ChangeAction.Designer.cs">
+      <DependentUpon>201911090904124_ChangeAction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911082147180_EditBanknotes.resx">
       <DependentUpon>201911082147180_EditBanknotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911090904124_ChangeAction.resx">
+      <DependentUpon>201911090904124_ChangeAction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
