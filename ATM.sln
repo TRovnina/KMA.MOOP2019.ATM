@@ -14,6 +14,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM_WCFService", "ATM_WCFService\ATM_WCFService.csproj", "{E0717E7B-2858-44BC-8267-E069F1BDC5EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtmClient", "AtmClient\AtmClient.csproj", "{219D7C55-685C-4146-BBE0-5D4129C1F8A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E0717E7B-2858-44BC-8267-E069F1BDC5EB} = {E0717E7B-2858-44BC-8267-E069F1BDC5EB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

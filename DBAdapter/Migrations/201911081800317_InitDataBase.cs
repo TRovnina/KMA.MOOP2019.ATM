@@ -112,7 +112,7 @@ namespace DBAdapter.Migrations
                 .PrimaryKey(t => t.ITN);
             
             CreateTable(
-                "dbo.RegularPayment",
+                "dbo.RegularTransfer",
                 c => new
                     {
                         RegularPaymentId = c.Int(nullable: false, identity: true),
@@ -130,21 +130,21 @@ namespace DBAdapter.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.RegularPayment", "CurrentAccount_CardNumber", "dbo.Account");
+            DropForeignKey("dbo.RegularTransfer", "CurrentAccount_CardNumber", "dbo.Account");
             DropForeignKey("dbo.Account", "ClientITN", "dbo.Client");
             DropForeignKey("dbo.Action", "AccountNum", "dbo.Account");
             DropForeignKey("dbo.Banknote", "ATMCode", "dbo.ATM");
             DropForeignKey("dbo.ATMManagerAction", "ATMCode", "dbo.ATM");
             DropForeignKey("dbo.ATMManagerAction", "ManagerId", "dbo.Manager");
             DropForeignKey("dbo.Action", "ATMCode", "dbo.ATM");
-            DropIndex("dbo.RegularPayment", new[] { "CurrentAccount_CardNumber" });
+            DropIndex("dbo.RegularTransfer", new[] { "CurrentAccount_CardNumber" });
             DropIndex("dbo.Banknote", new[] { "ATMCode" });
             DropIndex("dbo.ATMManagerAction", new[] { "ATMCode" });
             DropIndex("dbo.ATMManagerAction", new[] { "ManagerId" });
             DropIndex("dbo.Action", new[] { "AccountNum" });
             DropIndex("dbo.Action", new[] { "ATMCode" });
             DropIndex("dbo.Account", new[] { "ClientITN" });
-            DropTable("dbo.RegularPayment");
+            DropTable("dbo.RegularTransfer");
             DropTable("dbo.Client");
             DropTable("dbo.Banknote");
             DropTable("dbo.Manager");

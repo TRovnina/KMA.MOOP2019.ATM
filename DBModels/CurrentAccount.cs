@@ -20,7 +20,7 @@ namespace DBModels
                                             // Якщо значення  _periodCashSurplus не None, тоді True, інакше Fasle
 
         [DataMember]
-        private List<RegularPayment> _regularPayments;
+        private List<RegularTransfer> _regularPayments;
         #endregion
 
         #region Constructors
@@ -31,7 +31,7 @@ namespace DBModels
             _thresholdAmount = thresholdAmount;
             _periodCashSurplus = periodCashSurplus;
             _isHandingCashSurplus = _periodCashSurplus != PeriodHandingCashSurplus.None;
-            _regularPayments = new List<RegularPayment>();
+            _regularPayments = new List<RegularTransfer>();
 
             client.Accounts.Add(this);
         }
@@ -69,7 +69,7 @@ namespace DBModels
             set => _isHandingCashSurplus = value;
         }
 
-        public List<RegularPayment> RegularPayments
+        public List<RegularTransfer> RegularPayments
         {
             get => _regularPayments;
             set => _regularPayments = value;

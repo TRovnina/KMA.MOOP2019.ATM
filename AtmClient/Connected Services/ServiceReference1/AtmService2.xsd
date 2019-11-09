@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DBModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DBModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:50704/AtmService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ATM">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_actions" nillable="true" type="tns:ArrayOfATMAccountAction" />
+      <xs:element minOccurs="0" name="_atmAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_atmManagerActions" nillable="true" type="tns:ArrayOfATMManagerAction" />
+      <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_status" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ATM" nillable="true" type="tns:ATM" />
+  <xs:complexType name="ArrayOfATMAccountAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ATMAccountAction" nillable="true" type="tns:ATMAccountAction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfATMAccountAction" nillable="true" type="tns:ArrayOfATMAccountAction" />
+  <xs:complexType name="ATMAccountAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_account" nillable="true" type="tns:Account" />
+      <xs:element minOccurs="0" name="_accountNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_actionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="_actionId" type="xs:int" />
+      <xs:element minOccurs="0" name="_actionType" type="tns:ActionType" />
+      <xs:element minOccurs="0" name="_actionTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="_atm" nillable="true" type="tns:ATM" />
+      <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_destinationAccountNum" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ATMAccountAction" nillable="true" type="tns:ATMAccountAction" />
+  <xs:complexType name="Account">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AvailableSum" type="xs:double" />
+      <xs:element minOccurs="0" name="CardNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Account" nillable="true" type="tns:Account" />
+  <xs:simpleType name="ActionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Authentication" />
+      <xs:enumeration value="AddMoney" />
+      <xs:enumeration value="UnBlockCard" />
+      <xs:enumeration value="CashWithdrawal" />
+      <xs:enumeration value="Transfer" />
+      <xs:enumeration value="ChangePin" />
+      <xs:enumeration value="HandingCashSurplus" />
+      <xs:enumeration value="RegularTransfer" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ActionType" nillable="true" type="tns:ActionType" />
+  <xs:complexType name="ArrayOfATMManagerAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ATMManagerAction" nillable="true" type="tns:ATMManagerAction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfATMManagerAction" nillable="true" type="tns:ArrayOfATMManagerAction" />
+  <xs:complexType name="ATMManagerAction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_actionDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="_atm" nillable="true" type="tns:ATM" />
+      <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_atmManagerActionId" type="xs:int" />
+      <xs:element minOccurs="0" name="_manager" nillable="true" type="tns:Manager" />
+      <xs:element minOccurs="0" name="_managerId" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="ATMManagerAction" nillable="true" type="tns:ATMManagerAction" />
+  <xs:complexType name="Manager">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_atmManagerActions" nillable="true" type="tns:ArrayOfATMManagerAction" />
+      <xs:element minOccurs="0" name="_firstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_lastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_managerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_password" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Manager" nillable="true" type="tns:Manager" />
+  <xs:complexType name="Client">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="_accounts" nillable="true" type="tns:ArrayOfAccount" />
+      <xs:element minOccurs="0" name="_firstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_itn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_lastName" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Client" nillable="true" type="tns:Client" />
+  <xs:complexType name="ArrayOfAccount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Account" nillable="true" type="tns:Account" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccount" nillable="true" type="tns:ArrayOfAccount" />
+</xs:schema>

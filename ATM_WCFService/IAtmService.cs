@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
+﻿using System.ServiceModel;
+using DBModels;
 
 namespace ATM_WCFService
 {
@@ -12,8 +8,34 @@ namespace ATM_WCFService
     public interface IAtmService
     {
         [OperationContract]
-        void DoWork();
+        ATM GetATMByCode(string atmCode);
 
+        [OperationContract]
+        Manager GetManagerById(string managerId);
 
+        [OperationContract]
+        Account GetAccountByNum(string accountNum);
+
+        [OperationContract]
+        bool AccountExist(string accountNum);
+
+        [OperationContract]
+        Client GetClientByItn(string clientItn);
+
+        [OperationContract]
+        void AddATMAccountAction(ATMAccountAction action);
+        
+        [OperationContract]
+        void AddATMManagerAction(ATMManagerAction atmManagerAction);
+        
+        [OperationContract]
+        void AddRegularPayment(RegularTransfer regularTransfer);
+        
+        [OperationContract]
+        void SaveATM(ATM atm);
+        
+        [OperationContract]
+        void SaveAccount(Account account);
+        
     }
 }

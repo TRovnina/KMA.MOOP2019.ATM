@@ -17,7 +17,7 @@ namespace DBAdapter
         public DbSet<Client> Clients { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Manager> Managers { get; set; }
-        public DbSet<RegularPayment> RegularPayments { get; set; }
+        public DbSet<RegularTransfer> RegularTransfers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace DBAdapter
             modelBuilder.Configurations.Add(new Client.ClientEntityConfiguration());
             modelBuilder.Configurations.Add(new Account.AccountEntityConfiguration());
             modelBuilder.Configurations.Add(new Manager.ManagerEntityConfiguration());
-            modelBuilder.Configurations.Add(new RegularPayment.RegularPaymentEntityConfiguration());
+            modelBuilder.Configurations.Add(new RegularTransfer.RegularTransferEntityConfiguration());
 
         }
     }

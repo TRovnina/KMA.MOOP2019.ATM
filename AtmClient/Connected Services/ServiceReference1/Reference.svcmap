@@ -22,9 +22,11 @@
     <MetadataSource Address="http://localhost:50704/AtmService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="AtmService1.xsd" MetadataType="Schema" ID="a60a76f6-f003-424c-9974-d12b21903e84" SourceId="1" SourceUrl="http://localhost:50704/AtmService.svc?xsd=xsd1" />
     <MetadataFile FileName="AtmService.disco" MetadataType="Disco" ID="5452a6fb-3f84-438b-81a7-126f297e80c1" SourceId="1" SourceUrl="http://localhost:50704/AtmService.svc?disco" />
     <MetadataFile FileName="AtmService.xsd" MetadataType="Schema" ID="8896840b-2a91-4a98-a053-104a24458dda" SourceId="1" SourceUrl="http://localhost:50704/AtmService.svc?xsd=xsd0" />
     <MetadataFile FileName="AtmService.wsdl" MetadataType="Wsdl" ID="9d688fbc-e578-4689-8c22-1d6c9d14bd50" SourceId="1" SourceUrl="http://localhost:50704/AtmService.svc?wsdl" />
+    <MetadataFile FileName="AtmService2.xsd" MetadataType="Schema" ID="156b8099-d789-4643-bde8-9f246b0dd5e4" SourceId="1" SourceUrl="http://localhost:50704/AtmService.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

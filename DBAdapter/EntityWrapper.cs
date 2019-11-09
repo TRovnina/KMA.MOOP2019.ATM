@@ -74,12 +74,12 @@ namespace DBAdapter
             }
         }
 
-        public static void AddRegularPayment(RegularPayment regularPayment)
+        public static void AddRegularTransfer(RegularTransfer regularTransfer)
         {
             using (var context = new ATMDbContext())
             {
-                regularPayment.DeleteDatabaseValues();
-                context.RegularPayments.Add(regularPayment);
+                regularTransfer.DeleteDatabaseValues();
+                context.RegularTransfers.Add(regularTransfer);
                 context.SaveChanges();
             }
         }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AtmClient.ServiceReference1;
+using ATM = DBModels.ATM;
 
 namespace AtmClient
 {
@@ -10,6 +8,12 @@ namespace AtmClient
     {
         static void Main(string[] args)
         {
+            ServiceReference1.AtmServiceClient client = new AtmServiceClient();
+            ATM atm = client.GetATMByCode("1111111111111111");
+            Console.WriteLine(atm.ToString());
+
+            Console.WriteLine("Finish");
+            Console.ReadKey();
         }
     }
 }

@@ -1,26 +1,199 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AtmService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:50704/AtmService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:50704/AtmService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:50704/AtmService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DBModels" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IAtmService_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
+  <wsdl:message name="IAtmService_GetATMByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetATMByCode" />
   </wsdl:message>
-  <wsdl:message name="IAtmService_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  <wsdl:message name="IAtmService_GetATMByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetATMByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetManagerById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetManagerById" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetManagerById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetManagerByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetAccountByNum_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountByNum" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetAccountByNum_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAccountByNumResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AccountExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:AccountExist" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AccountExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AccountExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetClientByItn_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientByItn" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_GetClientByItn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientByItnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddATMAccountAction_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddATMAccountAction" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddATMAccountAction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddATMAccountActionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddATMManagerAction_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddATMManagerAction" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddATMManagerAction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddATMManagerActionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddRegularTransfer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRegularTransfer" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_AddRegularTransfer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRegularTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_SaveATM_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveATM" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_SaveATM_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveATMResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_SaveAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAccount" />
+  </wsdl:message>
+  <wsdl:message name="IAtmService_SaveAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAccountResponse" />
   </wsdl:message>
   <wsdl:portType name="IAtmService">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/DoWork" message="tns:IAtmService_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/DoWorkResponse" message="tns:IAtmService_DoWork_OutputMessage" />
+    <wsdl:operation name="GetATMByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/GetATMByCode" message="tns:IAtmService_GetATMByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/GetATMByCodeResponse" message="tns:IAtmService_GetATMByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManagerById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/GetManagerById" message="tns:IAtmService_GetManagerById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/GetManagerByIdResponse" message="tns:IAtmService_GetManagerById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByNum">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/GetAccountByNum" message="tns:IAtmService_GetAccountByNum_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/GetAccountByNumResponse" message="tns:IAtmService_GetAccountByNum_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AccountExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/AccountExist" message="tns:IAtmService_AccountExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/AccountExistResponse" message="tns:IAtmService_AccountExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientByItn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/GetClientByItn" message="tns:IAtmService_GetClientByItn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/GetClientByItnResponse" message="tns:IAtmService_GetClientByItn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddATMAccountAction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/AddATMAccountAction" message="tns:IAtmService_AddATMAccountAction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/AddATMAccountActionResponse" message="tns:IAtmService_AddATMAccountAction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddATMManagerAction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/AddATMManagerAction" message="tns:IAtmService_AddATMManagerAction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/AddATMManagerActionResponse" message="tns:IAtmService_AddATMManagerAction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRegularTransfer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/AddRegularTransfer" message="tns:IAtmService_AddRegularTransfer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/AddRegularTransferResponse" message="tns:IAtmService_AddRegularTransfer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveATM">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/SaveATM" message="tns:IAtmService_SaveATM_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/SaveATMResponse" message="tns:IAtmService_SaveATM_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAtmService/SaveAccount" message="tns:IAtmService_SaveAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAtmService/SaveAccountResponse" message="tns:IAtmService_SaveAccount_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAtmService" type="tns:IAtmService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/IAtmService/DoWork" style="document" />
+    <wsdl:operation name="GetATMByCode">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/GetATMByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManagerById">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/GetManagerById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAccountByNum">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/GetAccountByNum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccountExist">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/AccountExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientByItn">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/GetClientByItn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddATMAccountAction">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/AddATMAccountAction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddATMManagerAction">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/AddATMManagerAction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRegularTransfer">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/AddRegularTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveATM">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/SaveATM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAccount">
+      <soap:operation soapAction="http://tempuri.org/IAtmService/SaveAccount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
