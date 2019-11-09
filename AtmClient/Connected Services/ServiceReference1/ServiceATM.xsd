@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:52159/ServiceATM.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DBModels" />
+  <xs:import schemaLocation="http://localhost:52159/ServiceATM.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GetATMByCode">
     <xs:complexType>
       <xs:sequence>
@@ -41,6 +42,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddManager">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="manager" nillable="true" type="q4:Manager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddManagerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetAccountByNum">
     <xs:complexType>
       <xs:sequence>
@@ -51,8 +64,20 @@
   <xs:element name="GetAccountByNumResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetAccountByNumResult" nillable="true" type="q4:Account" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetAccountByNumResult" nillable="true" type="q5:Account" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddClient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="client" nillable="true" type="q6:Client" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddClientResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="AccountExist">
@@ -79,14 +104,14 @@
   <xs:element name="GetClientByItnResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetClientByItnResult" nillable="true" type="q5:Client" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="GetClientByItnResult" nillable="true" type="q7:Client" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddATMAccountAction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="action" nillable="true" type="q6:ATMAccountAction" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="action" nillable="true" type="q8:ATMAccountAction" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -98,7 +123,7 @@
   <xs:element name="AddATMManagerAction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atmManagerAction" nillable="true" type="q7:ATMManagerAction" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atmManagerAction" nillable="true" type="q9:ATMManagerAction" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -124,7 +149,7 @@
   <xs:element name="SaveATM">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atm" nillable="true" type="q8:ATM" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="atm" nillable="true" type="q10:ATM" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -136,13 +161,27 @@
   <xs:element name="SaveAccount">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="account" nillable="true" type="q9:Account" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="account" nillable="true" type="q11:Account" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveAccountResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegularPayments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="accountNum" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRegularPaymentsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetRegularPaymentsResult" nillable="true" type="q12:ArrayOfanyType" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DBAdapter;
 using DBModels;
 
@@ -71,6 +72,12 @@ namespace WcfService
         public void SaveAccount(Account account)
         {
             EntityWrapper.SaveAccount(account);
+        }
+
+        public List<object> GetRegularPayments(string accountNum)
+        {
+            List<RegularPayment> res = EntityWrapper.GetRegularPayments(accountNum);
+            return new List<object>(res);
         }
 
         public void AddATM(ATM atm)

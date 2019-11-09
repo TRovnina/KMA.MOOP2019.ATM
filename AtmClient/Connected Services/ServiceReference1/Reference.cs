@@ -33,11 +33,23 @@ namespace AtmClient.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetManagerById", ReplyAction="http://tempuri.org/IServiceATM/GetManagerByIdResponse")]
         System.Threading.Tasks.Task<DBModels.Manager> GetManagerByIdAsync(string managerId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddManager", ReplyAction="http://tempuri.org/IServiceATM/AddManagerResponse")]
+        void AddManager(DBModels.Manager manager);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddManager", ReplyAction="http://tempuri.org/IServiceATM/AddManagerResponse")]
+        System.Threading.Tasks.Task AddManagerAsync(DBModels.Manager manager);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
         DBModels.Account GetAccountByNum(string accountNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
         System.Threading.Tasks.Task<DBModels.Account> GetAccountByNumAsync(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddClient", ReplyAction="http://tempuri.org/IServiceATM/AddClientResponse")]
+        void AddClient(DBModels.Client client);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddClient", ReplyAction="http://tempuri.org/IServiceATM/AddClientResponse")]
+        System.Threading.Tasks.Task AddClientAsync(DBModels.Client client);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AccountExist", ReplyAction="http://tempuri.org/IServiceATM/AccountExistResponse")]
         bool AccountExist(string accountNum);
@@ -74,6 +86,7 @@ namespace AtmClient.ServiceReference1 {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
         bool AddRegularPayment(object regularPayment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
@@ -90,6 +103,23 @@ namespace AtmClient.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveAccount", ReplyAction="http://tempuri.org/IServiceATM/SaveAccountResponse")]
         System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        object[] GetRegularPayments(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
+        System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -143,12 +173,28 @@ namespace AtmClient.ServiceReference1 {
             return base.Channel.GetManagerByIdAsync(managerId);
         }
         
+        public void AddManager(DBModels.Manager manager) {
+            base.Channel.AddManager(manager);
+        }
+        
+        public System.Threading.Tasks.Task AddManagerAsync(DBModels.Manager manager) {
+            return base.Channel.AddManagerAsync(manager);
+        }
+        
         public DBModels.Account GetAccountByNum(string accountNum) {
             return base.Channel.GetAccountByNum(accountNum);
         }
         
         public System.Threading.Tasks.Task<DBModels.Account> GetAccountByNumAsync(string accountNum) {
             return base.Channel.GetAccountByNumAsync(accountNum);
+        }
+        
+        public void AddClient(DBModels.Client client) {
+            base.Channel.AddClient(client);
+        }
+        
+        public System.Threading.Tasks.Task AddClientAsync(DBModels.Client client) {
+            return base.Channel.AddClientAsync(client);
         }
         
         public bool AccountExist(string accountNum) {
@@ -205,6 +251,14 @@ namespace AtmClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account) {
             return base.Channel.SaveAccountAsync(account);
+        }
+        
+        public object[] GetRegularPayments(string accountNum) {
+            return base.Channel.GetRegularPayments(accountNum);
+        }
+        
+        public System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum) {
+            return base.Channel.GetRegularPaymentsAsync(accountNum);
         }
     }
 }

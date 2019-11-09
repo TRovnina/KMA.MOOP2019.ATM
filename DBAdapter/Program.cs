@@ -11,6 +11,23 @@ namespace DBAdapter
     {
         static void Main(string[] args)
         {
+            List<Manager> managers = new List<Manager>();
+            managers.Add(new Manager("1", "1", "1", "1"));
+            managers.Add(new Manager("2", "2", "2", "2"));
+
+            List<Object> objs = new List<object>(managers);
+
+            List<Manager> managers2 = new List<Manager>();
+            foreach (var o in objs)
+            {
+                managers2.Add(o as Manager);
+            }
+
+            foreach (var manager in managers2)
+            {
+                Console.WriteLine(manager.ToString());
+            }
+
             /*Client client01 = new Client("0", "0", "0");
             DepositAccount deposit = new DepositAccount("01","01",client01,DateTime.Today, 
                 DateTime.Today, 0);
@@ -36,8 +53,8 @@ namespace DBAdapter
             EntityWrapper.AddRegularPayment(regularPayment01);
             */
 
-           /*CurrentAccount account1 = EntityWrapper.GetAccountByNum("03") as CurrentAccount;*/
-           ATM atm = EntityWrapper.GetATMByCode("111");
+            /*CurrentAccount account1 = EntityWrapper.GetAccountByNum("03") as CurrentAccount;*/
+            //ATM atm = EntityWrapper.GetATMByCode("111");
 
             /*ATMAccountAction atmAccountAction = new ATMAccountAction(ActionType.CashWithdrawal, atm, account1);
             EntityWrapper.AddATMAccountAction(atmAccountAction);
@@ -46,18 +63,18 @@ namespace DBAdapter
             //Manager manager = new Manager("1","1","1","1");
             //EntityWrapper.AddManager(manager);
 
-            Manager manager = EntityWrapper.GetManagerById("1");
+            // Manager manager = EntityWrapper.GetManagerById("1");
 
             //EntityWrapper.AddATMManagerAction(new ATMManagerAction(manager, atm));
 
-            using (var context = new ATMDbContext())
-            {
-                foreach (var atM in context.ATMManagerActions)
-                {
-                    Console.WriteLine(atM.ManagerId);
-                    Console.WriteLine(atM.ATMCode);
-                }
-            }
+            /* using (var context = new ATMDbContext())
+             {
+                 foreach (var atM in context.ATMManagerActions)
+                 {
+                     Console.WriteLine(atM.ManagerId);
+                     Console.WriteLine(atM.ATMCode);
+                 }
+             }*/
 
             Console.WriteLine("------------------------------------------------------");
             Console.ReadKey();

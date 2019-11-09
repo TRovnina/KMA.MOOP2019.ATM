@@ -26,7 +26,6 @@ namespace WcfService
 
         [OperationContract]
         Account GetAccountByNum(string accountNum);
-        
 
         [OperationContract]
         void AddClient(Client client);
@@ -51,5 +50,8 @@ namespace WcfService
 
         [OperationContract]
         void SaveAccount(Account account);
+
+        [OperationContract]
+        List<object> GetRegularPayments(string accountNum);
     }
 }
