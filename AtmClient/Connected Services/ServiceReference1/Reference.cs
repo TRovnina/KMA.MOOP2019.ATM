@@ -15,11 +15,75 @@ namespace AtmClient.ServiceReference1 {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IServiceATM")]
     public interface IServiceATM {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/DoWork", ReplyAction="http://tempuri.org/IServiceATM/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetATMByCode", ReplyAction="http://tempuri.org/IServiceATM/GetATMByCodeResponse")]
+        DBModels.ATM GetATMByCode(string atmCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/DoWork", ReplyAction="http://tempuri.org/IServiceATM/DoWorkResponse")]
-        System.Threading.Tasks.Task DoWorkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetATMByCode", ReplyAction="http://tempuri.org/IServiceATM/GetATMByCodeResponse")]
+        System.Threading.Tasks.Task<DBModels.ATM> GetATMByCodeAsync(string atmCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetManagerById", ReplyAction="http://tempuri.org/IServiceATM/GetManagerByIdResponse")]
+        DBModels.Manager GetManagerById(string managerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetManagerById", ReplyAction="http://tempuri.org/IServiceATM/GetManagerByIdResponse")]
+        System.Threading.Tasks.Task<DBModels.Manager> GetManagerByIdAsync(string managerId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
+        DBModels.Account GetAccountByNum(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
+        System.Threading.Tasks.Task<DBModels.Account> GetAccountByNumAsync(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AccountExist", ReplyAction="http://tempuri.org/IServiceATM/AccountExistResponse")]
+        bool AccountExist(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AccountExist", ReplyAction="http://tempuri.org/IServiceATM/AccountExistResponse")]
+        System.Threading.Tasks.Task<bool> AccountExistAsync(string accountNum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetClientByItn", ReplyAction="http://tempuri.org/IServiceATM/GetClientByItnResponse")]
+        DBModels.Client GetClientByItn(string clientItn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetClientByItn", ReplyAction="http://tempuri.org/IServiceATM/GetClientByItnResponse")]
+        System.Threading.Tasks.Task<DBModels.Client> GetClientByItnAsync(string clientItn);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMAccountAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMAccountActionResponse")]
+        void AddATMAccountAction(DBModels.ATMAccountAction action);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMAccountAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMAccountActionResponse")]
+        System.Threading.Tasks.Task AddATMAccountActionAsync(DBModels.ATMAccountAction action);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMManagerAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMManagerActionResponse")]
+        void AddATMManagerAction(DBModels.ATMManagerAction atmManagerAction);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMManagerAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMManagerActionResponse")]
+        System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
+        bool AddRegularPayment(object regularPayment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
+        System.Threading.Tasks.Task<bool> AddRegularPaymentAsync(object regularPayment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveATM", ReplyAction="http://tempuri.org/IServiceATM/SaveATMResponse")]
+        void SaveATM(DBModels.ATM atm);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveATM", ReplyAction="http://tempuri.org/IServiceATM/SaveATMResponse")]
+        System.Threading.Tasks.Task SaveATMAsync(DBModels.ATM atm);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveAccount", ReplyAction="http://tempuri.org/IServiceATM/SaveAccountResponse")]
+        void SaveAccount(DBModels.Account account);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveAccount", ReplyAction="http://tempuri.org/IServiceATM/SaveAccountResponse")]
+        System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +113,84 @@ namespace AtmClient.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public DBModels.ATM GetATMByCode(string atmCode) {
+            return base.Channel.GetATMByCode(atmCode);
         }
         
-        public System.Threading.Tasks.Task DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
+        public System.Threading.Tasks.Task<DBModels.ATM> GetATMByCodeAsync(string atmCode) {
+            return base.Channel.GetATMByCodeAsync(atmCode);
+        }
+        
+        public DBModels.Manager GetManagerById(string managerId) {
+            return base.Channel.GetManagerById(managerId);
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Manager> GetManagerByIdAsync(string managerId) {
+            return base.Channel.GetManagerByIdAsync(managerId);
+        }
+        
+        public DBModels.Account GetAccountByNum(string accountNum) {
+            return base.Channel.GetAccountByNum(accountNum);
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Account> GetAccountByNumAsync(string accountNum) {
+            return base.Channel.GetAccountByNumAsync(accountNum);
+        }
+        
+        public bool AccountExist(string accountNum) {
+            return base.Channel.AccountExist(accountNum);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AccountExistAsync(string accountNum) {
+            return base.Channel.AccountExistAsync(accountNum);
+        }
+        
+        public DBModels.Client GetClientByItn(string clientItn) {
+            return base.Channel.GetClientByItn(clientItn);
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Client> GetClientByItnAsync(string clientItn) {
+            return base.Channel.GetClientByItnAsync(clientItn);
+        }
+        
+        public void AddATMAccountAction(DBModels.ATMAccountAction action) {
+            base.Channel.AddATMAccountAction(action);
+        }
+        
+        public System.Threading.Tasks.Task AddATMAccountActionAsync(DBModels.ATMAccountAction action) {
+            return base.Channel.AddATMAccountActionAsync(action);
+        }
+        
+        public void AddATMManagerAction(DBModels.ATMManagerAction atmManagerAction) {
+            base.Channel.AddATMManagerAction(atmManagerAction);
+        }
+        
+        public System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction) {
+            return base.Channel.AddATMManagerActionAsync(atmManagerAction);
+        }
+        
+        public bool AddRegularPayment(object regularPayment) {
+            return base.Channel.AddRegularPayment(regularPayment);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddRegularPaymentAsync(object regularPayment) {
+            return base.Channel.AddRegularPaymentAsync(regularPayment);
+        }
+        
+        public void SaveATM(DBModels.ATM atm) {
+            base.Channel.SaveATM(atm);
+        }
+        
+        public System.Threading.Tasks.Task SaveATMAsync(DBModels.ATM atm) {
+            return base.Channel.SaveATMAsync(atm);
+        }
+        
+        public void SaveAccount(DBModels.Account account) {
+            base.Channel.SaveAccount(account);
+        }
+        
+        public System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account) {
+            return base.Channel.SaveAccountAsync(account);
         }
     }
 }

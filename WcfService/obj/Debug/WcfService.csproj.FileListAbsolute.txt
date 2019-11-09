@@ -10,3 +10,9 @@ C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CoreCom
 C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CopyComplete
 C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe.config
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBModels.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe.config

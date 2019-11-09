@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DBAdapter;
+using DBModels;
 
 namespace WcfService
 {
@@ -11,8 +13,58 @@ namespace WcfService
     // NOTE: In order to launch WCF Test Client for testing this service, please select ServiceATM.svc or ServiceATM.svc.cs at the Solution Explorer and start debugging.
     public class ServiceATM : IServiceATM
     {
-        public void DoWork()
+        public ATM GetATMByCode(string atmCode)
         {
+            return EntityWrapper.GetATMByCode(atmCode);
+        }
+
+        public Manager GetManagerById(string managerId)
+        {
+            return EntityWrapper.GetManagerById(managerId);
+        }
+
+        public Account GetAccountByNum(string accountNum)
+        {
+            return EntityWrapper.GetAccountByNum(accountNum);
+        }
+
+        public bool AccountExist(string accountNum)
+        {
+            return EntityWrapper.AccountExist(accountNum);
+        }
+
+        public Client GetClientByItn(string clientItn)
+        {
+            return EntityWrapper.GetClientByItn(clientItn);
+        }
+
+        public void AddATMAccountAction(ATMAccountAction action)
+        {
+            EntityWrapper.AddATMAccountAction(action);
+        }
+
+        public void AddATMManagerAction(ATMManagerAction atmManagerAction)
+        {
+            EntityWrapper.AddATMManagerAction(atmManagerAction);
+        }
+
+        public bool AddRegularPayment(Object regularPayment)
+        {
+            RegularPayment rp = regularPayment as RegularPayment;
+            if (rp == null)
+                return false;
+            EntityWrapper.AddRegularPayment(rp);
+            return true;
+        }
+
+        public void SaveATM(ATM atm)
+        {
+            EntityWrapper.SaveATM(atm);
+        }
+
+        public void SaveAccount(Account account)
+        {
+            EntityWrapper.SaveAccount(account);
         }
     }
 }

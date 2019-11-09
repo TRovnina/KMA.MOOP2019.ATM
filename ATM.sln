@@ -12,6 +12,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBAdapter", "DBAdapter\DBAdapter.csproj", "{8F25BDCB-0934-4367-B708-2C46A9CC68A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtmClient", "AtmClient\AtmClient.csproj", "{219D7C55-685C-4146-BBE0-5D4129C1F8A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{64F0EAE6-4F41-4D31-8F55-E48305D7321E} = {64F0EAE6-4F41-4D31-8F55-E48305D7321E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{64F0EAE6-4F41-4D31-8F55-E48305D7321E}"
 EndProject

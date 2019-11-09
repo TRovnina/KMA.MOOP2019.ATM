@@ -22,6 +22,8 @@
     <MetadataSource Address="http://localhost:52159/ServiceATM.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="ServiceATM1.xsd" MetadataType="Schema" ID="f4b43e4e-86d5-4347-999e-42c0ba502187" SourceId="1" SourceUrl="http://localhost:52159/ServiceATM.svc?xsd=xsd2" />
+    <MetadataFile FileName="ServiceATM11.xsd" MetadataType="Schema" ID="21644aa7-785c-49ee-8687-4b8a8beca123" SourceId="1" SourceUrl="http://localhost:52159/ServiceATM.svc?xsd=xsd1" />
     <MetadataFile FileName="ServiceATM.disco" MetadataType="Disco" ID="200b42b5-6fae-4a35-be1f-4860f6fa5935" SourceId="1" SourceUrl="http://localhost:52159/ServiceATM.svc?disco" />
     <MetadataFile FileName="ServiceATM.xsd" MetadataType="Schema" ID="dddc63b6-01a0-4e78-a696-7f2104140b80" SourceId="1" SourceUrl="http://localhost:52159/ServiceATM.svc?xsd=xsd0" />
     <MetadataFile FileName="ServiceATM.wsdl" MetadataType="Wsdl" ID="8c64c0aa-b268-4eae-9ca1-ebcacf6fabc8" SourceId="1" SourceUrl="http://localhost:52159/ServiceATM.svc?wsdl" />

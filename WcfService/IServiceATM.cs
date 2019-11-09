@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using DBModels;
 
 namespace WcfService
 {
@@ -12,6 +13,33 @@ namespace WcfService
     public interface IServiceATM
     {
         [OperationContract]
-        void DoWork();
+        ATM GetATMByCode(string atmCode);
+
+        [OperationContract]
+        Manager GetManagerById(string managerId);
+
+        [OperationContract]
+        Account GetAccountByNum(string accountNum);
+
+        [OperationContract]
+        bool AccountExist(string accountNum);
+
+        [OperationContract]
+        Client GetClientByItn(string clientItn);
+
+        [OperationContract]
+        void AddATMAccountAction(ATMAccountAction action);
+
+        [OperationContract]
+        void AddATMManagerAction(ATMManagerAction atmManagerAction);
+
+        [OperationContract]
+        bool AddRegularPayment(Object regularPayment);
+
+        [OperationContract]
+        void SaveATM(ATM atm);
+
+        [OperationContract]
+        void SaveAccount(Account account);
     }
 }
