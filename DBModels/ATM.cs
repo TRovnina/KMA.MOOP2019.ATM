@@ -24,9 +24,13 @@ namespace DBModels
         [DataMember]
         private List<ATMManagerAction> _atmManagerActions;
 
+        [DataMember]
         private int _banknote50;
+        [DataMember]
         private int _banknote100;
+        [DataMember]
         private int _banknote200;
+        [DataMember]
         private int _banknote500;
 
         #endregion

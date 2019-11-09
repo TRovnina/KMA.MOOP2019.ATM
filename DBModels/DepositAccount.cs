@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    
     [DataContract(IsReference = true)]
     public class DepositAccount : Account
     {

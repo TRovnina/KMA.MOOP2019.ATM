@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [Serializable]
     [DataContract(IsReference = true)]
     public class RegularPayment
     {

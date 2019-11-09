@@ -40,6 +40,9 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task AddManagerAsync(DBModels.Manager manager);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
         DBModels.Account GetAccountByNum(string accountNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAccountByNum", ReplyAction="http://tempuri.org/IServiceATM/GetAccountByNumResponse")]
@@ -64,6 +67,9 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task<DBModels.Client> GetClientByItnAsync(string clientItn);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMAccountAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMAccountActionResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
         void AddATMAccountAction(DBModels.ATMAccountAction action);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddATMAccountAction", ReplyAction="http://tempuri.org/IServiceATM/AddATMAccountActionResponse")]
@@ -76,17 +82,24 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodHandingCashSurplus))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodRegularPayment))]
         bool AddRegularPayment(object regularPayment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
@@ -99,23 +112,33 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task SaveATMAsync(DBModels.ATM atm);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveAccount", ReplyAction="http://tempuri.org/IServiceATM/SaveAccountResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
         void SaveAccount(DBModels.Account account);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveAccount", ReplyAction="http://tempuri.org/IServiceATM/SaveAccountResponse")]
         System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodHandingCashSurplus))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment[]))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodRegularPayment))]
         object[] GetRegularPayments(string accountNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
