@@ -1,0 +1,12 @@
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll.config
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\WcfService.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.xml
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.xml
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csprojAssemblyReference.cache
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CopyComplete
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.pdb
