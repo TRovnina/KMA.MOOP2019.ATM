@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ManagerServices
 {
@@ -11,14 +13,15 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         private int _hundred;
         private int _twoHundred;
         private int _fiveHundred;
+        private readonly List<Banknote> _money = StaticManager.CurrentAtm.Banknotes;
         private ICommand _confirmCommand;
         private ICommand _menuCommand;
 
 
         public int Fifty
         {
-            // get { return _fifty = CurrentAtm.Fifty; }
-            get { return 50; }
+            //get { return _fifty = _money.; }
+            get { return 500; }
             set
             {
                 _fifty = value;

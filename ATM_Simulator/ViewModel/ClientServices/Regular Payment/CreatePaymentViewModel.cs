@@ -1,8 +1,11 @@
 ﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
-using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 {
@@ -11,8 +14,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
         private string _name;
         private string _card;
         private int _amount;
-        private string _description;
-        private string _period;
+        private PeriodRegularPayment _period;
 
         private ICommand _confirmCommand;
         private ICommand _menuCommand;
@@ -20,7 +22,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Name
         {
-            get { return _name = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.Name); }
+            get { return _name = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.RegularPaymentName); }
             set
             {
                 _name = value;
@@ -30,7 +32,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Card
         {
-            get { return _card = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.Card); }
+            //get { return _card = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.); }
+            get { return _card = ""; }
             set
             {
                 _card = value;
@@ -40,7 +43,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public int Amount
         {
-            get { return _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.Amount); }
+            // get { return _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.); }
+            get { return _amount = 0; }
             set
             {
                 _amount = value;
@@ -48,24 +52,19 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             }
         }
 
-        public string Description
+        public PeriodRegularPayment Period
         {
-            get { return _description = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.Description); }
-            set
-            {
-                _description = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Period
-        {
-            get { return _period = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.Period); }
+            get { return _period = (StaticManager.CurrentPayment == null ? PeriodRegularPayment.None: StaticManager.CurrentPayment.PeriodRegularPayment); }
             set
             {
                 _period = value;
                 OnPropertyChanged();
             }
+        }
+
+        public List<PeriodRegularPayment> Periods
+        {
+            get => Enum.GetValues(typeof(PeriodRegularPayment)).Cast<PeriodRegularPayment>().ToList();
         }
 
         public ICommand ConfirmCommand
@@ -75,7 +74,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private void Confirm(object obj)
         {
-            StaticManager.CurrentPayment = new RegularPayment(Name, Card, Amount, Period, Description);
+            //StaticManager.CurrentPayment = new RegularPayment();
             NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
         }
 

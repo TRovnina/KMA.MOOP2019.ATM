@@ -51,7 +51,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private void Confirm(object obj)
         {
-            StaticManager.CurrentTransfer = new Models.Transfer(Recipient, Amount, Description);
+            StaticManager.CurrentTransfer = new Models.CurrentTransfer(Recipient, Amount, Description);
             NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
         }
 

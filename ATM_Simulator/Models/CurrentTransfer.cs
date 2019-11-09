@@ -1,6 +1,6 @@
 ﻿namespace ATM_Simulator.Models
 {
-    internal class Transfer
+    internal class CurrentTransfer
     {
         #region Properties
 
@@ -37,7 +37,7 @@
         #endregion
 
 
-        public Transfer(string recipient, int amount, string description)
+        public CurrentTransfer(string recipient, int amount, string description)
         {
             RecipientCard = recipient;
             Amount = amount;

@@ -27,9 +27,7 @@
         <TextBox Grid.Row="3" Grid.Column="0" TextAlignment="Center" FontWeight="Normal" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" Text="{Binding Amount}"/>
 
         <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Period"/>
-        <TextBox Grid.Row="3" Grid.Column="1" TextAlignment="Center" FontWeight="Normal" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" Text="{Binding Period}"/>
-
-        <!--<ComboBox Grid.Row="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" SelectedItem="{Binding}" Items="{Binding}" />-->
+        <ComboBox Grid.Row="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" SelectedItem="{Binding Period}" ItemsSource="{Binding Periods}" />
 
         <Button Grid.Row="4" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>
         <Button Grid.Row="4" Grid.Column="1" Content="Menu" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding MenuCommand}"/>

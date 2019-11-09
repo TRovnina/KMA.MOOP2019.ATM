@@ -3,6 +3,7 @@ using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 {

@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.Authentication
 {
@@ -56,7 +57,7 @@ namespace ATM_Simulator.ViewModel.Authentication
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                
+            
             });
 
             LoaderManager.Instance.HideLoader();

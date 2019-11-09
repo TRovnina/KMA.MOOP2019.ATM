@@ -1,15 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
     internal class CashSurplusViewModel : BasicViewModel
     {
         private int _amount;
-        private string _period; 
+        private PeriodHandingCashSurplus _period;
 
         private ICommand _confirmCommand;
         private ICommand _menuCommand;
@@ -37,15 +42,22 @@ namespace ATM_Simulator.ViewModel.ClientServices
             }
         }
 
-        public string Period
+        //public PeriodHandingCashSurplus Periods
+        //{
+        //    get
+        //    {
+        //        return CurrentAccount. CurrentSurplus.Amount; }
+        //    set
+        //    {
+        //        _period = value;
+        //        OnPropertyChanged();
+        //    }
+        //}
+
+        public List<PeriodHandingCashSurplus>  Periods
         {
-            // get { return CurrentSurplus.Amount; }
-            get { return "month"; }
-            set
-            {
-                _period = value;
-                OnPropertyChanged();
-            }
+            get => Enum.GetValues(typeof(PeriodHandingCashSurplus)).Cast<PeriodHandingCashSurplus>().ToList();
+            
         }
 
         public ICommand ConfirmCommand

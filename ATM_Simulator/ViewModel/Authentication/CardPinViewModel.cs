@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
@@ -60,15 +61,29 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private async void NextImplementation(object obj)
         {
+            bool correct = false;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                //check PIN
-            });
+                for (int i = 3; i == 0; i--)
+                {
+                    if (StaticManager.CurrentCard.CheckPassword(Pin))
+                    {
+                        correct = true;
+                        break;
+                    }
 
+                    MessageBox.Show("Wrong PIN! Нou have " + i + " more attempts");
+                }
+            });
             LoaderManager.Instance.HideLoader();
 
-            if (_pin == "1")
+            if (!correct)
+            {
+                StaticManager.CurrentCard.IsActive = false;
+                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            }
+            else if (StaticManager.CurrentClient != null)
                 NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
             else
                 NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);

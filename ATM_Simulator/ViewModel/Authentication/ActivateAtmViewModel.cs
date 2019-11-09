@@ -3,6 +3,7 @@ using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.Authentication
 {
@@ -78,8 +79,9 @@ namespace ATM_Simulator.ViewModel.Authentication
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                var atm = new Atm(Code, Password);
-                StaticManager.CurrentAtm = atm;
+                //ATM.
+                //var atm = new Atm(Code, Password);
+                //StaticManager.CurrentAtm = atm;
             });
 
             LoaderManager.Instance.HideLoader();

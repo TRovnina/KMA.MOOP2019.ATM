@@ -43,5 +43,15 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ATM_Simulator\ATM_Simulator.csproj">
+      <Project>{6f0bfc99-019c-4b59-9264-2d7c5322ecd2}</Project>
+      <Name>ATM_Simulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{8da3b908-ddca-49fd-9e5a-7641ea56cb35}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

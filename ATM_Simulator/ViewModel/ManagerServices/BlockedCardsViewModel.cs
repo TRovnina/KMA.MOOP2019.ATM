@@ -2,37 +2,38 @@
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.ManagerServices
 {
     internal class BlockedCardsViewModel : BasicViewModel
     {
-        //private ObservableCollection<Amount> _cards;
-        //private Amount _selectedCard;
+        private ObservableCollection<Account> _cards;
+        private Account _selectedCard;
 
         private ICommand _unlockCommand;
         private ICommand _menuCommand;
 
-        //public ObservableCollection<Amount> Cards
-        //{
-        //    get { return _cards; }
-        //    set
-        //    {
-        //        _cards = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        public ObservableCollection<Account> Cards
+        {
+            get { return _cards; }
+            set
+            {
+                _cards = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //public Amount SelectedCard
-        //{
-        //    get { return _selectedCard; }
+        public Account SelectedCard
+        {
+            get { return _selectedCard; }
 
-        //    set
-        //    {
-        //        _selectedCard = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+            set
+            {
+                _selectedCard = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand UnlockCommand
         {
@@ -41,7 +42,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         private void Unlock(object obj)
         {
-            //make card unlock
+            SelectedCard.IsActive = true;
             NavigationManager.Instance.Navigate(ModesEnum.BlockedCards);
         }
 
