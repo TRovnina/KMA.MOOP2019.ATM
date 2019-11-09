@@ -43,10 +43,10 @@ namespace ATM_WCFService
             EntityWrapper.AddATMManagerAction(atmManagerAction);
         }
         
-        public void AddRegularPayment(RegularTransfer regularTransfer)
-        {
-           EntityWrapper.AddRegularTransfer(regularTransfer);
-        }
+        //public void AddRegularPayment(RegularPayment regularPayment)
+        //{
+        //   EntityWrapper.AddRegularPayment(regularPayment);
+        //}
         
         public void SaveATM(ATM atm)
         {

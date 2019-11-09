@@ -7,14 +7,14 @@ namespace DBAdapter.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.RegularTransfer", "Sum", c => c.Double(nullable: false));
-            AddColumn("dbo.RegularTransfer", "DestinationAccount", c => c.String(nullable: false));
+            AddColumn("dbo.RegularPayments", "Sum", c => c.Double(nullable: false));
+            AddColumn("dbo.RegularPayments", "DestinationAccount", c => c.String(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.RegularTransfer", "DestinationAccount");
-            DropColumn("dbo.RegularTransfer", "Sum");
+            DropColumn("dbo.RegularPayments", "DestinationAccount");
+            DropColumn("dbo.RegularPayments", "Sum");
         }
     }
 }

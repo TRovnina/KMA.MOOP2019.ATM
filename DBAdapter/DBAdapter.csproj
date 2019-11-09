@@ -75,6 +75,10 @@
     <Compile Include="Migrations\201911091219367_RenameTransfer.Designer.cs">
       <DependentUpon>201911091219367_RenameTransfer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911091249513_PreviousTable.cs" />
+    <Compile Include="Migrations\201911091249513_PreviousTable.Designer.cs">
+      <DependentUpon>201911091249513_PreviousTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911091219367_RenameTransfer.resx">
       <DependentUpon>201911091219367_RenameTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911091249513_PreviousTable.resx">
+      <DependentUpon>201911091249513_PreviousTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

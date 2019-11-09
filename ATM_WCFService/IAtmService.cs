@@ -28,8 +28,8 @@ namespace ATM_WCFService
         [OperationContract]
         void AddATMManagerAction(ATMManagerAction atmManagerAction);
         
-        [OperationContract]
-        void AddRegularPayment(RegularTransfer regularTransfer);
+        //[OperationContract]
+        //void AddRegularPayment(RegularPayment regularPayment);
         
         [OperationContract]
         void SaveATM(ATM atm);

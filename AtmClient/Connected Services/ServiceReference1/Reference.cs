@@ -57,12 +57,6 @@ namespace AtmClient.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAtmService/AddATMManagerAction", ReplyAction="http://tempuri.org/IAtmService/AddATMManagerActionResponse")]
         System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAtmService/AddRegularTransfer", ReplyAction="http://tempuri.org/IAtmService/AddRegularPaymentResponse")]
-        void AddRegularPayment();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAtmService/AddRegularTransfer", ReplyAction="http://tempuri.org/IAtmService/AddRegularPaymentResponse")]
-        System.Threading.Tasks.Task AddRegularPaymentAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAtmService/SaveATM", ReplyAction="http://tempuri.org/IAtmService/SaveATMResponse")]
         void SaveATM(DBModels.ATM atm);
         
@@ -157,14 +151,6 @@ namespace AtmClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction) {
             return base.Channel.AddATMManagerActionAsync(atmManagerAction);
-        }
-        
-        public void AddRegularPayment() {
-            base.Channel.AddRegularPayment();
-        }
-        
-        public System.Threading.Tasks.Task AddRegularPaymentAsync() {
-            return base.Channel.AddRegularPaymentAsync();
         }
         
         public void SaveATM(DBModels.ATM atm) {

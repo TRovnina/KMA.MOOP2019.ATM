@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace DBModels
 {
     [DataContract(IsReference = true)]
-    public class RegularTransfer
+    public class RegularPayment
     {
         #region Fields
         
@@ -33,12 +33,12 @@ namespace DBModels
 
         #region Constructors
 
-        private RegularTransfer()
+        private RegularPayment()
         {
             _firstRegularPaymentDate = DateTime.Now;
         }
 
-        public RegularTransfer(PeriodRegularPayment periodRegularPayment, string regularPaymentName, 
+        public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName, 
             CurrentAccount currentAccount, double sum, string destinationAccount) : this()
         {
             _periodRegularPayment = periodRegularPayment;
@@ -121,11 +121,11 @@ namespace DBModels
 
         #region EntityConfiguration
 
-        public class RegularTransferEntityConfiguration : EntityTypeConfiguration<RegularTransfer>
+        public class RegularPaymentEntityConfiguration : EntityTypeConfiguration<RegularPayment>
         {
-            public RegularTransferEntityConfiguration()
+            public RegularPaymentEntityConfiguration()
             {
-                ToTable("RegularTransfer");
+                ToTable("RegularPayment");
                 HasKey(a => a.RegularPaymentId);
 
                 Property(a => a.RegularPaymentId)

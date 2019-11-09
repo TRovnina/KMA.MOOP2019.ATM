@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DBModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DBModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:50704/AtmService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ATM">
@@ -54,7 +54,7 @@
       <xs:enumeration value="Transfer" />
       <xs:enumeration value="ChangePin" />
       <xs:enumeration value="HandingCashSurplus" />
-      <xs:enumeration value="RegularTransfer" />
+      <xs:enumeration value="RegularPayment" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="ActionType" nillable="true" type="tns:ActionType" />
