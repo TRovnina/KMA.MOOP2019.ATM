@@ -3,8 +3,8 @@ ATM/bin/*
 ATM/obj/*
 ATM_Simulator/bin/*
 ATM_Simulator/obj/*
-ATM_WCFService/bin/*
-ATM_WCFService/obj/*
+WcfService/bin/*
+WcfService/obj/*
 DBModels/bin/*
 DBModels/obj/*
 DBAdapter/bin/*

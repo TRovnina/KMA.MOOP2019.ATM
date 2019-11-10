@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    
     [DataContract(IsReference = true)]
     public class CurrentAccount : Account
     {
@@ -71,7 +72,7 @@ namespace DBModels
 
         public List<RegularPayment> RegularPayments
         {
-            get => _regularPayments;
+            get { return _regularPayments ?? (_regularPayments = new List<RegularPayment>()); }
             set => _regularPayments = value;
         }
 

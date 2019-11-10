@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
+using System.Runtime.Serialization;
 
 namespace DBModels
 {
+    [KnownType(typeof(DepositAccount))]
+    [KnownType(typeof(CreditAccount))]
+    [KnownType(typeof(CurrentAccount))]
+    [DataContract(IsReference = true)]
     public class Account
     {
         #region Fields
-        
+        [DataMember]
         protected string _cardNumber;
+        [DataMember]
         protected string _cardPassword;
+        [DataMember]
         protected bool _isActive;
+        [DataMember]
         protected double _availableSum;
-        
+
+        [DataMember]
         protected Client _client;
+        [DataMember]
         protected string _clientITN;
-        
-        private List<ATMAccountAction> _actions;
+
+        [DataMember]
+        private List<ATMAccountAction> _atmAccountAction;
 
         #endregion
 
@@ -33,7 +44,7 @@ namespace DBModels
         {
             _isActive = true;
             _availableSum = 0;
-            _actions = new List<ATMAccountAction>();
+            _atmAccountAction = new List<ATMAccountAction>();
         }
 
         #endregion
@@ -50,7 +61,7 @@ namespace DBModels
         public string CardPassword
         {
             get => _cardPassword;
-            set => _cardPassword = value;
+            set => SetPassword(value);
         }
 
         public bool IsActive
@@ -77,10 +88,10 @@ namespace DBModels
             protected set => _clientITN = value;
         }
 
-        public List<ATMAccountAction> Actions
+        public List<ATMAccountAction> ATMAccountAction
         {
-            get => _actions;
-            private set => _actions = value;
+            get => _atmAccountAction;
+            private set => _atmAccountAction = value;
         }
 
         #endregion
@@ -101,6 +112,11 @@ namespace DBModels
             {
                 return false;
             }
+        }
+
+        public void DeleteDatabaseValues()
+        {
+            _client = null;
         }
 
         public override  string ToString()
@@ -130,7 +146,7 @@ namespace DBModels
                     .HasColumnName("AvailableSum")
                     .IsRequired();
 
-                HasMany(a => a.Actions)
+                HasMany(a => a.ATMAccountAction)
                     .WithRequired(act => act.Account)
                     .HasForeignKey(act => act.AccountNum)
                     .WillCascadeOnDelete(true);

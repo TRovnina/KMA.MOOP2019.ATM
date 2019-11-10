@@ -64,14 +64,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\ServiceReference1\AtmService.wsdl" />
-    <None Include="Connected Services\ServiceReference1\AtmService.xsd">
+    <None Include="Connected Services\ServiceReference1\ServiceATM.wsdl" />
+    <None Include="Connected Services\ServiceReference1\ServiceATM.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference1\AtmService1.xsd">
+    <None Include="Connected Services\ServiceReference1\ServiceATM1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServiceReference1\AtmService2.xsd">
+    <None Include="Connected Services\ServiceReference1\ServiceATM11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference1\ServiceATM2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -84,10 +87,20 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DBAdapter\DBAdapter.csproj">
+      <Project>{8f25bdcb-0934-4367-b708-2c46a9cc68a6}</Project>
+      <Name>DBAdapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBModels\DBModels.csproj">
+      <Project>{8da3b908-ddca-49fd-9e5a-7641ea56cb35}</Project>
+      <Name>DBModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference1\AtmService.disco" />
+    <None Include="Connected Services\ServiceReference1\ServiceATM.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
@@ -100,16 +113,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DBAdapter\DBAdapter.csproj">
-      <Project>{8f25bdcb-0934-4367-b708-2c46a9cc68a6}</Project>
-      <Name>DBAdapter</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DBModels\DBModels.csproj">
-      <Project>{8da3b908-ddca-49fd-9e5a-7641ea56cb35}</Project>
-      <Name>DBModels</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

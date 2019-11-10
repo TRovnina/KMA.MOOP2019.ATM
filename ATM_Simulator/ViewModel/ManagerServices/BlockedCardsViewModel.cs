@@ -16,7 +16,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public ObservableCollection<Account> Cards
         {
-            get { return _cards; }
+            get { return StaticManager.CurrentAtm.; }
             set
             {
                 _cards = value;

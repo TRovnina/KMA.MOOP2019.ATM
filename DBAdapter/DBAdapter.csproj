@@ -55,29 +55,9 @@
   <ItemGroup>
     <Compile Include="ATM_DbContext.cs" />
     <Compile Include="EntityWrapper.cs" />
-    <Compile Include="Migrations\201911081800317_InitDataBase.cs" />
-    <Compile Include="Migrations\201911081800317_InitDataBase.Designer.cs">
-      <DependentUpon>201911081800317_InitDataBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911082104486_EditRegularPayment.cs" />
-    <Compile Include="Migrations\201911082104486_EditRegularPayment.Designer.cs">
-      <DependentUpon>201911082104486_EditRegularPayment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911082147180_EditBanknotes.cs" />
-    <Compile Include="Migrations\201911082147180_EditBanknotes.Designer.cs">
-      <DependentUpon>201911082147180_EditBanknotes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911090904124_ChangeAction.cs" />
-    <Compile Include="Migrations\201911090904124_ChangeAction.Designer.cs">
-      <DependentUpon>201911090904124_ChangeAction.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911091219367_RenameTransfer.cs" />
-    <Compile Include="Migrations\201911091219367_RenameTransfer.Designer.cs">
-      <DependentUpon>201911091219367_RenameTransfer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911091249513_PreviousTable.cs" />
-    <Compile Include="Migrations\201911091249513_PreviousTable.Designer.cs">
-      <DependentUpon>201911091249513_PreviousTable.cs</DependentUpon>
+    <Compile Include="Migrations\201911091546395_Init.cs" />
+    <Compile Include="Migrations\201911091546395_Init.Designer.cs">
+      <DependentUpon>201911091546395_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -94,23 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911081800317_InitDataBase.resx">
-      <DependentUpon>201911081800317_InitDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911082104486_EditRegularPayment.resx">
-      <DependentUpon>201911082104486_EditRegularPayment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911082147180_EditBanknotes.resx">
-      <DependentUpon>201911082147180_EditBanknotes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911090904124_ChangeAction.resx">
-      <DependentUpon>201911090904124_ChangeAction.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091219367_RenameTransfer.resx">
-      <DependentUpon>201911091219367_RenameTransfer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911091249513_PreviousTable.resx">
-      <DependentUpon>201911091249513_PreviousTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911091546395_Init.resx">
+      <DependentUpon>201911091546395_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
