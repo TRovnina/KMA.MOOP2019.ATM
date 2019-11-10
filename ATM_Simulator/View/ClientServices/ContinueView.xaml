@@ -7,7 +7,7 @@
              d:DesignHeight="550" d:DesignWidth="700" x:ClassModifier="internal">
 
     <UserControl.Background>
-        <ImageBrush ImageSource="E:\Home\KMA\3\MOOP\ATM\ATM\ATM_Simulator\Images\continueImage.jpg" Stretch="UniformToFill" TileMode="None" />
+        <ImageBrush ImageSource="../../Images/continueImage.jpg" Stretch="UniformToFill" TileMode="None" />
     </UserControl.Background>
 
     <Grid Name="MainGrid" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">

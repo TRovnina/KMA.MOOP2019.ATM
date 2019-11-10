@@ -41,7 +41,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private void GetMoney(object obj)
         {
-            var result = Multiplicity(Amount, Banknotes);
+            var result = Multiplicity(Amount, CountBanknotes());
             if (result == null)
             {
                 MessageBox.Show("ATM has not banknotes for this sum!");

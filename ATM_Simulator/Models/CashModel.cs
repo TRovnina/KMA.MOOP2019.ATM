@@ -9,11 +9,16 @@ namespace ATM_Simulator.Models
 {
     public abstract class CashModel : BasicViewModel
     {
-        protected readonly Dictionary<int, int> Banknotes;
+        protected int[] _result100;
+        protected int[] _result200;
+        protected int[] _result500;
+
 
         protected CashModel()
         {
-            Banknotes = CountBanknotes();
+            _result100 = Multiplicity(100, CountBanknotes());
+            _result200 = Multiplicity(200, CountBanknotes());
+            _result500 = Multiplicity(500, CountBanknotes());
         }
 
         protected void RemoveBanknotes(int[] money)
@@ -68,7 +73,7 @@ namespace ATM_Simulator.Models
                 banknotes.Remove(key);
                 if (x > 0)
                     banknotes.Add(key, x);
-                
+
                 sum -= key;
                 res.Add(key);
             }
@@ -87,10 +92,10 @@ namespace ATM_Simulator.Models
 
         protected int CheckMultiplicity()
         {
-            int[] list = {50, 100, 200, 500};
+            int[] list = { 50, 100, 200, 500 };
             foreach (var v in list)
             {
-                if (Multiplicity(v, Banknotes) != null)
+                if (Multiplicity(v, CountBanknotes()) != null)
                     return v;
             }
 
@@ -107,13 +112,14 @@ namespace ATM_Simulator.Models
                     StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - n;
                     RemoveBanknotes(res);
                     DbManager.SaveAccount(StaticManager.CurrentCard);
-                    MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + res);
+                    MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + string.Join(",", res));
                 }
                 else
                     MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm, StaticManager.CurrentCard, "CashWithdrawal");
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm, StaticManager.CurrentCard,
+                    "CashWithdrawal");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

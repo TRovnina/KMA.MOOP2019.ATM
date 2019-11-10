@@ -14,11 +14,6 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
         private ICommand _menuCommand;
         private ICommand _endCommand;
 
-        private int[] _result100;
-        private int[] _result200;
-        private int[] _result500;
-
-
         public ICommand HundredCommand
         {
             get { return _hundredCommand ?? (_hundredCommand = new RelayCommand<object>(Hundred, CanHundredExecute)); }
@@ -26,7 +21,6 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private bool CanHundredExecute(object obj)
         {
-            _result100 = Multiplicity(100, Banknotes);
             return _result100 != null;
         }
 
@@ -46,7 +40,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private bool CanTwoHundredExecute(object obj)
         {
-            return (_result200 = Multiplicity(200, Banknotes)) != null;
+            return _result200 != null;
         }
 
         private void TwoHundred(object obj)
@@ -65,7 +59,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private bool CanFiveHundredExecute(object obj)
         {
-            return (_result500 = Multiplicity(500, Banknotes)) != null;
+            return _result500 != null;
         }
 
         private void FiveHundred(object obj)

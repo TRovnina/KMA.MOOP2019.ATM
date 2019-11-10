@@ -98,7 +98,7 @@ namespace DBModels
 
         private void SetPassword(string password)
         {
-            _cardPassword = Encrypting.GetMd5HashForString(password);
+            _cardPassword = password; //Encrypting.GetMd5HashForString(password);
         }
 
         public bool CheckPassword(string password)
@@ -106,8 +106,7 @@ namespace DBModels
             try
             {
                 string res2 = Encrypting.GetMd5HashForString(password);
-                string res3 = Encrypting.GetMd5HashForString(res2);
-                return _cardPassword == res3;
+                return _cardPassword == res2;
             }
             catch (Exception ex)
             {

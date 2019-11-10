@@ -124,7 +124,7 @@ namespace DBModels
 
         private void SetPassword(string password)
         {
-            _password = Encrypting.GetMd5HashForString(password);
+            _password = password; //Encrypting.GetMd5HashForString(password);
         }
 
         public bool CheckPassword(string password)

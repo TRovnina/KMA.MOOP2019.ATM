@@ -33,7 +33,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
             if (Card == "DBModels.CreditAccount")
             {
                 CreditAccount account = StaticManager.CurrentCard as CreditAccount;
-                txt = "Your Credit Amount is " + account.Debt + "\nAfter " + account.EndOfGracePeriod +
+                txt = "Your Credit Amount is " + account.CreditSum + account.Debt + "\nAfter " + account.EndOfGracePeriod +
                       " will be charged " + account.PercentageCredit + " % of the amount every month";
             }
             else if (Card == "DBModels.DepositAccount")

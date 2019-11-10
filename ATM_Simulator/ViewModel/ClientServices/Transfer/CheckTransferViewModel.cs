@@ -13,9 +13,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
 
 
-        public Account RecipientCard
+        public string RecipientCard
         {
-            get { return StaticManager.CurrentTransfer.RecipientCard; }
+            get { return StaticManager.CurrentTransfer.RecipientCard.CardNumber; }
         }
 
         public string RecipientName
@@ -48,9 +48,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             if (StaticManager.CurrentCard.AvailableSum >= Amount)
             {
                 StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - Amount;
-                RecipientCard.AvailableSum = RecipientCard.AvailableSum + Amount;
+                StaticManager.CurrentTransfer.RecipientCard.AvailableSum = StaticManager.CurrentTransfer.RecipientCard.AvailableSum + Amount;
                 DbManager.SaveAccount(StaticManager.CurrentCard);
-                DbManager.SaveAccount(RecipientCard);
+                DbManager.SaveAccount(StaticManager.CurrentTransfer.RecipientCard);
                 MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
             }
             else

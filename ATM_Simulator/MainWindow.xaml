@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TRINITY" Height="550" Width="700">
     <Window.Background>
-        <ImageBrush ImageSource="E:\Home\KMA\3\MOOP\ATM\ATM\ATM_Simulator\Images\background.jpg" Stretch="UniformToFill" TileMode="None" />
+        <ImageBrush ImageSource="../Images/background.jpg" Stretch="UniformToFill" TileMode="None" />
     </Window.Background>
     <Grid>
         <ContentControl Name="_contentControl" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"></ContentControl>
