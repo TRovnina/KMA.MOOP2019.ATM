@@ -18,7 +18,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public List<Account> Cards
         {
-            get { return _cards = DbManager.GetAllBlockedAccounts(); }
+            get { return _cards; }
             set
             {
                 _cards = value;
@@ -55,7 +55,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
                 SelectedCard.IsActive = true;
                 _cards.Remove(SelectedCard);
                 DbManager.SaveAccount(SelectedCard);
-                // ATMManagerAction action = new ATMManagerAction(ActionType.UnBlockCard, StaticManager.CurrentManager, StaticManager.CurrentAtm);
+                ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "UnBlockCard");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -70,6 +70,11 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         private void Menu(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
+        }
+
+        internal BlockedCardsViewModel()
+        {
+            _cards = DbManager.GetAllBlockedAccounts();
         }
     }
 }

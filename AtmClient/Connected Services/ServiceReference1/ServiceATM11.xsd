@@ -57,29 +57,15 @@
       <xs:element minOccurs="0" name="_accountNum" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_actionDate" type="xs:dateTime" />
       <xs:element minOccurs="0" name="_actionId" type="xs:int" />
-      <xs:element minOccurs="0" name="_actionType" type="tns:ActionType" />
-      <xs:element minOccurs="0" name="_actionTypeId" type="xs:int" />
       <xs:element minOccurs="0" name="_atm" nillable="true" type="tns:ATM" />
       <xs:element minOccurs="0" name="_atmCode" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="_destinationAccountNum" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_notes" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
   </xs:complexType>
   <xs:element name="ATMAccountAction" nillable="true" type="tns:ATMAccountAction" />
-  <xs:simpleType name="ActionType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Authentication" />
-      <xs:enumeration value="AddMoney" />
-      <xs:enumeration value="UnBlockCard" />
-      <xs:enumeration value="CashWithdrawal" />
-      <xs:enumeration value="Transfer" />
-      <xs:enumeration value="ChangePin" />
-      <xs:enumeration value="HandingCashSurplus" />
-      <xs:enumeration value="RegularPayment" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="ActionType" nillable="true" type="tns:ActionType" />
   <xs:complexType name="ATM">
     <xs:sequence>
       <xs:element minOccurs="0" name="_atmAccountAction" nillable="true" type="tns:ArrayOfATMAccountAction" />
@@ -111,6 +97,7 @@
       <xs:element minOccurs="0" name="_atmManagerActionId" type="xs:int" />
       <xs:element minOccurs="0" name="_manager" nillable="true" type="tns:Manager" />
       <xs:element minOccurs="0" name="_managerId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_notes" nillable="true" type="xs:string" />
     </xs:sequence>
     <xs:attribute ref="ser:Id" />
     <xs:attribute ref="ser:Ref" />
@@ -197,4 +184,22 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="PeriodRegularPayment" nillable="true" type="tns:PeriodRegularPayment" />
+  <xs:complexType name="ArrayOfClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClient" nillable="true" type="tns:ArrayOfClient" />
+  <xs:complexType name="ArrayOfATM">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ATM" nillable="true" type="tns:ATM" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfATM" nillable="true" type="tns:ArrayOfATM" />
+  <xs:complexType name="ArrayOfManager">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Manager" nillable="true" type="tns:Manager" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfManager" nillable="true" type="tns:ArrayOfManager" />
 </xs:schema>

@@ -23,8 +23,9 @@
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Transfer Between Cards"/>
         <controls:LabelAndTextControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Recipient, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       Caption="Recipient's card number" Width="500" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
-        <controls:LabelAndTextControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                      Caption="Amount" Width="200" Margin="100,10" HorizontalAlignment="Left" Grid.RowSpan="2"></controls:LabelAndTextControl>
+        <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Amount"/>
+        <TextBox Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Center" TextAlignment="Center" FontSize="18" VerticalAlignment="Bottom" Width="160" Height="30" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
         <controls:LabelAndTextControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       Caption="Payment description" Width="500" Margin="10" Grid.RowSpan="2"></controls:LabelAndTextControl>
 

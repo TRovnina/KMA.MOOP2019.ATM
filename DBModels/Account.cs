@@ -72,8 +72,8 @@ namespace DBModels
 
         public double AvailableSum
         {
-            get => _availableSum;
-            set => _availableSum = value;
+            get => Math.Round(_availableSum);
+            set => _availableSum = Math.Round(value);
         }
 
         public Client Client
@@ -120,9 +120,9 @@ namespace DBModels
             _client = null;
         }
 
-        public override  string ToString()
+        public override string ToString()
         {
-            return _cardNumber;
+            return "Account: " + CardNumber + "; Status(is active): " + IsActive + "; Available sum: " + AvailableSum;
         }
 
         #region EntityConfiguration

@@ -75,8 +75,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 StaticManager.CurrentCard.CardPassword = NewPin1;
                 DbManager.SaveAccount(StaticManager.CurrentCard);
 
-                ATMAccountAction action = new ATMAccountAction(ActionType.ChangePin, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "ChangePin");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -92,7 +92,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand

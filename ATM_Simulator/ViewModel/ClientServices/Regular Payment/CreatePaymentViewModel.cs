@@ -24,12 +24,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Name
         {
-            get
-            {
-                return _name = (StaticManager.CurrentPayment == null
-                    ? ""
-                    : StaticManager.CurrentPayment.RegularPaymentName);
-            }
+            get { return _name; }
             set
             {
                 _name = value;
@@ -39,12 +34,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Card
         {
-            get
-            {
-                return _card = (StaticManager.CurrentPayment == null
-                    ? ""
-                    : StaticManager.CurrentPayment.DestinationAccount);
-            }
+            get { return _card; }
             set
             {
                 _card = value;
@@ -54,7 +44,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public Double Amount
         {
-            get { return _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.Sum); }
+            get { return _amount; }
             set
             {
                 _amount = value;
@@ -66,9 +56,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
         {
             get
             {
-                return _period = (StaticManager.CurrentPayment == null
-                    ? PeriodRegularPayment.None
-                    : StaticManager.CurrentPayment.PeriodRegularPayment);
+                return _period;
             }
             set
             {
@@ -97,8 +85,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
                 DbManager.AddRegularPayment(rg);
                 StaticManager.CurrentPayment = null;
 
-                ATMAccountAction action = new ATMAccountAction(ActionType.RegularPayment, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "RegularPayment");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -114,7 +102,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand
@@ -125,6 +114,21 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
         private void End(object obj)
         {
             NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+        }
+
+        internal CreatePaymentViewModel()
+        {
+            _name = (StaticManager.CurrentPayment == null
+                ? ""
+                : StaticManager.CurrentPayment.RegularPaymentName);
+            _period = (StaticManager.CurrentPayment == null
+                ? PeriodRegularPayment.None
+                : StaticManager.CurrentPayment.PeriodRegularPayment);
+            _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.Sum);
+            _card = (StaticManager.CurrentPayment == null
+                ? ""
+                : StaticManager.CurrentPayment.DestinationAccount);
+
         }
     }
 }

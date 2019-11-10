@@ -85,6 +85,13 @@ namespace DBModels
             return (days <= 0) ? 0 : ((_creditSum / 100) * _percentageCredit) * days;
         }
 
+        public override string ToString()
+        {
+            return "Account: " + CardNumber + "; Status(is active): "
+                   + IsActive + "; Available sum: " + AvailableSum
+                   + " (Credit account) percentage: " + PercentageCredit;
+        }
+
         #region EntityConfiguration
 
         public class CreditAccountEntityConfiguration : EntityTypeConfiguration<CreditAccount>

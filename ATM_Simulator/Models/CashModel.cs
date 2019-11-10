@@ -7,7 +7,7 @@ using DBModels;
 
 namespace ATM_Simulator.Models
 {
-    internal abstract class CashModel : BasicViewModel
+    public abstract class CashModel : BasicViewModel
     {
         protected readonly Dictionary<int, int> Banknotes;
 
@@ -47,7 +47,7 @@ namespace ATM_Simulator.Models
         }
 
         //array of banknotes for the nobility in ATM
-        protected int[] Multiplicity(int sum, Dictionary<int, int> banknotes)
+        public int[] Multiplicity(int sum, Dictionary<int, int> banknotes)
         {
             List<int> res = new List<int>();
             while (true)
@@ -65,17 +65,18 @@ namespace ATM_Simulator.Models
                     break;
 
                 var x = banknotes[key] - 1;
+                banknotes.Remove(key);
                 if (x > 0)
                     banknotes.Add(key, x);
-                else
-                    banknotes.Remove(key);
+                
                 sum -= key;
                 res.Add(key);
             }
 
             if (sum != 0)
                 return null;
-            return res.ToArray();
+            int[] rr = res.ToArray();
+            return rr;
         }
 
         protected int AllCash()
@@ -112,8 +113,7 @@ namespace ATM_Simulator.Models
                     MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
                         MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
-                ATMAccountAction action = new ATMAccountAction(ActionType.CashWithdrawal, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm, StaticManager.CurrentCard, "CashWithdrawal");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

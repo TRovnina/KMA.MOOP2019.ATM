@@ -16,6 +16,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private void Continue(object obj)
         {
+            StaticManager.Attempts = 3;
             NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 

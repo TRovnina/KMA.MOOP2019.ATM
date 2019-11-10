@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
@@ -8,7 +9,7 @@ using DBModels;
 
 namespace ATM_Simulator.ViewModel.ManagerServices
 {
-    internal class AddMoneyViewModel : BasicViewModel
+    public class AddMoneyViewModel : BasicViewModel
     {
         private int _fifty;
         private int _hundred;
@@ -17,10 +18,17 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         private ICommand _confirmCommand;
         private ICommand _menuCommand;
 
+        public AddMoneyViewModel()
+        {
+            _fifty = StaticManager.CurrentAtm.Banknote50;
+            _hundred = StaticManager.CurrentAtm.Banknote100;
+            _twoHundred = StaticManager.CurrentAtm.Banknote200;
+            _fiveHundred = StaticManager.CurrentAtm.Banknote500;
+        }
 
         public int Fifty
         {
-            get { return _fifty = StaticManager.CurrentAtm.Banknote50; }
+            get { return _fifty; }
             set
             {
                 _fifty = value;
@@ -30,7 +38,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int Hundred
         {
-            get { return _hundred = StaticManager.CurrentAtm.Banknote100; }
+            get { return _hundred; }
             set
             {
                 _hundred = value;
@@ -40,7 +48,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int TwoHundred
         {
-            get { return _twoHundred = StaticManager.CurrentAtm.Banknote200; }
+            get { return _twoHundred; }
             set
             {
                 _twoHundred = value;
@@ -50,7 +58,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int FiveHundred
         {
-            get { return _fiveHundred = StaticManager.CurrentAtm.Banknote500; }
+            get { return _fiveHundred; }
             set
             {
                 _fiveHundred = value;
@@ -73,7 +81,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
                 StaticManager.CurrentAtm.Banknote200 = _twoHundred;
                 StaticManager.CurrentAtm.Banknote500 = _fiveHundred;
 
-                //ATMManagerAction action = new ATMManagerAction(ActionType.AddMoney, StaticManager.CurrentManager, StaticManager.CurrentAtm);
+                ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "AddMoney");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

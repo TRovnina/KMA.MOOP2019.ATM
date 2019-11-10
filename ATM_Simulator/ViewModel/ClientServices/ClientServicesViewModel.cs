@@ -49,7 +49,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
         {
             DepositAccount account = StaticManager.CurrentCard as DepositAccount;
             if (account != null)
-                return DateTime.Today <= account.DepositDate;
+                return DateTime.Today >= account.DepositDate;
             return true;
         }
 

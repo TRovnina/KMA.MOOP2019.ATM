@@ -20,6 +20,12 @@ namespace ATM_Simulator.ViewModel.ClientServices
         private ICommand _menuCommand;
         private ICommand _endCommand;
 
+        internal CashSurplusViewModel()
+        {
+            _amount = (Account.IsHandingCashSurplus ? (int)Account.ThresholdAmount : 0);
+            _period = (Account.IsHandingCashSurplus ? Account.PeriodCashSurplus : PeriodHandingCashSurplus.None);
+        }
+
         public string Card
         {
             get { return GetDepositCard(); }
@@ -35,7 +41,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
         {
             get
             {
-                return _amount = (Account.IsHandingCashSurplus ? (int)Account.ThresholdAmount : 0);
+                return _amount;
             }
             set
             {
@@ -55,10 +61,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public PeriodHandingCashSurplus Period
         {
-            get
-            {
-                return _period = (Account.IsHandingCashSurplus ? Account.PeriodCashSurplus : PeriodHandingCashSurplus.None);
-            }
+            get { return _period; }
             set
             {
                 _period = value;
@@ -87,8 +90,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 Account.ThresholdAmount = _amount;
                 DbManager.SaveAccount(Account);
 
-                ATMAccountAction action = new ATMAccountAction(ActionType.HandingCashSurplus, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "HandingCashSurplus");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -104,7 +107,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand

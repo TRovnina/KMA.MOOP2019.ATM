@@ -34,3 +34,8 @@ E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\obj\Debug\AtmClient.csproj.CoreCompileInput
 E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\obj\Debug\AtmClient.csproj.CopyComplete
 E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\obj\Debug\AtmClient.exe
 E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\obj\Debug\AtmClient.pdb
+E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\bin\Debug\ATM_Simulator.exe
+E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\bin\Debug\FontAwesome.WPF.dll
+E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\bin\Debug\ATM_Simulator.pdb
+E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\bin\Debug\ATM_Simulator.exe.config
+E:\Home\KMA\3\MOOP\ATM\ATM\AtmClient\bin\Debug\FontAwesome.WPF.xml

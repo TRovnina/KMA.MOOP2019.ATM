@@ -53,6 +53,7 @@ namespace DBAdapter
             {
                 return context.Accounts
                     .Include(u => u.ATMAccountAction)
+                    .Include(u => u.Client)
                     .FirstOrDefault(u => u.CardNumber == accountNum);
             }
         }
@@ -140,7 +141,7 @@ namespace DBAdapter
         {
             using (var context = new ATMDbContext())
             {
-                return context.RegularPayments.Where(r => r.CardNumber == accountNum).ToList();
+                return context.RegularPayments.Include(p => p.CurrentAccount).Where(r => r.CardNumber == accountNum).ToList();
             }
         }
 
@@ -148,7 +149,7 @@ namespace DBAdapter
         {
             using (var context = new ATMDbContext())
             {
-                return context.Accounts.Where(r => r.IsActive == false).ToList();
+                return context.Accounts.Include(a => a.Client).Where(r => r.IsActive == false).ToList();
             }
         }
 
@@ -160,6 +161,33 @@ namespace DBAdapter
                 context.RegularPayments.Attach(regularPayment);
                 context.RegularPayments.Remove(regularPayment);
                 context.SaveChanges();
+            }
+        }
+
+        public static List<Client> GetAllClients()
+        {
+            using (var context = new ATMDbContext())
+            {
+                return context.Clients
+                    .Include(u => u.Accounts).ToList();
+            }
+        }
+
+        public static List<ATM> GetAllATMs()
+        {
+            using (var context = new ATMDbContext())
+            {
+                return context.ATMs.
+                    Include(u => u.AtmManagerActions)
+                    .Include(u => u.ATMAccountAction).ToList();
+            }
+        }
+
+        public static List<Manager> GetAllManagers()
+        {
+            using (var context = new ATMDbContext())
+            {
+                return context.Managers.Include(u => u.ATMManagerActions).ToList();
             }
         }
     }

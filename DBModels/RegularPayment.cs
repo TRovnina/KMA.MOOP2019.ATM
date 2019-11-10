@@ -9,7 +9,7 @@ namespace DBModels
     public class RegularPayment
     {
         #region Fields
-        
+
         [DataMember]
         private int _regularPaymentId;
         [DataMember]
@@ -39,7 +39,7 @@ namespace DBModels
             _firstRegularPaymentDate = DateTime.Now;
         }
 
-        public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName, 
+        public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName,
             CurrentAccount currentAccount, double sum, string destinationAccount) : this()
         {
             _periodRegularPayment = periodRegularPayment;

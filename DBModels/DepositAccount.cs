@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
-    
+
     [DataContract(IsReference = true)]
     public class DepositAccount : Account
     {
@@ -14,24 +14,24 @@ namespace DBModels
         [DataMember]
         private DateTime _depositDate;
         [DataMember]
-        private DateTime _storegedDate;
+        private DateTime _storegedDate; // обрахунку
         [DataMember]
         private int _percentageDeposit;
         [DataMember]
-        private DateTime _availableDate; 
+        private DateTime _availableDate; // дата, коли гроші доступні
 
         #endregion
 
         #region Constructors
 
         public DepositAccount(string cardNumber, string cardPassword, Client client,
-            DateTime depositDate, DateTime storegedDate, int percentage)
+            DateTime depositDate, DateTime availableDate, int percentage)
             : base(cardNumber, cardPassword, client)
         {
             _depositDate = depositDate;
-            _storegedDate = storegedDate;
+            _storegedDate = depositDate;
             _percentageDeposit = percentage;
-            _availableDate = storegedDate;
+            _availableDate = availableDate;
 
             client.Accounts.Add(this);
         }
@@ -63,13 +63,35 @@ namespace DBModels
             set => _percentageDeposit = value;
         }
 
+        public double AvailableSum
+        {
+            get => _availableSum = Math.Round(CalculateSum());
+            set => _availableSum = Math.Round(value);
+        }
+
         public DateTime AvailableDate
         {
-            get => _availableDate; 
+            get => _availableDate;
             private set => _availableDate = value;
         }
 
+        public double CalculateSum()
+        {
+            int month = (DateTime.Today - StoregedDate).Days / 28;
+            if (month <= 0)
+                return _availableSum;
+            StoregedDate = DateTime.Today;
+            return _availableSum * Math.Pow((1 + (double)_percentageDeposit / 100.0), month);
+        }
+
         #endregion
+
+        public override string ToString()
+        {
+            return "Account: " + CardNumber + "; Status(is active): "
+                   + IsActive + "; Available sum: " + AvailableSum
+                   + " (Deposit account) percentage: " + PercentageDeposit;
+        }
 
         #region EntityConfiguration
 

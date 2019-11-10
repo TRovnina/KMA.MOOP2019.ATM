@@ -35,7 +35,7 @@ namespace DBModels
             _itn = itm;
             _firstName = firstName;
             _lastName = lastName;
-            
+
         }
 
         #endregion
@@ -88,7 +88,7 @@ namespace DBModels
             return FirstName + " " + LastName + "; ITN: " + ITN;
         }
 
-        
+
 
         #region EntityConfiguration
 
@@ -113,7 +113,7 @@ namespace DBModels
                     .WithRequired(act => act.Client)
                     .HasForeignKey(act => act.ClientITN)
                     .WillCascadeOnDelete(true);
-                
+
             }
         }
         #endregion

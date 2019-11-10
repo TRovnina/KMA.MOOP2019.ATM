@@ -60,5 +60,14 @@ namespace WcfService
 
         [OperationContract]
         void DeleteRegularPayment(RegularPayment regularPayment);
+
+        [OperationContract]
+        List<Client> GetAllClients();
+
+        [OperationContract]
+        List<ATM> GetAllATMs();
+
+        [OperationContract]
+        List<Manager> GetAllManagers();
     }
 }

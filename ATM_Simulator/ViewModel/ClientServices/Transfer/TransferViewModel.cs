@@ -61,8 +61,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             await Task.Run(() =>
             {
                 recipient = DbManager.GetAccountByNum(Recipient);
-                ATMAccountAction action = new ATMAccountAction(ActionType.Transfer, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, recipient);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "Transfer", recipient);
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -92,7 +92,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
        public ICommand EndCommand

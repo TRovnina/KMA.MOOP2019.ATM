@@ -6,7 +6,7 @@ namespace DBAdapter
 {
     internal class ATMDbContext : DbContext
     {
-        public ATMDbContext() : base("DbAtm")
+        public ATMDbContext() : base("DbAtm1")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ATMDbContext, Configuration>(true));
         }

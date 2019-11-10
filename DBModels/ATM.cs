@@ -189,7 +189,7 @@ namespace DBModels
                     .WithRequired(act => act.ATM)
                     .HasForeignKey(act => act.ATMCode)
                     .WillCascadeOnDelete(true);
-                
+
             }
         }
         #endregion

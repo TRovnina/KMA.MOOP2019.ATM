@@ -80,22 +80,22 @@ namespace ATM_Simulator.ViewModel.Authentication
                 
                 if (StaticManager.CurrentCard != null)
                 {
-                    ATMAccountAction action = new ATMAccountAction(ActionType.Authentication, StaticManager.CurrentAtm,
-                        StaticManager.CurrentCard);
+                    ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                        StaticManager.CurrentCard, "Authentication");
                     DbManager.SaveATM(StaticManager.CurrentAtm);
                 }
-                //else
-                //{
-                //    ATMManagerAction action = new ATMManagerAction(ActionType.AddMoney, StaticManager.CurrentManager, StaticManager.CurrentAtm);
-                //    DbManager.SaveATM(StaticManager.CurrentAtm);
-                //}
+                else
+                {
+                    ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "Authentication");
+                    DbManager.SaveATM(StaticManager.CurrentAtm);
+                }
 
             });
             LoaderManager.Instance.HideLoader();
 
             if (!correct)
             {
-                MessageBox.Show("Нou have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
+                MessageBox.Show("You have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 ModesEnum mode = (StaticManager.Attempts == 0 ? ModesEnum.CardNumber : ModesEnum.CardPin);
                 NavigationManager.Instance.Navigate(mode);

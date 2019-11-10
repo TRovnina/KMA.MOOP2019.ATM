@@ -12,11 +12,9 @@ namespace DBModels
         [DataMember]
         private int _actionId;
         [DataMember]
-        private ActionType _actionType;
-        [DataMember]
-        private int _actionTypeId;
-        [DataMember]
         private DateTime _actionDate;
+        [DataMember]
+        private string _notes;
 
         [DataMember]
         private ATM _atm;
@@ -28,7 +26,7 @@ namespace DBModels
         private string _accountNum;
 
         [DataMember]
-        private string _destinationAccountNum; // if ActionType != ActionType.Transfer then null
+        private string _destinationAccountNum;
 
         #endregion
 
@@ -40,14 +38,14 @@ namespace DBModels
             _actionDate = DateTime.Now;
         }
 
-        public ATMAccountAction(ActionType actionType, ATM atm, Account account, Account destinationAccount = null) : this()
+        public ATMAccountAction(ATM atm, Account account, string notes, Account destinationAccount = null) : this()
         {
-            _actionType = actionType;
             _atm = atm;
             _atmCode = atm.ATMCode;
             _account = account;
             _accountNum = account.CardNumber;
-            if (destinationAccount != null && actionType == ActionType.Transfer)
+            _notes = notes;
+            if (destinationAccount != null)
                 _destinationAccountNum = destinationAccount.CardNumber;
             else
                 _destinationAccountNum = null;
@@ -61,18 +59,6 @@ namespace DBModels
         {
             get => _actionId;
             private set => _actionId = value;
-        }
-
-        public ActionType ActionType
-        {
-            get => _actionType;
-            private set => _actionType = value;
-        }
-
-        public int ActionTypeId
-        {
-            get => (int)_actionType;
-            private set => _actionType = (ActionType)value;
         }
 
         public DateTime ActionDate
@@ -111,6 +97,12 @@ namespace DBModels
             private set => _destinationAccountNum = value;
         }
 
+        public string Notes
+        {
+            get => _notes;
+            private set => _notes = value;
+        }
+
         #endregion
 
         public void DeleteDatabaseValues()
@@ -121,7 +113,7 @@ namespace DBModels
 
         public override string ToString()
         {
-            return "Action between " + ATMCode + " --- " + AccountNum + "; \nType" + ActionType;
+            return "ACTION between ATM: " + ATMCode + " and account " + AccountNum + "; Additional information: " + Notes;
         }
 
         #region EntityConfiguration
@@ -141,14 +133,12 @@ namespace DBModels
                     .HasColumnName("ActionDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
-                Property(a => a.ActionTypeId)
-                    .HasColumnName("ActionTypeId")
+                Property(a => a.Notes)
+                    .HasColumnName("Notes")
                     .IsRequired();
                 Property(a => a.DestinationAccountNum)
                     .HasColumnName("DestinationAccountNum")
                     .IsOptional();
-
-                Ignore(a => a.ActionType);
 
             }
         }

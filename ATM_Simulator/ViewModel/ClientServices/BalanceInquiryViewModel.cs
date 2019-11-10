@@ -30,13 +30,13 @@ namespace ATM_Simulator.ViewModel.ClientServices
         private string GetText()
         {
             string txt = "";
-            if (Card == "CreditAccount")
+            if (Card == "DBModels.CreditAccount")
             {
                 CreditAccount account = StaticManager.CurrentCard as CreditAccount;
                 txt = "Your Credit Amount is " + account.Debt + "\nAfter " + account.EndOfGracePeriod +
                       " will be charged " + account.PercentageCredit + " % of the amount every month";
             }
-            else if (Card == "DepositAccount")
+            else if (Card == "DBModels.DepositAccount")
             {
                 DepositAccount account = StaticManager.CurrentCard as DepositAccount;
                 txt = "Every month will be accrued " + account.PercentageDeposit +
@@ -54,7 +54,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
         private void Menu(object obj)
         {
             SaveAction();
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand
@@ -73,8 +74,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                ATMAccountAction action = new ATMAccountAction(ActionType.BalanceInquiry, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "BalanceInquiry");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

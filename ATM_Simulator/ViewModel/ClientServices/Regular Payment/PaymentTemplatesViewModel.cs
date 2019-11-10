@@ -69,8 +69,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             {
                 _payments.Remove(SelectedPayment);
                 DbManager.DeleteRegularPayment(SelectedPayment);
-                ATMAccountAction action = new ATMAccountAction(ActionType.RegularPayment, StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard);
+                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "RegularPayment");
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
@@ -90,7 +90,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand

@@ -5,14 +5,11 @@ using DBModels;
 
 namespace ATM_Simulator.Managers
 {
-    public static class DbManager
+    public class DbManager
     {
         //
         public static ATM GetATMByCode(string atmCode)
         {
-
-
-            // ServiceATMClient client = new ServiceATMClient();
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             return client.GetATMByCode(atmCode);
         }
@@ -105,6 +102,24 @@ namespace ATM_Simulator.Managers
         {
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             client.DeleteRegularPayment(regularPayment);
+        }
+
+        public static List<Client> GetAllClients()
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            return client.GetAllClients().ToList();
+        }
+
+        public static List<ATM> GetAllATMs()
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            return client.GetAllATMs().ToList();
+        }
+
+        public static List<Manager> GetAllManagers()
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            return client.GetAllManagers().ToList();
         }
     }
 }

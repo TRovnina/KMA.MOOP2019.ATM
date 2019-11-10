@@ -88,6 +88,21 @@ namespace WcfService
             EntityWrapper.DeleteRegularPayment(regularPayment);
         }
 
+        public List<Client> GetAllClients()
+        {
+            return EntityWrapper.GetAllClients();
+        }
+
+        public List<ATM> GetAllATMs()
+        {
+            return EntityWrapper.GetAllATMs();
+        }
+
+        public List<Manager> GetAllManagers()
+        {
+            return EntityWrapper.GetAllManagers();
+        }
+
         public void AddATM(ATM atm)
         {
             EntityWrapper.AddATM(atm);

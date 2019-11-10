@@ -103,6 +103,24 @@
   <wsdl:message name="IServiceATM_DeleteRegularPayment_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRegularPaymentResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllClients_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllClients" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllClients_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllATMs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllATMs" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllATMs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllATMsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllManagers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManagers" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_GetAllManagers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllManagersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceATM">
     <wsdl:operation name="GetATMByCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetATMByCode" message="tns:IServiceATM_GetATMByCode_InputMessage" />
@@ -167,6 +185,18 @@
     <wsdl:operation name="DeleteRegularPayment">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/DeleteRegularPayment" message="tns:IServiceATM_DeleteRegularPayment_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/DeleteRegularPaymentResponse" message="tns:IServiceATM_DeleteRegularPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetAllClients" message="tns:IServiceATM_GetAllClients_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetAllClientsResponse" message="tns:IServiceATM_GetAllClients_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllATMs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetAllATMs" message="tns:IServiceATM_GetAllATMs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetAllATMsResponse" message="tns:IServiceATM_GetAllATMs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManagers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetAllManagers" message="tns:IServiceATM_GetAllManagers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetAllManagersResponse" message="tns:IServiceATM_GetAllManagers_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceATM" type="tns:IServiceATM">
@@ -308,6 +338,33 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteRegularPayment">
       <soap:operation soapAction="http://tempuri.org/IServiceATM/DeleteRegularPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllClients">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/GetAllClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllATMs">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/GetAllATMs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllManagers">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/GetAllManagers" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

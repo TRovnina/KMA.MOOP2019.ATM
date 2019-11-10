@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
-    
+
     [DataContract(IsReference = true)]
     public class CurrentAccount : Account
     {
@@ -39,7 +39,7 @@ namespace DBModels
 
         private CurrentAccount()
         {
-            
+
         }
 
         #endregion
@@ -77,6 +77,13 @@ namespace DBModels
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return "Account: " + CardNumber + "; Status(is active): "
+                   + IsActive + "; Available sum: " + AvailableSum
+                   + " (Current account) ";
+        }
 
         #region EntityConfiguration
 

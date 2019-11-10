@@ -5,7 +5,7 @@ using ATM_Simulator.Tools;
 
 namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 {
-    internal class CashWithdrawalViewModel : CashModel
+    public class CashWithdrawalViewModel : CashModel
     {
         private ICommand _hundredCommand;
         private ICommand _twoHundredCommand;
@@ -26,7 +26,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private bool CanHundredExecute(object obj)
         {
-            return (_result100 = Multiplicity(100, Banknotes)) != null;
+            _result100 = Multiplicity(100, Banknotes);
+            return _result100 != null;
         }
 
         private void Hundred(object obj)
@@ -89,7 +90,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
 
         private void Menu(object obj)
         {
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+
+            StaticManager.Attempts = 3;
+            NavigationManager.Instance.Navigate(ModesEnum.CardPin);
         }
 
         public ICommand EndCommand

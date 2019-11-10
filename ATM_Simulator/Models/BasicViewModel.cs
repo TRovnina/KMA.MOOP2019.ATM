@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace ATM_Simulator.Models
 {
-    internal abstract class BasicViewModel : INotifyPropertyChanged
+    public abstract class BasicViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

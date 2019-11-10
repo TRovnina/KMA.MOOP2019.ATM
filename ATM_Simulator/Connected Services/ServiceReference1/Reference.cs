@@ -119,6 +119,24 @@ namespace ATM_Simulator.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/DeleteRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/DeleteRegularPaymentResponse")]
         System.Threading.Tasks.Task DeleteRegularPaymentAsync(DBModels.RegularPayment regularPayment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllClients", ReplyAction="http://tempuri.org/IServiceATM/GetAllClientsResponse")]
+        DBModels.Client[] GetAllClients();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllClients", ReplyAction="http://tempuri.org/IServiceATM/GetAllClientsResponse")]
+        System.Threading.Tasks.Task<DBModels.Client[]> GetAllClientsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllATMs", ReplyAction="http://tempuri.org/IServiceATM/GetAllATMsResponse")]
+        DBModels.ATM[] GetAllATMs();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllATMs", ReplyAction="http://tempuri.org/IServiceATM/GetAllATMsResponse")]
+        System.Threading.Tasks.Task<DBModels.ATM[]> GetAllATMsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllManagers", ReplyAction="http://tempuri.org/IServiceATM/GetAllManagersResponse")]
+        DBModels.Manager[] GetAllManagers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllManagers", ReplyAction="http://tempuri.org/IServiceATM/GetAllManagersResponse")]
+        System.Threading.Tasks.Task<DBModels.Manager[]> GetAllManagersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -274,6 +292,30 @@ namespace ATM_Simulator.ServiceReference1 {
         
         public System.Threading.Tasks.Task DeleteRegularPaymentAsync(DBModels.RegularPayment regularPayment) {
             return base.Channel.DeleteRegularPaymentAsync(regularPayment);
+        }
+        
+        public DBModels.Client[] GetAllClients() {
+            return base.Channel.GetAllClients();
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Client[]> GetAllClientsAsync() {
+            return base.Channel.GetAllClientsAsync();
+        }
+        
+        public DBModels.ATM[] GetAllATMs() {
+            return base.Channel.GetAllATMs();
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.ATM[]> GetAllATMsAsync() {
+            return base.Channel.GetAllATMsAsync();
+        }
+        
+        public DBModels.Manager[] GetAllManagers() {
+            return base.Channel.GetAllManagers();
+        }
+        
+        public System.Threading.Tasks.Task<DBModels.Manager[]> GetAllManagersAsync() {
+            return base.Channel.GetAllManagersAsync();
         }
     }
 }

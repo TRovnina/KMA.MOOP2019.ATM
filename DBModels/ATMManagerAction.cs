@@ -13,6 +13,8 @@ namespace DBModels
         private int _atmManagerActionId;
         [DataMember]
         private DateTime _actionDate;
+        [DataMember]
+        private string _notes;
 
         [DataMember]
         private Manager _manager;
@@ -26,13 +28,14 @@ namespace DBModels
         #endregion
 
         #region Constructors
-        
-        public ATMManagerAction(Manager manager, ATM atm) : this()
+
+        public ATMManagerAction(Manager manager, ATM atm, string notes) : this()
         {
             _manager = manager;
             _managerId = manager.ManagerId;
             _atm = atm;
             _atmCode = atm.ATMCode;
+            _notes = notes;
         }
 
         private ATMManagerAction()
@@ -80,6 +83,12 @@ namespace DBModels
             private set => _atmCode = value;
         }
 
+        public string Notes
+        {
+            get => _notes;
+            set => _notes = value;
+        }
+
         #endregion
 
         public void DeleteDatabaseValues()
@@ -89,6 +98,12 @@ namespace DBModels
         }
 
         #region EntityConfiguration
+
+        public override string ToString()
+        {
+            return "ACTION between ATM: " + ATMCode + " and Manager: "
+                   + ManagerId + "; Additional information: " + Notes;
+        }
 
         public class ATMManagerActionEntityConfiguration : EntityTypeConfiguration<ATMManagerAction>
         {
@@ -105,6 +120,9 @@ namespace DBModels
                     .HasColumnName("ActionDate")
                     .HasColumnType("datetime2")
                     .IsRequired();
+                Property(a => a.Notes)
+                    .HasColumnName("Notes")
+                    .IsOptional();
 
             }
         }
