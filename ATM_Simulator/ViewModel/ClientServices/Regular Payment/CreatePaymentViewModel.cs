@@ -1,9 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -22,7 +24,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Name
         {
-            get { return _name = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.RegularPaymentName); }
+            get
+            {
+                return _name = (StaticManager.CurrentPayment == null
+                    ? ""
+                    : StaticManager.CurrentPayment.RegularPaymentName);
+            }
             set
             {
                 _name = value;
@@ -32,7 +39,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public string Card
         {
-            get { return _card = (StaticManager.CurrentPayment == null ? "" : StaticManager.CurrentPayment.DestinationAccount); }
+            get
+            {
+                return _card = (StaticManager.CurrentPayment == null
+                    ? ""
+                    : StaticManager.CurrentPayment.DestinationAccount);
+            }
             set
             {
                 _card = value;
@@ -52,7 +64,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public PeriodRegularPayment Period
         {
-            get { return _period = (StaticManager.CurrentPayment == null ? PeriodRegularPayment.None: StaticManager.CurrentPayment.PeriodRegularPayment); }
+            get
+            {
+                return _period = (StaticManager.CurrentPayment == null
+                    ? PeriodRegularPayment.None
+                    : StaticManager.CurrentPayment.PeriodRegularPayment);
+            }
             set
             {
                 _period = value;
@@ -70,10 +87,24 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm)); }
         }
 
-        private void Confirm(object obj)
+        private async void Confirm(object obj)
         {
-            StaticManager.CurrentPayment = new RegularPayment(_period, _name, (StaticManager.CurrentCard as CurrentAccount), _amount, _card);
-            NavigationManager.Instance.Navigate(ModesEnum.CheckTransferInfo);
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                RegularPayment rg = new RegularPayment(_period, _name, (StaticManager.CurrentCard as CurrentAccount),
+                    _amount, _card);
+                DbManager.AddRegularPayment(rg);
+                StaticManager.CurrentPayment = null;
+
+                ATMAccountAction action = new ATMAccountAction(ActionType.RegularPayment, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
+
+            MessageBox.Show("You have successfully created regular payment " + _name);
+            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
 
         public ICommand MenuCommand

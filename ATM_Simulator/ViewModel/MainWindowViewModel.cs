@@ -38,8 +38,7 @@ namespace ATM_Simulator.ViewModel
 
         internal void StartApplication()
         {
-            //NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
-            NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
+            NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

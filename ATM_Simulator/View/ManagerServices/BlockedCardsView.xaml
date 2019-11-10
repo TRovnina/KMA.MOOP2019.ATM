@@ -20,8 +20,7 @@
 
         <DataGrid Name="DataGrid" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemsSource="{Binding Payments, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedPayment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Owner" Binding="{Binding Owner}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Number" Binding="{Binding CardNumber}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

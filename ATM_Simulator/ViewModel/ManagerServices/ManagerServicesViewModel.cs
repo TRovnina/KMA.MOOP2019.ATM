@@ -4,7 +4,7 @@ using ATM_Simulator.Tools;
 
 namespace ATM_Simulator.ViewModel.ManagerServices
 {
-    internal class ManagerServicesViewModel : BasicViewModel
+    internal class ManagerServicesViewModel
     {
         private ICommand _addMoney;
         private ICommand _blockedCards;

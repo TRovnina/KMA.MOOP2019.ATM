@@ -6,7 +6,7 @@ using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
-    internal class ClientServicesViewModel : BasicViewModel
+    internal class ClientServicesViewModel
     {
         private ICommand _cashWithdrawalCommand;
         private ICommand _balanceInquiryCommand;
@@ -19,7 +19,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public ICommand CashWithdrawalCommand
         {
-            get { return _cashWithdrawalCommand ?? (_cashWithdrawalCommand = new RelayCommand<object>(CashWithdrawal)); }
+            get { return _cashWithdrawalCommand ?? (_cashWithdrawalCommand = new RelayCommand<object>(CashWithdrawal, CanDepositExecute)); }
         }
 
         private void CashWithdrawal(object obj)
@@ -41,15 +41,15 @@ namespace ATM_Simulator.ViewModel.ClientServices
         {
             get
             {
-                return _transferCommand ?? (_transferCommand = new RelayCommand<object>(Transfer, CanTransferExecute));
+                return _transferCommand ?? (_transferCommand = new RelayCommand<object>(Transfer, CanDepositExecute));
             }
         }
 
-        private bool CanTransferExecute(object obj)
+        private bool CanDepositExecute(object obj)
         {
             DepositAccount account = StaticManager.CurrentCard as DepositAccount;
             if (account != null)
-                return DateTime.Today < account.DepositDate;
+                return DateTime.Today <= account.DepositDate;
             return true;
         }
 

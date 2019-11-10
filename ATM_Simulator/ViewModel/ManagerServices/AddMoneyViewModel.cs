@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -50,7 +50,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public int FiveHundred
         {
-            get { return _fiveHundred = StaticManager.CurrentAtm.Banknote500; ; }
+            get { return _fiveHundred = StaticManager.CurrentAtm.Banknote500; }
             set
             {
                 _fiveHundred = value;
@@ -72,6 +72,9 @@ namespace ATM_Simulator.ViewModel.ManagerServices
                 StaticManager.CurrentAtm.Banknote100 = _hundred;
                 StaticManager.CurrentAtm.Banknote200 = _twoHundred;
                 StaticManager.CurrentAtm.Banknote500 = _fiveHundred;
+
+                //ATMManagerAction action = new ATMManagerAction(ActionType.AddMoney, StaticManager.CurrentManager, StaticManager.CurrentAtm);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
             MessageBox.Show("Operation was successful!");

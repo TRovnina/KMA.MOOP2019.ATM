@@ -6,7 +6,7 @@ using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 {
-    internal class CheckTransferViewModel : BasicViewModel
+    internal class CheckTransferViewModel
     {
         private ICommand _cancelCommand;
         private ICommand _confirmCommand;
@@ -49,6 +49,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             {
                 StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - Amount;
                 RecipientCard.AvailableSum = RecipientCard.AvailableSum + Amount;
+                DbManager.SaveAccount(StaticManager.CurrentCard);
+                DbManager.SaveAccount(RecipientCard);
                 MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
             }
             else

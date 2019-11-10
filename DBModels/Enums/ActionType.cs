@@ -9,7 +9,7 @@
         Transfer,
         ChangePin,
         HandingCashSurplus,
-        RegularPayment
-
+        RegularPayment,
+        BalanceInquiry
     }
 }

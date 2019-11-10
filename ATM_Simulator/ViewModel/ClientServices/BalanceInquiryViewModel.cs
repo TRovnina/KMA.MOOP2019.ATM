@@ -1,11 +1,12 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
 using DBModels;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
-    internal class BalanceInquiryViewModel : BasicViewModel
+    internal class BalanceInquiryViewModel
     {
         private ICommand _menuCommand;
         private ICommand _endCommand;
@@ -17,7 +18,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public string Text
         {
-            get { return GetText();  }
+            get { return GetText(); }
         }
 
         public double Amount
@@ -41,6 +42,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 txt = "Every month will be accrued " + account.PercentageDeposit +
                       " % of amount \nDate when amount will be available " + account.AvailableDate;
             }
+
             return txt;
         }
 
@@ -51,6 +53,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private void Menu(object obj)
         {
+            SaveAction();
             NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
         }
 
@@ -61,7 +64,20 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private void End(object obj)
         {
+            SaveAction();
             NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+        }
+
+        private async void SaveAction()
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                ATMAccountAction action = new ATMAccountAction(ActionType.BalanceInquiry, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
         }
     }
 }

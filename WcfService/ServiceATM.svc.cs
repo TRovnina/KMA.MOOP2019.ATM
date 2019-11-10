@@ -55,13 +55,12 @@ namespace WcfService
             EntityWrapper.AddATMManagerAction(atmManagerAction);
         }
 
-        public bool AddRegularPayment(Object regularPayment)
+        public void AddRegularPayment(RegularPayment regularPayment)
         {
-            RegularPayment rp = regularPayment as RegularPayment;
+            /*RegularPayment rp = regularPayment as RegularPayment;
             if (rp == null)
-                return false;
-            EntityWrapper.AddRegularPayment(rp);
-            return true;
+                return false;*/
+            EntityWrapper.AddRegularPayment(regularPayment);
         }
 
         public void SaveATM(ATM atm)
@@ -74,15 +73,19 @@ namespace WcfService
             EntityWrapper.SaveAccount(account);
         }
 
-        public List<object> GetRegularPayments(string accountNum)
+        public List<RegularPayment> GetRegularPayments(string accountNum)
         {
-            List<RegularPayment> res = EntityWrapper.GetRegularPayments(accountNum);
-            return new List<object>(res);
+            return EntityWrapper.GetRegularPayments(accountNum);
         }
 
         public List<Account> GetAllBlockedAccounts()
         {
             return EntityWrapper.GetAllBlockedAccounts();
+        }
+
+        public void DeleteRegularPayment(RegularPayment regularPayment)
+        {
+            EntityWrapper.DeleteRegularPayment(regularPayment);
         }
 
         public void AddATM(ATM atm)

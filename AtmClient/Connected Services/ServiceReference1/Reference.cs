@@ -82,28 +82,10 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task AddATMManagerActionAsync(DBModels.ATMManagerAction atmManagerAction);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodHandingCashSurplus))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodRegularPayment))]
-        bool AddRegularPayment(object regularPayment);
+        void AddRegularPayment(DBModels.RegularPayment regularPayment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/AddRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/AddRegularPaymentResponse")]
-        System.Threading.Tasks.Task<bool> AddRegularPaymentAsync(object regularPayment);
+        System.Threading.Tasks.Task AddRegularPaymentAsync(DBModels.RegularPayment regularPayment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/SaveATM", ReplyAction="http://tempuri.org/IServiceATM/SaveATMResponse")]
         void SaveATM(DBModels.ATM atm);
@@ -121,34 +103,22 @@ namespace AtmClient.ServiceReference1 {
         System.Threading.Tasks.Task SaveAccountAsync(DBModels.Account account);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(object[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMAccountAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ActionType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATM))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.ATMManagerAction))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Manager))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Client))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.Account[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodHandingCashSurplus))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.RegularPayment[]))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.PeriodRegularPayment))]
-        object[] GetRegularPayments(string accountNum);
+        DBModels.RegularPayment[] GetRegularPayments(string accountNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetRegularPayments", ReplyAction="http://tempuri.org/IServiceATM/GetRegularPaymentsResponse")]
-        System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum);
+        System.Threading.Tasks.Task<DBModels.RegularPayment[]> GetRegularPaymentsAsync(string accountNum);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllBlockedAccounts", ReplyAction="http://tempuri.org/IServiceATM/GetAllBlockedAccountsResponse")]
         DBModels.Account[] GetAllBlockedAccounts();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllBlockedAccounts", ReplyAction="http://tempuri.org/IServiceATM/GetAllBlockedAccountsResponse")]
         System.Threading.Tasks.Task<DBModels.Account[]> GetAllBlockedAccountsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/DeleteRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/DeleteRegularPaymentResponse")]
+        void DeleteRegularPayment(DBModels.RegularPayment regularPayment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/DeleteRegularPayment", ReplyAction="http://tempuri.org/IServiceATM/DeleteRegularPaymentResponse")]
+        System.Threading.Tasks.Task DeleteRegularPaymentAsync(DBModels.RegularPayment regularPayment);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -258,11 +228,11 @@ namespace AtmClient.ServiceReference1 {
             return base.Channel.AddATMManagerActionAsync(atmManagerAction);
         }
         
-        public bool AddRegularPayment(object regularPayment) {
-            return base.Channel.AddRegularPayment(regularPayment);
+        public void AddRegularPayment(DBModels.RegularPayment regularPayment) {
+            base.Channel.AddRegularPayment(regularPayment);
         }
         
-        public System.Threading.Tasks.Task<bool> AddRegularPaymentAsync(object regularPayment) {
+        public System.Threading.Tasks.Task AddRegularPaymentAsync(DBModels.RegularPayment regularPayment) {
             return base.Channel.AddRegularPaymentAsync(regularPayment);
         }
         
@@ -282,11 +252,11 @@ namespace AtmClient.ServiceReference1 {
             return base.Channel.SaveAccountAsync(account);
         }
         
-        public object[] GetRegularPayments(string accountNum) {
+        public DBModels.RegularPayment[] GetRegularPayments(string accountNum) {
             return base.Channel.GetRegularPayments(accountNum);
         }
         
-        public System.Threading.Tasks.Task<object[]> GetRegularPaymentsAsync(string accountNum) {
+        public System.Threading.Tasks.Task<DBModels.RegularPayment[]> GetRegularPaymentsAsync(string accountNum) {
             return base.Channel.GetRegularPaymentsAsync(accountNum);
         }
         
@@ -296,6 +266,14 @@ namespace AtmClient.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBModels.Account[]> GetAllBlockedAccountsAsync() {
             return base.Channel.GetAllBlockedAccountsAsync();
+        }
+        
+        public void DeleteRegularPayment(DBModels.RegularPayment regularPayment) {
+            base.Channel.DeleteRegularPayment(regularPayment);
+        }
+        
+        public System.Threading.Tasks.Task DeleteRegularPaymentAsync(DBModels.RegularPayment regularPayment) {
+            return base.Channel.DeleteRegularPaymentAsync(regularPayment);
         }
     }
 }

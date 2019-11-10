@@ -4,7 +4,7 @@ using ATM_Simulator.Tools;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
-    internal class ContinueViewModel : BasicViewModel
+    internal class ContinueViewModel
     {
         private ICommand _noCommand;
         private ICommand _yesCommand;

@@ -18,7 +18,7 @@ namespace DBModels
         [DataMember]
         private int _percentageDeposit;
         [DataMember]
-        private DateTime _availableDate; // Дата коли гроші будуть доступні = Deposit_Date + Storage_Date
+        private DateTime _availableDate; 
 
         #endregion
 
@@ -31,7 +31,7 @@ namespace DBModels
             _depositDate = depositDate;
             _storegedDate = storegedDate;
             _percentageDeposit = percentage;
-            _availableDate = CalculateAvailableDate();
+            _availableDate = storegedDate;
 
             client.Accounts.Add(this);
         }
@@ -65,16 +65,11 @@ namespace DBModels
 
         public DateTime AvailableDate
         {
-            get { return _availableDate = CalculateAvailableDate(); }
+            get => _availableDate; 
             private set => _availableDate = value;
         }
 
         #endregion
-
-        private DateTime CalculateAvailableDate()
-        {
-            return DepositDate.AddSeconds(StoregedDate.Second);
-        }
 
         #region EntityConfiguration
 

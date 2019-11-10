@@ -24,8 +24,9 @@ namespace ATM_Simulator.Models
         {
             RecipientCard = recipient;
             Description = description;
-            RecipientName = recipient.Client.FirstName + " " + recipient.Client.LastName;
-            Commission = (recipient.Client == StaticManager.CurrentClient ? 0 : 1);
+            Client client = DbManager.GetClientByItn(recipient.CardNumber);
+            RecipientName = client.FirstName + " " + client.LastName;
+            Commission = (client == StaticManager.CurrentClient ? 0 : 1);
             Amount = amount + Commission/100 * amount;
         }
     }

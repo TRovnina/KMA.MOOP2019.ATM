@@ -1,10 +1,11 @@
-﻿
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
+using DBModels;
 
-namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
+namespace ATM_Simulator.Models
 {
     internal abstract class CashModel : BasicViewModel
     {
@@ -93,6 +94,31 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
             }
 
             return 0;
+        }
+
+        protected async void GetMoney(int n, int[] res)
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                if (StaticManager.CurrentCard.AvailableSum >= n)
+                {
+                    StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - n;
+                    RemoveBanknotes(res);
+                    DbManager.SaveAccount(StaticManager.CurrentCard);
+                    MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + res);
+                }
+                else
+                    MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+
+                ATMAccountAction action = new ATMAccountAction(ActionType.CashWithdrawal, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
+
+            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
     }
 }

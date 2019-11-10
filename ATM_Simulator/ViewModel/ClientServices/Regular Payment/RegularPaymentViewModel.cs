@@ -1,6 +1,4 @@
-﻿
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
 

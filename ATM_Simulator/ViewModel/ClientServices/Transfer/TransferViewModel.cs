@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
@@ -52,10 +53,20 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm, CanConfirmExecute)); }
         }
 
-        private void Confirm(object obj)
+        private async void Confirm(object obj)
         {
-            //check RecipientCard
             Account recipient = null;
+
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                recipient = DbManager.GetAccountByNum(Recipient);
+                ATMAccountAction action = new ATMAccountAction(ActionType.Transfer, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, recipient);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
+
             if (recipient == null)
             {
                 MessageBox.Show("The card " + Recipient + " does not exist!", "Error!", MessageBoxButtons.OK,

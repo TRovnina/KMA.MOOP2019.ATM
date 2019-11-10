@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -8,15 +10,15 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 {
     internal class BlockedCardsViewModel : BasicViewModel
     {
-        private ObservableCollection<Account> _cards;
+        private List<Account> _cards;
         private Account _selectedCard;
 
         private ICommand _unlockCommand;
         private ICommand _menuCommand;
 
-        public ObservableCollection<Account> Cards
+        public List<Account> Cards
         {
-            get { return StaticManager.CurrentAtm.; }
+            get { return _cards = DbManager.GetAllBlockedAccounts(); }
             set
             {
                 _cards = value;
@@ -37,12 +39,26 @@ namespace ATM_Simulator.ViewModel.ManagerServices
 
         public ICommand UnlockCommand
         {
-            get { return _unlockCommand ?? (_unlockCommand = new RelayCommand<object>(Unlock)); }
+            get { return _unlockCommand ?? (_unlockCommand = new RelayCommand<object>(Unlock, CanUnlockExecute)); }
         }
 
-        private void Unlock(object obj)
+        private bool CanUnlockExecute(object obj)
         {
-            SelectedCard.IsActive = true;
+            return SelectedCard != null;
+        }
+
+        private async void Unlock(object obj)
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                SelectedCard.IsActive = true;
+                _cards.Remove(SelectedCard);
+                DbManager.SaveAccount(SelectedCard);
+                // ATMManagerAction action = new ATMManagerAction(ActionType.UnBlockCard, StaticManager.CurrentManager, StaticManager.CurrentAtm);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
             NavigationManager.Instance.Navigate(ModesEnum.BlockedCards);
         }
 
@@ -55,6 +71,5 @@ namespace ATM_Simulator.ViewModel.ManagerServices
         {
             NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
         }
-
     }
 }

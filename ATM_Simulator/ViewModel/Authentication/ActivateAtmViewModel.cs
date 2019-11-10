@@ -1,8 +1,10 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
+using ATM_Simulator.ServiceReference1;
 using ATM_Simulator.Tools;
-using DBModels;
 
 namespace ATM_Simulator.ViewModel.Authentication
 {
@@ -73,15 +75,31 @@ namespace ATM_Simulator.ViewModel.Authentication
             return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code);
         }
 
-        private void ActivateImplementation(object obj)
+        private async void ActivateImplementation(object obj)
         {
-            //var atm = get ATM(Code, Password);
-            //StaticManager.CurrentAtm = atm;
-            //if(atm == null){
-            //MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            //NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
-            //}else
-            NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            bool correct = true;
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+                var atm = client.GetATMByCode(Code);
+                StaticManager.CurrentAtm = atm;
+                if (atm == null || !atm.CheckPassword(Password))
+                    correct = false;
+                else
+                {
+                    StaticManager.CurrentAtm.Status = true;
+                    DbManager.SaveATM(StaticManager.CurrentAtm);
+                }
+            });
+            LoaderManager.Instance.HideLoader();
+            if (correct)
+                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            else
+            {
+                MessageBox.Show("Wrong code or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
+            }
         }
 
 

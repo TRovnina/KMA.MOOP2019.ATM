@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ATM_Simulator.Tools
+namespace ATM_Simulator.Models
 {
     internal abstract class BasicViewModel : INotifyPropertyChanged
     {

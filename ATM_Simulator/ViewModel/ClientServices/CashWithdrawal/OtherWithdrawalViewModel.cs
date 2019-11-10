@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 
 namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
@@ -46,17 +47,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.CashWithdrawal
                 MessageBox.Show("ATM has not banknotes for this sum!");
                 NavigationManager.Instance.Navigate(ModesEnum.OtherWithdrawal);
             }
-            else if (StaticManager.CurrentCard.AvailableSum >= Amount)
-            {
-                StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - Amount;
-                RemoveBanknotes(result);
-                MessageBox.Show("You have successfully been issued " + Amount + " points! \nBanknotes " + result);
-            }
             else
-                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-
-            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);               
+                GetMoney(Amount, result);
         }
 
         public ICommand MenuCommand

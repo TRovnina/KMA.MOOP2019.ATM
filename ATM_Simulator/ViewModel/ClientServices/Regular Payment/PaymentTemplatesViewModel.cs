@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -19,11 +21,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public List<RegularPayment> Payments
         {
-            get
-            {
-                CurrentAccount account = StaticManager.CurrentCard as CurrentAccount;
-                return account.RegularPayments;
-            }
+            get { return _payments = DbManager.GetRegularPayments(StaticManager.CurrentCard.CardNumber); }
             set
             {
                 _payments = value;
@@ -47,9 +45,15 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             get { return _editCommand ?? (_editCommand = new RelayCommand<object>(Edit, CanExecute)); }
         }
 
-        private void Edit(object obj)
+        private async void Edit(object obj)
         {
-            StaticManager.CurrentPayment = SelectedPayment;
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                StaticManager.CurrentPayment = SelectedPayment;
+                DbManager.DeleteRegularPayment(SelectedPayment);
+            });
+            LoaderManager.Instance.HideLoader();
             NavigationManager.Instance.Navigate(ModesEnum.CreatePayment);
         }
 
@@ -58,9 +62,18 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             get { return _deleteCommand ?? (_deleteCommand = new RelayCommand<object>(Delete, CanExecute)); }
         }
 
-        private void Delete(object obj)
+        private async void Delete(object obj)
         {
-            _payments.Remove(SelectedPayment);
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                _payments.Remove(SelectedPayment);
+                DbManager.DeleteRegularPayment(SelectedPayment);
+                ATMAccountAction action = new ATMAccountAction(ActionType.RegularPayment, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
             MessageBox.Show("Regular Payment was successfully deleted!");
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

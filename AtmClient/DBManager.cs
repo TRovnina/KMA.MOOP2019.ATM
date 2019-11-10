@@ -6,11 +6,14 @@ using DBModels;
 
 namespace AtmClient
 {
-    public class DbManager
+    public static class DbManager
     {
         //
         public static ATM GetATMByCode(string atmCode)
         {
+
+
+           // ServiceATMClient client = new ServiceATMClient();
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             return client.GetATMByCode(atmCode);
         }
@@ -56,7 +59,7 @@ namespace AtmClient
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             return client.GetClientByItn(clientItn);
         }
-        
+
         public static void AddATMAccountAction(ATMAccountAction action)
         {
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
@@ -90,18 +93,19 @@ namespace AtmClient
         public static List<RegularPayment> GetRegularPayments(string accountNum)
         {
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
-            List<RegularPayment> regularPayments = new List<RegularPayment>();
-            foreach (var o in client.GetRegularPayments(accountNum).ToList())
-            {
-                regularPayments.Add(o as RegularPayment);
-            }
-            return regularPayments;
+            return client.GetRegularPayments(accountNum).ToList();
         }
 
         public static List<Account> GetAllBlockedAccounts()
         {
             ServiceReference1.ServiceATMClient client = new ServiceATMClient();
             return client.GetAllBlockedAccounts().ToList();
+        }
+
+        public static void DeleteRegularPayment(RegularPayment regularPayment)
+        {
+            ServiceReference1.ServiceATMClient client = new ServiceATMClient();
+            client.DeleteRegularPayment(regularPayment);
         }
     }
 }

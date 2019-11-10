@@ -13,9 +13,9 @@ namespace DBAdapter
         {
             using (var context = new ATMDbContext())
             {
-               return context.ATMs.Include(u => u.ATMAccountAction)
-                    .Include(u => u.AtmManagerActions)
-                    .FirstOrDefault(u => u.ATMCode == atmCode);
+                return context.ATMs.Include(u => u.ATMAccountAction)
+                     .Include(u => u.AtmManagerActions)
+                     .FirstOrDefault(u => u.ATMCode == atmCode);
             }
         }
         //
@@ -149,6 +149,17 @@ namespace DBAdapter
             using (var context = new ATMDbContext())
             {
                 return context.Accounts.Where(r => r.IsActive == false).ToList();
+            }
+        }
+
+        public static void DeleteRegularPayment(RegularPayment regularPayment)
+        {
+            using (var context = new ATMDbContext())
+            {
+                regularPayment.DeleteDatabaseValues();
+                context.RegularPayments.Attach(regularPayment);
+                context.RegularPayments.Remove(regularPayment);
+                context.SaveChanges();
             }
         }
     }

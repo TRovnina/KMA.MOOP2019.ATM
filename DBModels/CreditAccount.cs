@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace DBModels
 {
-    
+
     [DataContract(IsReference = true)]
     public class CreditAccount : Account
     {
@@ -20,7 +20,7 @@ namespace DBModels
         private int _percentageCredit;
         [DataMember]
         private double _debt; // Борг банку = _creditSum + _creditSum* _percentage
-        
+
         #endregion
 
 
@@ -40,7 +40,7 @@ namespace DBModels
 
         private CreditAccount()
         {
-            
+
         }
 
         #endregion
@@ -81,7 +81,8 @@ namespace DBModels
 
         private double CalculateDebt()
         {
-            return CreditSum + CreditSum * PercentageCredit;
+            int days = (DateTime.Today - EndOfGracePeriod).Days;
+            return (days <= 0) ? 0 : ((_creditSum / 100) * _percentageCredit) * days;
         }
 
         #region EntityConfiguration
@@ -90,7 +91,7 @@ namespace DBModels
         {
             public CreditAccountEntityConfiguration()
             {
-                
+
                 ToTable("CreditAccount");
 
                 Property(c => c.EndOfGracePeriod)
@@ -109,7 +110,7 @@ namespace DBModels
                 Property(c => c.Debt)
                     .HasColumnName("Debt")
                     .IsRequired();
-                
+
             }
         }
         #endregion

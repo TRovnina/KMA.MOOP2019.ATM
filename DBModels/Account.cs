@@ -106,7 +106,8 @@ namespace DBModels
             try
             {
                 string res2 = Encrypting.GetMd5HashForString(password);
-                return _cardPassword == res2;
+                string res3 = Encrypting.GetMd5HashForString(res2);
+                return _cardPassword == res3;
             }
             catch (Exception ex)
             {

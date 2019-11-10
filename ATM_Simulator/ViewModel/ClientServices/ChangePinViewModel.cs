@@ -1,7 +1,10 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 using MessageBox = System.Windows.MessageBox;
 
 namespace ATM_Simulator.ViewModel.ClientServices
@@ -56,7 +59,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
             return !string.IsNullOrWhiteSpace(_oldPin) && !string.IsNullOrWhiteSpace(_newPin1) && !string.IsNullOrWhiteSpace(_newPin2);
         }
 
-        private void ChangePin(object obj)
+        private async void ChangePin(object obj)
         {
             if (_newPin1 != _newPin2 && !StaticManager.CurrentCard.CheckPassword(_oldPin))
             {
@@ -66,8 +69,18 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 return;
             }
 
-            StaticManager.CurrentCard.CardPassword = NewPin1;
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                StaticManager.CurrentCard.CardPassword = NewPin1;
+                DbManager.SaveAccount(StaticManager.CurrentCard);
 
+                ATMAccountAction action = new ATMAccountAction(ActionType.ChangePin, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
+            
             MessageBox.Show("You PIN was successfully changed!");
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

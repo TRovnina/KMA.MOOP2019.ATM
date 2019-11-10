@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:ATM_Simulator.Tools.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="550" d:DesignWidth="700" x:ClassModifier="internal">
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="70"/>

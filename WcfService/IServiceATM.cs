@@ -44,7 +44,7 @@ namespace WcfService
         void AddATMManagerAction(ATMManagerAction atmManagerAction);
 
         [OperationContract]
-        bool AddRegularPayment(Object regularPayment);
+        void AddRegularPayment(RegularPayment regularPayment);
 
         [OperationContract]
         void SaveATM(ATM atm);
@@ -53,9 +53,12 @@ namespace WcfService
         void SaveAccount(Account account);
 
         [OperationContract]
-        List<object> GetRegularPayments(string accountNum);
+        List<RegularPayment> GetRegularPayments(string accountNum);
 
         [OperationContract]
         List<Account> GetAllBlockedAccounts();
+
+        [OperationContract]
+        void DeleteRegularPayment(RegularPayment regularPayment);
     }
 }

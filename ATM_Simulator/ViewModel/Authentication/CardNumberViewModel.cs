@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -58,21 +60,35 @@ namespace ATM_Simulator.ViewModel.Authentication
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                //var client = getClient (_number)
-                //var manager = getManager(_number)
-                //if(client != null){
-                // StaticManager.CurrentClient = client;
-                // StaticManager.CurrentAccount = getAccount(_number);
-                //}else if (manager != null)
-                // StaticManager.CurrentManager = manager;
-                //else{
-                //  correct = false;
-                //  MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                //}
+                StaticManager.CurrentCard = DbManager.GetAccountByNum(Number);
+                if (StaticManager.CurrentCard == null)
+                {
+                    StaticManager.CurrentManager = DbManager.GetManagerById(Number);
+                    correct = (StaticManager.CurrentManager != null);
+                }
+                else if (StaticManager.CurrentCard.IsActive)
+                    StaticManager.CurrentClient = DbManager.GetClientByItn(StaticManager.CurrentCard.ClientITN);
+                else
+                    correct = false;
             });
             LoaderManager.Instance.HideLoader();
-            if(correct)
+            if (correct)
+            {
+                StaticManager.Attempts = 3;
                 NavigationManager.Instance.Navigate(ModesEnum.CardPin);
+            }
+            else
+            {
+                MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            }
+        }
+
+        internal CardNumberViewModel()
+        {
+            StaticManager.CurrentManager = null;
+            StaticManager.CurrentCard = null;
+            StaticManager.CurrentClient = null;
         }
     }
 }

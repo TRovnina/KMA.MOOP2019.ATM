@@ -2,7 +2,9 @@
 using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
+using DBModels;
 
 namespace ATM_Simulator.ViewModel.Authentication
 {
@@ -65,27 +67,42 @@ namespace ATM_Simulator.ViewModel.Authentication
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                for (int i = 3; i > 0; i--)
+                StaticManager.Attempts = StaticManager.Attempts - 1;
+                if ((StaticManager.CurrentCard != null && StaticManager.CurrentCard.CheckPassword(Pin)) ||
+                    (StaticManager.CurrentManager != null && StaticManager.CurrentManager.CheckPassword(Pin)))
+                    correct = true;
+
+                else if (StaticManager.CurrentCard != null && StaticManager.Attempts == 0)
                 {
-                    if ((StaticManager.CurrentCard != null && StaticManager.CurrentCard.CheckPassword(Pin)) || (StaticManager.CurrentManager != null && StaticManager.CurrentManager.CheckPassword(Pin)))
-                    {
-                        correct = true;
-                        break;
-                    }
-                    MessageBox.Show("Нou have " + i + " more attempts!", "Wrong PIN!", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                    StaticManager.CurrentCard.IsActive = false;
+                    DbManager.SaveAccount(StaticManager.CurrentCard);
                 }
+                
+                if (StaticManager.CurrentCard != null)
+                {
+                    ATMAccountAction action = new ATMAccountAction(ActionType.Authentication, StaticManager.CurrentAtm,
+                        StaticManager.CurrentCard);
+                    DbManager.SaveATM(StaticManager.CurrentAtm);
+                }
+                //else
+                //{
+                //    ATMManagerAction action = new ATMManagerAction(ActionType.AddMoney, StaticManager.CurrentManager, StaticManager.CurrentAtm);
+                //    DbManager.SaveATM(StaticManager.CurrentAtm);
+                //}
+
             });
             LoaderManager.Instance.HideLoader();
 
             if (!correct)
             {
-                StaticManager.CurrentCard.IsActive = false;
-                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+                MessageBox.Show("Нou have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                ModesEnum mode = (StaticManager.Attempts == 0 ? ModesEnum.CardNumber : ModesEnum.CardPin);
+                NavigationManager.Instance.Navigate(mode);
             }
-            else if (StaticManager.CurrentClient != null)
+            else if (StaticManager.CurrentCard != null)
                 NavigationManager.Instance.Navigate(ModesEnum.ClientMenu);
-            else
+            else if (StaticManager.CurrentManager != null)
                 NavigationManager.Instance.Navigate(ModesEnum.ManagerMenu);
         }
 

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="500" x:ClassModifier="internal">
-    <Grid Name="MainGrid">
+    <Grid Name="MainGrid" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="70"/>
@@ -20,13 +20,13 @@
         </Grid.ColumnDefinitions>
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Handling Cash Surplus"/>
-        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Card number: "/>
+        <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Card number: "/>
         <TextBlock Grid.Row="1" Grid.Column="1" TextAlignment="Center" FontWeight="Normal" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Card}"/>
 
-        <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Amount"/>
+        <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Threshold Amount"/>
         <TextBox Grid.Row="3" Grid.Column="0" TextAlignment="Center" FontWeight="Normal" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" Text="{Binding Amount}"/>
 
-        <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Period"/>
+        <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Period"/>
         <ComboBox Grid.Row="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="40" SelectedItem="{Binding Period}" ItemsSource="{Binding Periods}" />
 
         <Button Grid.Row="4" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>

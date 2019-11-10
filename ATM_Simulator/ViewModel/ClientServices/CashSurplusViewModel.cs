@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
+using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
 
@@ -27,14 +27,16 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private string GetDepositCard()
         {
-            //get from current client his deposit card
-            return "1234 5678 9123 7467";
+            DepositAccount account = StaticManager.CurrentClient.DepositAccount();
+            return account.CardNumber;
         }
 
         public int Amount
         {
-            // get { return CurrentSurplus.Amount; }
-            get { return 0; }
+            get
+            {
+                return _amount = (Account.IsHandingCashSurplus ? (int)Account.ThresholdAmount : 0);
+            }
             set
             {
                 _amount = value;
@@ -42,17 +44,27 @@ namespace ATM_Simulator.ViewModel.ClientServices
             }
         }
 
-        //public PeriodHandingCashSurplus Periods
-        //{
-        //    get
-        //    {
-        //        return CurrentAccount. CurrentSurplus.Amount; }
-        //    set
-        //    {
-        //        _period = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+
+        private CurrentAccount Account
+        {
+            get
+            {
+                return StaticManager.CurrentCard as CurrentAccount;
+            }
+        }
+
+        public PeriodHandingCashSurplus Period
+        {
+            get
+            {
+                return _period = (Account.IsHandingCashSurplus ? Account.PeriodCashSurplus : PeriodHandingCashSurplus.None);
+            }
+            set
+            {
+                _period = value;
+                OnPropertyChanged();
+            }
+        }
 
         public List<PeriodHandingCashSurplus>  Periods
         {
@@ -70,7 +82,14 @@ namespace ATM_Simulator.ViewModel.ClientServices
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                //create new cash surplus 
+                Account.IsHandingCashSurplus = true;
+                Account.PeriodCashSurplus = _period;
+                Account.ThresholdAmount = _amount;
+                DbManager.SaveAccount(Account);
+
+                ATMAccountAction action = new ATMAccountAction(ActionType.HandingCashSurplus, StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard);
+                DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
 
