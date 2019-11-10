@@ -59,6 +59,10 @@
     <Compile Include="Migrations\201911091546395_Init.Designer.cs">
       <DependentUpon>201911091546395_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911101952435_ChangeATMActions.cs" />
+    <Compile Include="Migrations\201911101952435_ChangeATMActions.Designer.cs">
+      <DependentUpon>201911101952435_ChangeATMActions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +80,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201911091546395_Init.resx">
       <DependentUpon>201911091546395_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911101952435_ChangeATMActions.resx">
+      <DependentUpon>201911101952435_ChangeATMActions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
