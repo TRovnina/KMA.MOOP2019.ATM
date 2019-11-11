@@ -30,6 +30,14 @@ namespace AtmClient
                 Console.Write("ATM:: ");
                 Console.WriteLine(atm.ToString());
             }
+            Console.WriteLine("Managers::");
+            List<Manager> man = DbManager.GetAllManagers();
+            foreach (var m in man)
+            {
+                Console.Write("Managers: ");
+                Console.WriteLine(m.ToString());
+                Console.WriteLine(m.Password);
+            }
 
             //DbManager.AddATM(new ATM("0", "0", "s"));
 
@@ -54,7 +62,7 @@ namespace AtmClient
 
             //Console.WriteLine(DbManager.GetAllBlockedAccounts().Count);
 
-            //ATM atm2 = new ATM("9820635500077891", Encrypting.GetMd5HashForString("dfRes092nde33@ie"), "Kyiv");
+            //ATM atm2 = new ATM("9820635500077890", Encrypting.GetMd5HashForString("wq23fk42@u23iWr0"), "Kyiv");
             //atm2.Banknote50 = 2;
             //atm2.Banknote100 = 4;
             //atm2.Banknote200 = 10;
@@ -88,7 +96,7 @@ namespace AtmClient
             Console.WriteLine(Encrypting.GetMd5HashForString("2395"));
             Console.WriteLine(account.CheckPassword("2395"));
             */
-            // Client B
+            ////Client B
             //Client client2 = new Client("3548507816", "Petro", "Sidorenko");
             //CurrentAccount currentAccount2 = new CurrentAccount("5467009812345643",
             //    Encrypting.GetMd5HashForString("0225"), client2, 0, PeriodHandingCashSurplus.None);
@@ -107,7 +115,7 @@ namespace AtmClient
 
             //DbManager.AddClient(client2);
 
-            //// Client C
+            ////// Client C
             //Client client3 = new Client("3489702389", "Alina", "Ivanova");
             //CurrentAccount currentAccount3 = new CurrentAccount("5337139866345666",
             //    Encrypting.GetMd5HashForString("2220"), client3, 0, PeriodHandingCashSurplus.None);
@@ -124,6 +132,23 @@ namespace AtmClient
             //depositAccount3.AvailableSum = 100000;
 
             //DbManager.AddClient(client3);
+            /////CLient D
+            // Client client = new Client("3489702366", "Kateryna", "Ivanova");
+            //CurrentAccount currentAccount1 = new CurrentAccount("5337130098741356",
+            //    Encrypting.GetMd5HashForString("2944"), client, 0, PeriodHandingCashSurplus.None);
+            //currentAccount1.AvailableSum = 12000;
+
+            //CreditAccount creditAccount = new CreditAccount("5337130098745787",
+            //    Encrypting.GetMd5HashForString("8349"), client, new DateTime(2019, 12, 12), 12000,
+            //    1000, 5);
+            //creditAccount.AvailableSum = 0;
+
+            //DepositAccount depositAccount = new DepositAccount("5337130089745600",
+            //    Encrypting.GetMd5HashForString("1345"), client, new DateTime(2018, 10, 12),
+            //    new DateTime(2019, 9, 30), 10);
+            //depositAccount.AvailableSum = 1000;
+
+            //DbManager.AddClient(client);
 
             /*if(atm == null)
                 Console.WriteLine("null");
