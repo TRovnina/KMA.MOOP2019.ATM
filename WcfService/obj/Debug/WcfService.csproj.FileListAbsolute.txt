@@ -52,3 +52,21 @@ C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\obj\Debug
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CopyComplete
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.pdb
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll.config
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\WcfService.pdb
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.dll
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.dll
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.pdb
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe.config
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBModels.pdb
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe.config
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.xml
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.xml
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csprojAssemblyReference.cache
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CoreCompileInputs.cache
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CopyComplete
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.dll
+D:\Новая папка (2)\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.pdb

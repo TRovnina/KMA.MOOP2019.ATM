@@ -61,7 +61,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         private async void ChangePin(object obj)
         {
-            if (_newPin1 != _newPin2 && !StaticManager.CurrentCard.CheckPassword(_oldPin))
+            if (!StaticManager.CurrentCard.CheckPassword(_oldPin) || _newPin1 != _newPin2)
             {
                 System.Windows.Forms.MessageBox.Show("Something is wrong! Check all information!", "Error!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -72,7 +72,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                StaticManager.CurrentCard.CardPassword = NewPin1;
+                StaticManager.CurrentCard.CardPassword = Encrypting.GetMd5HashForString(NewPin1);
                 DbManager.SaveAccount(StaticManager.CurrentCard);
 
                 ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
