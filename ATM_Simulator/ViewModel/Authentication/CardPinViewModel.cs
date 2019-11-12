@@ -77,7 +77,10 @@ namespace ATM_Simulator.ViewModel.Authentication
                     StaticManager.CurrentCard.IsActive = false;
                     DbManager.SaveAccount(StaticManager.CurrentCard);
                 }
+                else if (StaticManager.CurrentManager != null && StaticManager.Attempts == 0)
+                    StaticManager.CurrentAtm.Status = false;
                 
+
                 if (StaticManager.CurrentCard != null)
                 {
                     ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,

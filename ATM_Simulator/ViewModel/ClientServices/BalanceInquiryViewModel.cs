@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
@@ -13,7 +14,11 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public string Card
         {
-            get { return StaticManager.CurrentCard.GetType().ToString(); }
+            get
+            {
+                string[] s = StaticManager.CurrentCard.GetType().ToString().Split('.');
+                return s[1];
+            }
         }
 
         public string Text
@@ -21,22 +26,31 @@ namespace ATM_Simulator.ViewModel.ClientServices
             get { return GetText(); }
         }
 
-        public double Amount
+        public int Amount
         {
-            get { return StaticManager.CurrentCard.AvailableSum; }
+            get
+            {
+                if (Card == "CreditAccount")
+                {
+                    CreditAccount account = StaticManager.CurrentCard as CreditAccount;
+                    return (int)(account.MaxCreditSum - account.CreditSum);
+                }
+
+                return (int)(StaticManager.CurrentCard.AvailableSum);
+            }
         }
 
         //check type of the card and get information
         private string GetText()
         {
             string txt = "";
-            if (Card == "DBModels.CreditAccount")
+            if (Card == "CreditAccount")
             {
                 CreditAccount account = StaticManager.CurrentCard as CreditAccount;
-                txt = "Your Credit Amount is " + account.CreditSum + account.Debt + "\nAfter " + account.EndOfGracePeriod +
+                txt = "Your Credit Debt is " + (account.CreditSum + account.Debt) + "\nAfter " + account.EndOfGracePeriod +
                       " will be charged " + account.PercentageCredit + " % of the amount every month";
             }
-            else if (Card == "DBModels.DepositAccount")
+            else if (Card == "DepositAccount")
             {
                 DepositAccount account = StaticManager.CurrentCard as DepositAccount;
                 txt = "Every month will be accrued " + account.PercentageDeposit +

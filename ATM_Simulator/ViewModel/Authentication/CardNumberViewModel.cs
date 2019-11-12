@@ -72,7 +72,9 @@ namespace ATM_Simulator.ViewModel.Authentication
                     correct = false;
             });
             LoaderManager.Instance.HideLoader();
-            if (correct)
+            if (!StaticManager.CurrentAtm.Status)
+                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+            else if (correct)
             {
                 StaticManager.Attempts = 3;
                 NavigationManager.Instance.Navigate(ModesEnum.CardPin);

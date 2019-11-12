@@ -92,7 +92,7 @@ namespace ATM_Simulator.Models
 
         protected int CheckMultiplicity()
         {
-            int[] list = { 50, 100, 200, 500 };
+            int[] list = {50, 100, 200, 500};
             foreach (var v in list)
             {
                 if (Multiplicity(v, CountBanknotes()) != null)
@@ -107,12 +107,30 @@ namespace ATM_Simulator.Models
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                if (StaticManager.CurrentCard.AvailableSum >= n)
+                string txt = "";
+                int commission = 0;
+                int sum = (int)StaticManager.CurrentCard.AvailableSum;
+
+                CreditAccount account = StaticManager.CurrentCard as CreditAccount;
+                if (account != null)
                 {
-                    StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - n;
+                    commission = (int) (n * 0.03);
+                    txt = "\nСommission = 3% (" + commission + " points)";
+                    sum = (int)(account.MaxCreditSum - account.CreditSum);
+
+                }
+                
+                if (sum >= (n + commission))
+                {
+                    if(account == null)
+                        StaticManager.CurrentCard.AvailableSum = sum - (n + commission);
+                    //else
+                    //(add block for Credit Card) = sum - (n + commission);
+
                     RemoveBanknotes(res);
                     DbManager.SaveAccount(StaticManager.CurrentCard);
-                    MessageBox.Show("You have successfully been issued " + n + " points! \nBanknotes " + string.Join(",", res));
+                    MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
+                                    string.Join(",", res));
                 }
                 else
                     MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
