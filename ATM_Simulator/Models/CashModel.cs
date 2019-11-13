@@ -109,32 +109,29 @@ namespace ATM_Simulator.Models
             {
                 string txt = "";
                 int commission = 0;
-                int sum = (int)StaticManager.CurrentCard.AvailableSum;
 
                 CreditAccount account = StaticManager.CurrentCard as CreditAccount;
                 if (account != null)
                 {
                     commission = (int) (n * 0.03);
                     txt = "\nСommission = 3% (" + commission + " points)";
-                    sum = (int)(account.MaxCreditSum - account.CreditSum);
-
                 }
                 
-                if (sum >= (n + commission))
-                {
-                    if(account == null)
-                        StaticManager.CurrentCard.AvailableSum = sum - (n + commission);
-                    //else
-                    //(add block for Credit Card) = sum - (n + commission);
+                //if (sum >= (n + commission))
+                //{
+                //    if(account == null)
+                //        StaticManager.CurrentCard.AvailableSum = sum - (n + commission);
+                //    //else
+                //    //    account.CreditSum = account.CreditSum + (n + commission);
 
-                    RemoveBanknotes(res);
-                    DbManager.SaveAccount(StaticManager.CurrentCard);
-                    MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
-                                    string.Join(",", res));
-                }
-                else
-                    MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                //    RemoveBanknotes(res);
+                //    DbManager.SaveAccount(StaticManager.CurrentCard);
+                //    MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
+                //                    string.Join(",", res));
+                //}
+                //else
+                //    MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                //        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
                 ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm, StaticManager.CurrentCard,
                     "CashWithdrawal");

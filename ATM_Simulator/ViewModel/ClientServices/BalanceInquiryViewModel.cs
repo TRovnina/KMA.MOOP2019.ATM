@@ -28,16 +28,7 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public int Amount
         {
-            get
-            {
-                if (Card == "CreditAccount")
-                {
-                    CreditAccount account = StaticManager.CurrentCard as CreditAccount;
-                    return (int)(account.MaxCreditSum - account.CreditSum);
-                }
-
-                return (int)(StaticManager.CurrentCard.AvailableSum);
-            }
+            get { return (int) (StaticManager.CurrentCard.AvailableSum); }
         }
 
         //check type of the card and get information
@@ -47,8 +38,10 @@ namespace ATM_Simulator.ViewModel.ClientServices
             if (Card == "CreditAccount")
             {
                 CreditAccount account = StaticManager.CurrentCard as CreditAccount;
-                txt = "Your Credit Debt is " + (account.CreditSum + account.Debt) + "\nAfter " + account.EndOfGracePeriod +
-                      " will be charged " + account.PercentageCredit + " % of the amount every month";
+                txt = "Available Credit sum: " + (int) (account.MaxCreditSum - account.CreditSum) +
+                      "\nYour Credit Debt is " + (account.CreditSum + account.Debt) +
+                      "\nAfter " + account.EndOfGracePeriod + " will be charged " + account.PercentageCredit +
+                      " % of the amount every month";
             }
             else if (Card == "DepositAccount")
             {

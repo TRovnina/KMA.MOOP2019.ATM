@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="../../Images/continueImage.jpg" Stretch="UniformToFill" TileMode="None" />
     </UserControl.Background>
 
-    <Grid Name="MainGrid" IsEnabled="{Binding IsControlEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+    <Grid Name="MainGrid" IsEnabled="{Binding IsEnabled, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition Height="120"/>

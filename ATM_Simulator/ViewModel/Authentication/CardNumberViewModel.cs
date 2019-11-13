@@ -56,6 +56,13 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private async void NextImplementation(object obj)
         {
+            if (!StaticManager.CurrentAtm.Status)
+            {
+                MessageBox.Show("ATM is blocked!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
+                return;
+            }
+
             bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
@@ -72,9 +79,8 @@ namespace ATM_Simulator.ViewModel.Authentication
                     correct = false;
             });
             LoaderManager.Instance.HideLoader();
-            if (!StaticManager.CurrentAtm.Status)
-                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
-            else if (correct)
+            
+            if (correct)
             {
                 StaticManager.Attempts = 3;
                 NavigationManager.Instance.Navigate(ModesEnum.CardPin);
