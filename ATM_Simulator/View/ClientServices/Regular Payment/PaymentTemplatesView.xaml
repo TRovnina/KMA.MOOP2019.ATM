@@ -23,8 +23,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding RegularPaymentName}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Destination Account" Binding="{Binding DestinationAccount}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Period" Binding="{Binding PeriodRegularPayment}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Amount" Binding="{Binding Sum}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Period" Binding="{Binding PeriodRegularPayment}"></DataGridTextColumn>
+                <DataGridTextColumn Header="First Payment" Binding="{Binding FirstRegularPaymentDate}"></DataGridTextColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 

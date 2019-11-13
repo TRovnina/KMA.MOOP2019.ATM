@@ -15,7 +15,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
     {
         private string _name;
         private string _card;
-        private Double _amount;
+        private int _amount;
+        private DateTime _firstDate;
         private PeriodRegularPayment _period;
 
         private ICommand _confirmCommand;
@@ -42,12 +43,27 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             }
         }
 
-        public Double Amount
+        public int Amount
         {
             get { return _amount; }
             set
             {
                 _amount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime Today
+        {
+            get { return _firstDate; }
+        }
+
+        public DateTime FirstDate
+        {
+            get { return _firstDate; }
+            set
+            {
+                _firstDate = value;
                 OnPropertyChanged();
             }
         }
@@ -72,7 +88,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public ICommand ConfirmCommand
         {
-            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm)); }
+            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm, CanConfirmExecute)); }
+        }
+
+        private bool CanConfirmExecute(object obj)
+        {
+            return _amount != 0 && !string.IsNullOrWhiteSpace(_card) && !string.IsNullOrWhiteSpace(_name) && _period != PeriodRegularPayment.None;
         }
 
         private async void Confirm(object obj)
@@ -81,7 +102,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             await Task.Run(() =>
             {
                 RegularPayment rg = new RegularPayment(_period, _name, (StaticManager.CurrentCard as CurrentAccount),
-                    _amount, _card);
+                    _amount, _card, _firstDate);
                 DbManager.AddRegularPayment(rg);
                 StaticManager.CurrentPayment = null;
 
@@ -124,11 +145,15 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             _period = (StaticManager.CurrentPayment == null
                 ? PeriodRegularPayment.None
                 : StaticManager.CurrentPayment.PeriodRegularPayment);
-            _amount = (StaticManager.CurrentPayment == null ? 0 : StaticManager.CurrentPayment.Sum);
+            _amount = (StaticManager.CurrentPayment == null 
+                ? 0
+                : (int)StaticManager.CurrentPayment.Sum);
             _card = (StaticManager.CurrentPayment == null
                 ? ""
                 : StaticManager.CurrentPayment.DestinationAccount);
-
+            _firstDate = (StaticManager.CurrentPayment == null
+                ? DateTime.Today
+                : StaticManager.CurrentPayment.FirstRegularPaymentDate);
         }
     }
 }

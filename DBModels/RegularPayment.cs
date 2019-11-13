@@ -36,11 +36,11 @@ namespace DBModels
 
         private RegularPayment()
         {
-            _firstRegularPaymentDate = DateTime.Now;
+        
         }
 
         public RegularPayment(PeriodRegularPayment periodRegularPayment, string regularPaymentName,
-            CurrentAccount currentAccount, double sum, string destinationAccount) : this()
+            CurrentAccount currentAccount, double sum, string destinationAccount, DateTime firstDate) : this()
         {
             _periodRegularPayment = periodRegularPayment;
             _regularPaymentName = regularPaymentName;
@@ -49,6 +49,7 @@ namespace DBModels
             _cardNumber = currentAccount.CardNumber;
             _sum = sum;
             _destinationAccount = destinationAccount;
+            _firstRegularPaymentDate = firstDate;
         }
 
         #endregion
