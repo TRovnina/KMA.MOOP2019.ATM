@@ -103,6 +103,16 @@ namespace WcfService
             return EntityWrapper.GetAllManagers();
         }
 
+        public int WithdrawMoney(Account account, int sum)
+        {
+            return EntityWrapper.WithdrawMoney(account, sum);
+        }
+
+        public int TransferMoney(Account sourceAccount, Account destinationAccount, int sum)
+        {
+            return EntityWrapper.TransferMoney(sourceAccount, destinationAccount, sum);
+        }
+
         public void AddATM(ATM atm)
         {
             EntityWrapper.AddATM(atm);

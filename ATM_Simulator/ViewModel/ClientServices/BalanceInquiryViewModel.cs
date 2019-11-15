@@ -81,8 +81,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, "BalanceInquiry");
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "BalanceInquiry"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

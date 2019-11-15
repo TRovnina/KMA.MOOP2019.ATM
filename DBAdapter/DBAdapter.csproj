@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ATM_DbContext.cs" />
+    <Compile Include="CardOperations.cs" />
     <Compile Include="EntityWrapper.cs" />
     <Compile Include="Migrations\201911091546395_Init.cs" />
     <Compile Include="Migrations\201911091546395_Init.Designer.cs">

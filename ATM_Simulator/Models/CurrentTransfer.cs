@@ -11,7 +11,9 @@ namespace ATM_Simulator.Models
 
         internal string RecipientName { get; set; }
 
-        internal double Amount { get; set; }
+        internal int Amount { get; set; }
+
+        internal int AmountCommission { get; set; }
 
         internal double Commission { get; set; }
 
@@ -26,8 +28,17 @@ namespace ATM_Simulator.Models
             Description = description;
             Client client = recipient.Client; // DbManager.GetClientByItn(recipient.ClientITN);
             RecipientName = client.FirstName + " " + client.LastName;
+            Amount = amount;
             Commission = (client.ITN == StaticManager.CurrentClient.ITN ? 0 : 1);
-            Amount = amount + Commission/100 * amount;
-        }
+            AmountCommission = amount + (int)(Commission / 100 * amount);
+
+            CreditAccount ca = StaticManager.CurrentCard as CreditAccount;
+            if (ca != null && ca.AvailableSum < amount)
+            {
+                Commission = 3;
+                int rest = (int)(Amount - ca.AvailableSum);
+                AmountCommission = (int)(ca.AvailableSum + (Commission / 100 * ca.AvailableSum)) + (int)(rest + (0.03 * rest));
+            }
+        } 
     }
 }

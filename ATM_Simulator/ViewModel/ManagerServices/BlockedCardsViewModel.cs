@@ -55,7 +55,8 @@ namespace ATM_Simulator.ViewModel.ManagerServices
                 SelectedCard.IsActive = true;
                 _cards.Remove(SelectedCard);
                 DbManager.SaveAccount(SelectedCard);
-                ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "UnBlockCard");
+                DbManager.AddATMManagerAction(new ATMManagerAction(StaticManager.CurrentManager,
+                    StaticManager.CurrentAtm, "UnBlockCard"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

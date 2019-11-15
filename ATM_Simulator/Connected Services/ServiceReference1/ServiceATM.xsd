@@ -241,4 +241,35 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="WithdrawMoney">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="account" nillable="true" type="q19:Account" />
+        <xs:element minOccurs="0" name="sum" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WithdrawMoneyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WithdrawMoneyResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TransferMoney">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="sourceAccount" nillable="true" type="q20:Account" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DBModels" minOccurs="0" name="destinationAccount" nillable="true" type="q21:Account" />
+        <xs:element minOccurs="0" name="sum" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TransferMoneyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="TransferMoneyResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -106,8 +106,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
                 DbManager.AddRegularPayment(rg);
                 StaticManager.CurrentPayment = null;
 
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, "RegularPayment");
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "RegularPayment"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

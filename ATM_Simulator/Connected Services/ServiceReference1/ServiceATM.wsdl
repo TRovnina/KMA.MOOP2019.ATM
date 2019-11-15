@@ -121,6 +121,18 @@
   <wsdl:message name="IServiceATM_GetAllManagers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllManagersResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceATM_WithdrawMoney_InputMessage">
+    <wsdl:part name="parameters" element="tns:WithdrawMoney" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_WithdrawMoney_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WithdrawMoneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_TransferMoney_InputMessage">
+    <wsdl:part name="parameters" element="tns:TransferMoney" />
+  </wsdl:message>
+  <wsdl:message name="IServiceATM_TransferMoney_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TransferMoneyResponse" />
+  </wsdl:message>
   <wsdl:portType name="IServiceATM">
     <wsdl:operation name="GetATMByCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetATMByCode" message="tns:IServiceATM_GetATMByCode_InputMessage" />
@@ -197,6 +209,14 @@
     <wsdl:operation name="GetAllManagers">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/GetAllManagers" message="tns:IServiceATM_GetAllManagers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/GetAllManagersResponse" message="tns:IServiceATM_GetAllManagers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawMoney">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/WithdrawMoney" message="tns:IServiceATM_WithdrawMoney_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/WithdrawMoneyResponse" message="tns:IServiceATM_WithdrawMoney_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferMoney">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceATM/TransferMoney" message="tns:IServiceATM_TransferMoney_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceATM/TransferMoneyResponse" message="tns:IServiceATM_TransferMoney_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IServiceATM" type="tns:IServiceATM">
@@ -365,6 +385,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllManagers">
       <soap:operation soapAction="http://tempuri.org/IServiceATM/GetAllManagers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawMoney">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/WithdrawMoney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferMoney">
+      <soap:operation soapAction="http://tempuri.org/IServiceATM/TransferMoney" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

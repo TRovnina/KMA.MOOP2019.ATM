@@ -75,8 +75,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 StaticManager.CurrentCard.CardPassword = Encrypting.GetMd5HashForString(NewPin1);
                 DbManager.SaveAccount(StaticManager.CurrentCard);
 
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, "ChangePin");
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "ChangePin"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

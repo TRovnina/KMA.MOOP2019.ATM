@@ -81,7 +81,7 @@ namespace ATM_Simulator.ViewModel.ManagerServices
                 StaticManager.CurrentAtm.Banknote200 = _twoHundred;
                 StaticManager.CurrentAtm.Banknote500 = _fiveHundred;
 
-                ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "AddMoney");
+                DbManager.AddATMManagerAction(new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "AddMoney"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

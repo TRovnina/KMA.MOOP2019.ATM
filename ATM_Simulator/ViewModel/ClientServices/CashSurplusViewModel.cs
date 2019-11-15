@@ -90,8 +90,8 @@ namespace ATM_Simulator.ViewModel.ClientServices
                 Account.ThresholdAmount = _amount;
                 DbManager.SaveAccount(Account);
 
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, "HandingCashSurplus");
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "HandingCashSurplus"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

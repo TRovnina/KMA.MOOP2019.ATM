@@ -69,8 +69,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             {
                 _payments.Remove(SelectedPayment);
                 DbManager.DeleteRegularPayment(SelectedPayment);
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, "RegularPayment");
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, "RegularPayment"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();

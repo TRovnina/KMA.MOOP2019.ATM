@@ -10,13 +10,13 @@ namespace ATM_Simulator.Managers
         //
         public static ATM GetATMByCode(string atmCode)
         {
-           ServiceATMClient client = new ServiceATMClient();
+            ServiceATMClient client = new ServiceATMClient();
             return client.GetATMByCode(atmCode);
         }
         //
         public static void AddATM(ATM atm)
         {
-           ServiceATMClient client = new ServiceATMClient();
+            ServiceATMClient client = new ServiceATMClient();
             client.AddATM(atm);
         }
         //
@@ -82,7 +82,7 @@ namespace ATM_Simulator.Managers
         //
         public static void SaveAccount(Account account)
         {
-           ServiceATMClient client = new ServiceATMClient();
+            ServiceATMClient client = new ServiceATMClient();
             client.SaveAccount(account);
         }
         //
@@ -120,6 +120,18 @@ namespace ATM_Simulator.Managers
         {
             ServiceATMClient client = new ServiceATMClient();
             return client.GetAllManagers().ToList();
+        }
+
+        public static int TransferMoney(Account sourceAccount, Account destinationAccount, int sum)
+        {
+            ServiceATMClient client = new ServiceATMClient();
+            return client.TransferMoney(sourceAccount, destinationAccount, sum);
+        }
+
+        public static int WithdrawMoney(Account account, int sum)
+        {
+            ServiceATMClient client = new ServiceATMClient();
+            return client.WithdrawMoney(account, sum);
         }
     }
 }

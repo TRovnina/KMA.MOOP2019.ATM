@@ -45,7 +45,7 @@ namespace ATM_Simulator.ViewModel.Authentication
                 OnPropertyChanged();
             }
         }
-      
+
         #endregion
 
         #region Commands
@@ -62,17 +62,15 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         public ICommand CloseCommand
         {
-            get
-            {
-                return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close));
-            }
+            get { return _closeCommand ?? (_closeCommand = new RelayCommand<object>(Close)); }
         }
 
         #endregion
 
         private bool CanActivateExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code);
+            return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code) &&
+                   _password.Length == 16 && _code.Length == 16;
         }
 
         private async void ActivateImplementation(object obj)
@@ -97,7 +95,8 @@ namespace ATM_Simulator.ViewModel.Authentication
                 NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
             else
             {
-                MessageBox.Show("Wrong code or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Wrong code or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
             }
         }
@@ -107,6 +106,5 @@ namespace ATM_Simulator.ViewModel.Authentication
         {
             StaticManager.CloseApp();
         }
-
     }
 }

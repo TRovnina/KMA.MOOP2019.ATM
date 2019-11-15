@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Tools;
@@ -10,7 +11,6 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
     {
         private ICommand _cancelCommand;
         private ICommand _confirmCommand;
-
 
 
         public string RecipientCard
@@ -25,7 +25,11 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         public double Amount
         {
-            get { return StaticManager.CurrentTransfer.Amount; }
+            get
+            {
+                return StaticManager.CurrentTransfer.Amount +
+                       (StaticManager.CurrentTransfer.Commission / 100 * StaticManager.CurrentTransfer.Amount);
+            }
         }
 
         public string Commission
@@ -43,20 +47,28 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(Confirm)); }
         }
 
-        private void Confirm(object obj)
+        private async void Confirm(object obj)
         {
-            if (StaticManager.CurrentCard.AvailableSum >= Amount)
+            bool correct = true;
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
             {
-                StaticManager.CurrentCard.AvailableSum = StaticManager.CurrentCard.AvailableSum - Amount;
-                StaticManager.CurrentTransfer.RecipientCard.AvailableSum = StaticManager.CurrentTransfer.RecipientCard.AvailableSum + Amount;
-                DbManager.SaveAccount(StaticManager.CurrentCard);
-                DbManager.SaveAccount(StaticManager.CurrentTransfer.RecipientCard);
+                int res = DbManager.TransferMoney(StaticManager.CurrentCard,
+                    StaticManager.CurrentTransfer.RecipientCard, StaticManager.CurrentTransfer.Amount);
+                if (res == -1)
+                    correct = false;
+
+                DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                    StaticManager.CurrentCard, StaticManager.CurrentTransfer.Amount + " Transfer", StaticManager.CurrentTransfer.RecipientCard));
+                DbManager.SaveATM(StaticManager.CurrentAtm);
+            });
+            LoaderManager.Instance.HideLoader();
+            if (correct)
                 MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
-            }
             else
                 MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-            
+
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }
 

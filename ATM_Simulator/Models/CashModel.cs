@@ -104,40 +104,36 @@ namespace ATM_Simulator.Models
 
         protected async void GetMoney(int n, int[] res)
         {
+            bool correct = true;
+            string txt = "";
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                string txt = "";
-                int commission = 0;
-
-                CreditAccount account = StaticManager.CurrentCard as CreditAccount;
-                if (account != null)
+                int commission = DbManager.WithdrawMoney(StaticManager.CurrentCard, n);
+                if (commission == -1) //if there was an exception
+                    correct = false;
+                else
                 {
-                    commission = (int) (n * 0.03);
-                    txt = "\nСommission = 3% (" + commission + " points)";
+                    if (commission == 0)
+                        StaticManager.CurrentCard = DbManager.GetAccountByNum(StaticManager.CurrentCard.CardNumber);
+                    else //if there was a commission
+                        txt = "\nСommission = 3% (" + commission + " points)";
+
+                    DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                        StaticManager.CurrentCard,
+                        n + " CashWithdrawal"));
+                    RemoveBanknotes(res);
+                    DbManager.SaveATM(StaticManager.CurrentAtm);
                 }
-                
-                //if (sum >= (n + commission))
-                //{
-                //    if(account == null)
-                //        StaticManager.CurrentCard.AvailableSum = sum - (n + commission);
-                //    //else
-                //    //    account.CreditSum = account.CreditSum + (n + commission);
-
-                //    RemoveBanknotes(res);
-                //    DbManager.SaveAccount(StaticManager.CurrentCard);
-                //    MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
-                //                    string.Join(",", res));
-                //}
-                //else
-                //    MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
-                //        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-
-                ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm, StaticManager.CurrentCard,
-                    "CashWithdrawal");
-                DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
+
+            if (correct)
+                MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
+                                string.Join(",", res));
+            else
+                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

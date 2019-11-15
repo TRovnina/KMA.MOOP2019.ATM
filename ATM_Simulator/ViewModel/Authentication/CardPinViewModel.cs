@@ -58,7 +58,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private bool CanNextExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_pin);
+            return !string.IsNullOrWhiteSpace(_pin) && _pin.Length==4;
         }
 
         private async void NextImplementation(object obj)
@@ -83,13 +83,13 @@ namespace ATM_Simulator.ViewModel.Authentication
 
                 if (StaticManager.CurrentCard != null)
                 {
-                    ATMAccountAction action = new ATMAccountAction(StaticManager.CurrentAtm,
-                        StaticManager.CurrentCard, "Authentication");
+                    DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
+                        StaticManager.CurrentCard, "Authentication"));
                     DbManager.SaveATM(StaticManager.CurrentAtm);
                 }
                 else
                 {
-                    ATMManagerAction action = new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "Authentication");
+                    DbManager.AddATMManagerAction(new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "Authentication"));
                     DbManager.SaveATM(StaticManager.CurrentAtm);
                 }
 
@@ -98,7 +98,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
             if (!correct)
             {
-                MessageBox.Show("You have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
+                MessageBox.Show("Your have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 ModesEnum mode = (StaticManager.Attempts == 0 ? ModesEnum.CardNumber : ModesEnum.CardPin);
                 NavigationManager.Instance.Navigate(mode);

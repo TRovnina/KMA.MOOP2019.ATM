@@ -190,5 +190,16 @@ namespace DBAdapter
                 return context.Managers.Include(u => u.ATMManagerActions).ToList();
             }
         }
+
+        public static int WithdrawMoney(Account account, int sum)
+        {
+            return CardOperations.WithdrawMoney(account, sum);
+        }
+
+        public static int TransferMoney(Account sourceAccount,
+            Account destinationAccount, int sum)
+        {
+            return CardOperations.TransferMoney(sourceAccount, destinationAccount, sum);
+        }
     }
 }

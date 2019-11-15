@@ -63,6 +63,7 @@ namespace ATM_Simulator.ViewModel.Authentication
                 return;
             }
 
+            Number = _number.Replace(" ", "");
             bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>

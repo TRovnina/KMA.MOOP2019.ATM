@@ -137,6 +137,24 @@ namespace ATM_Simulator.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/GetAllManagers", ReplyAction="http://tempuri.org/IServiceATM/GetAllManagersResponse")]
         System.Threading.Tasks.Task<DBModels.Manager[]> GetAllManagersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/WithdrawMoney", ReplyAction="http://tempuri.org/IServiceATM/WithdrawMoneyResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
+        int WithdrawMoney(DBModels.Account account, int sum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/WithdrawMoney", ReplyAction="http://tempuri.org/IServiceATM/WithdrawMoneyResponse")]
+        System.Threading.Tasks.Task<int> WithdrawMoneyAsync(DBModels.Account account, int sum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/TransferMoney", ReplyAction="http://tempuri.org/IServiceATM/TransferMoneyResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CurrentAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.DepositAccount))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DBModels.CreditAccount))]
+        int TransferMoney(DBModels.Account sourceAccount, DBModels.Account destinationAccount, int sum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceATM/TransferMoney", ReplyAction="http://tempuri.org/IServiceATM/TransferMoneyResponse")]
+        System.Threading.Tasks.Task<int> TransferMoneyAsync(DBModels.Account sourceAccount, DBModels.Account destinationAccount, int sum);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -316,6 +334,22 @@ namespace ATM_Simulator.ServiceReference1 {
         
         public System.Threading.Tasks.Task<DBModels.Manager[]> GetAllManagersAsync() {
             return base.Channel.GetAllManagersAsync();
+        }
+        
+        public int WithdrawMoney(DBModels.Account account, int sum) {
+            return base.Channel.WithdrawMoney(account, sum);
+        }
+        
+        public System.Threading.Tasks.Task<int> WithdrawMoneyAsync(DBModels.Account account, int sum) {
+            return base.Channel.WithdrawMoneyAsync(account, sum);
+        }
+        
+        public int TransferMoney(DBModels.Account sourceAccount, DBModels.Account destinationAccount, int sum) {
+            return base.Channel.TransferMoney(sourceAccount, destinationAccount, sum);
+        }
+        
+        public System.Threading.Tasks.Task<int> TransferMoneyAsync(DBModels.Account sourceAccount, DBModels.Account destinationAccount, int sum) {
+            return base.Channel.TransferMoneyAsync(sourceAccount, destinationAccount, sum);
         }
     }
 }

@@ -69,5 +69,11 @@ namespace WcfService
 
         [OperationContract]
         List<Manager> GetAllManagers();
+
+        [OperationContract]
+        int WithdrawMoney(Account account, int sum);
+
+        [OperationContract]
+        int TransferMoney(Account sourceAccount, Account destinationAccount, int sum);
     }
 }
