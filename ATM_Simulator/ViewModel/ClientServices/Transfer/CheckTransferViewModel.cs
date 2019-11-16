@@ -27,8 +27,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
         {
             get
             {
-                return StaticManager.CurrentTransfer.Amount +
-                       (StaticManager.CurrentTransfer.Commission / 100 * StaticManager.CurrentTransfer.Amount);
+                return StaticManager.CurrentTransfer.AmountCommission;
             }
         }
 
