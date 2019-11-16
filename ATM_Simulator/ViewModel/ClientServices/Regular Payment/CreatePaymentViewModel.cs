@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
@@ -98,13 +99,22 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private async void Confirm(object obj)
         {
+            Card = _card.Replace(" ", "");
+            bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                RegularPayment rg = new RegularPayment(_period, _name, (StaticManager.CurrentCard as CurrentAccount),
-                    _amount, _card, _firstDate);
-                DbManager.AddRegularPayment(rg);
-                StaticManager.CurrentPayment = null;
+                Account destination = DbManager.GetAccountByNum(Card);
+                if (destination == null)
+                    correct = false;
+                else
+                {
+                    RegularPayment rg = new RegularPayment(_period, _name,
+                        (StaticManager.CurrentCard as CurrentAccount),
+                        _amount, _card, _firstDate);
+                    DbManager.AddRegularPayment(rg);
+                    StaticManager.CurrentPayment = null;
+                }
 
                 DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
                     StaticManager.CurrentCard, "RegularPayment"));
@@ -112,8 +122,16 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             });
             LoaderManager.Instance.HideLoader();
 
-            MessageBox.Show("You have successfully created regular payment " + _name);
-            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+            if (correct)
+            {
+                MessageBox.Show("You have successfully created regular payment " + _name);
+                NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+            }
+            else
+            {
+                MessageBox.Show("Destination account doesn`t exist!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.CreatePayment);
+            }
         }
 
         public ICommand MenuCommand
