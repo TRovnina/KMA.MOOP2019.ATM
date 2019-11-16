@@ -69,8 +69,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private bool CanActivateExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code) &&
-                   _password.Length == 16 && _code.Length == 16;
+            return !string.IsNullOrWhiteSpace(_password) && !string.IsNullOrWhiteSpace(_code) && _code.Length == 16;
         }
 
         private async void ActivateImplementation(object obj)

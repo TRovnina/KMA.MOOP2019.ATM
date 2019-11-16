@@ -54,6 +54,7 @@ namespace DBAdapter
                 return context.Accounts
                     .Include(u => u.ATMAccountAction)
                     .Include(u => u.Client)
+                    .Include(u => u.Client.Accounts)
                     .FirstOrDefault(u => u.CardNumber == accountNum);
             }
         }

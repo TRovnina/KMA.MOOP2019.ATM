@@ -92,6 +92,7 @@ namespace DBAdapter
             {
                 account.AvailableSum += sum;
                 //account.ShowInfo();
+                CheckHandingCashSurplus(account);
                 EntityWrapper.SaveAccount(account);
                 return;
             }
@@ -115,6 +116,19 @@ namespace DBAdapter
             }
             EntityWrapper.SaveAccount(credit);
             //account.ShowInfo();
+        }
+
+        private static void CheckHandingCashSurplus(Account account)
+        {
+            CurrentAccount current = account as CurrentAccount;
+            if (current == null)
+                return;
+            if (!current.IsHandingCashSurplus || current.PeriodCashSurplus != PeriodHandingCashSurplus.OnChanged)
+                return;
+            if (current.AvailableSum <= current.ThresholdAmount)
+                return;
+            TransferCurrentDeposit(account, account.Client.DepositAccount(),
+                (int)(current.AvailableSum - current.ThresholdAmount));
         }
 
     }
