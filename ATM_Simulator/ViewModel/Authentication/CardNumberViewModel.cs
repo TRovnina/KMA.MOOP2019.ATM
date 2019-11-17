@@ -56,13 +56,6 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private async void NextImplementation(object obj)
         {
-            if (!StaticManager.CurrentAtm.Status)
-            {
-                MessageBox.Show("ATM is blocked!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
-                return;
-            }
-
             Number = _number.Replace(" ", "");
             bool correct = true;
             LoaderManager.Instance.ShowLoader();

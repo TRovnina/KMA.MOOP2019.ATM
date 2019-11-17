@@ -58,7 +58,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private bool CanNextExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_pin) && _pin.Length==4;
+            return !string.IsNullOrWhiteSpace(_pin) && _pin.Length == 4;
         }
 
         private async void NextImplementation(object obj)
@@ -79,7 +79,7 @@ namespace ATM_Simulator.ViewModel.Authentication
                 }
                 else if (StaticManager.CurrentManager != null && StaticManager.Attempts == 0)
                     StaticManager.CurrentAtm.Status = false;
-                
+
 
                 if (StaticManager.CurrentCard != null)
                 {
@@ -89,17 +89,21 @@ namespace ATM_Simulator.ViewModel.Authentication
                 }
                 else
                 {
-                    DbManager.AddATMManagerAction(new ATMManagerAction(StaticManager.CurrentManager, StaticManager.CurrentAtm, "Authentication"));
+                    DbManager.AddATMManagerAction(new ATMManagerAction(StaticManager.CurrentManager,
+                        StaticManager.CurrentAtm, "Authentication"));
                     DbManager.SaveATM(StaticManager.CurrentAtm);
                 }
-
             });
             LoaderManager.Instance.HideLoader();
 
-            if (!correct)
+            if (!StaticManager.CurrentAtm.Status)
+                NavigationManager.Instance.Navigate(ModesEnum.CardPin);
+            else if (!correct)
             {
-                MessageBox.Show("Your have " + StaticManager.Attempts + " attempts!", "Wrong PIN!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                if (StaticManager.CurrentCard != null)
+                    MessageBox.Show("Your have " + StaticManager.Attempts + " attempts!", "Wrong PIN!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 ModesEnum mode = (StaticManager.Attempts == 0 ? ModesEnum.CardNumber : ModesEnum.CardPin);
                 NavigationManager.Instance.Navigate(mode);
             }
