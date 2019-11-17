@@ -1,7 +1,0 @@
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\bin\ATM_WCFService.dll.config
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\bin\ATM_WCFService.dll
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\bin\ATM_WCFService.pdb
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\obj\Debug\ATM_WCFService.csprojAssemblyReference.cache
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\obj\Debug\ATM_WCFService.csproj.CoreCompileInputs.cache
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\obj\Debug\ATM_WCFService.dll
-E:\Home\KMA\3\MOOP\ATM\ATM\ATM_WCFService\obj\Debug\ATM_WCFService.pdb

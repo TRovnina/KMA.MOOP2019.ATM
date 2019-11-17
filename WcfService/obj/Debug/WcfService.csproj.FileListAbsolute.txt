@@ -37,14 +37,10 @@ E:\Home\KMA\3\MOOP\ATM\ATM\WcfService\obj\Debug\WcfService.pdb
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\WcfService.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\WcfService.pdb
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.pdb
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.exe.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBModels.pdb
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBModels.exe.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.xml
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\EntityFramework.SqlServer.xml
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csprojAssemblyReference.cache
@@ -88,3 +84,7 @@ D:\Course 3.1\MOOP\ATMProject\Project\остання\KMA.MOOP2019.ATM\WcfService
 D:\Course 3.1\MOOP\ATMProject\Project\остання\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.csproj.CopyComplete
 D:\Course 3.1\MOOP\ATMProject\Project\остання\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.dll
 D:\Course 3.1\MOOP\ATMProject\Project\остання\KMA.MOOP2019.ATM\WcfService\obj\Debug\WcfService.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBModels.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBAdapter.dll.config
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\WcfService\bin\DBModels.dll.config

@@ -43,17 +43,13 @@ C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\AtmClient.exe
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\AtmClient.pdb
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\ATM_Simulator.exe
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBAdapter.exe
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBModels.exe
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\EntityFramework.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\EntityFramework.SqlServer.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\FontAwesome.WPF.dll
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\ATM_Simulator.pdb
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\ATM_Simulator.exe.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBAdapter.pdb
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBAdapter.exe.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBModels.pdb
-C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBModels.exe.config
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\EntityFramework.xml
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\EntityFramework.SqlServer.xml
 C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\FontAwesome.WPF.xml
@@ -85,3 +81,7 @@ D:\Новая папка (2)\KMA.MOOP2019.ATM\AtmClient\obj\Debug\AtmClient.cspr
 D:\Новая папка (2)\KMA.MOOP2019.ATM\AtmClient\obj\Debug\AtmClient.csproj.CopyComplete
 D:\Новая папка (2)\KMA.MOOP2019.ATM\AtmClient\obj\Debug\AtmClient.exe
 D:\Новая папка (2)\KMA.MOOP2019.ATM\AtmClient\obj\Debug\AtmClient.pdb
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBAdapter.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBModels.dll
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBAdapter.dll.config
+C:\Projects\MOOP\KMA.MOOP2019.ATM.version2\KMA.MOOP2019.ATM\AtmClient\bin\Debug\DBModels.dll.config
