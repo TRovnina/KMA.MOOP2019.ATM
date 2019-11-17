@@ -78,6 +78,8 @@ namespace DBAdapter
             Account destinationAccount, int sum)
         {
             int sumCommission = (int)Math.Round(sum + sum * CommissionTransferNotOwn);
+            if (sourceAccount.AvailableSum < sumCommission && destinationAccount is DepositAccount)
+                return -1;
             int commissionCredit = WithdrawFromCredit(sourceAccount, sumCommission);
             if (commissionCredit == -1)
                 return -1;
@@ -92,8 +94,13 @@ namespace DBAdapter
             {
                 account.AvailableSum += sum;
                 //account.ShowInfo();
-                CheckHandingCashSurplus(account);
                 EntityWrapper.SaveAccount(account);
+                try
+                {
+                    CheckHandingCashSurplus(account);
+                }
+                catch (Exception) { }
+
                 return;
             }
 

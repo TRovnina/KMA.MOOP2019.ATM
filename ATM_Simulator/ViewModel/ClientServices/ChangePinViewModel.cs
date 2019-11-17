@@ -51,38 +51,52 @@ namespace ATM_Simulator.ViewModel.ClientServices
 
         public ICommand ConfirmCommand
         {
-            get { return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(ChangePin, CanConfirmExecute)); }
+            get
+            {
+                return _confirmCommand ?? (_confirmCommand = new RelayCommand<object>(ChangePin, CanConfirmExecute));
+            }
         }
 
         private bool CanConfirmExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_oldPin) && !string.IsNullOrWhiteSpace(_newPin1) && !string.IsNullOrWhiteSpace(_newPin2);
+            return !string.IsNullOrWhiteSpace(_oldPin) && !string.IsNullOrWhiteSpace(_newPin1) &&
+                   !string.IsNullOrWhiteSpace(_newPin2);
         }
 
         private async void ChangePin(object obj)
         {
-            if (!StaticManager.CurrentCard.CheckPassword(_oldPin) || _newPin1 != _newPin2)
-            {
-                System.Windows.Forms.MessageBox.Show("Something is wrong! Check all information!", "Error!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-                NavigationManager.Instance.Navigate(ModesEnum.ChangePin);
-                return;
-            }
-
+            bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                StaticManager.CurrentCard.CardPassword = Encrypting.GetMd5HashForString(NewPin1);
-                DbManager.SaveAccount(StaticManager.CurrentCard);
+                if (!StaticManager.CurrentCard.CheckPassword(_oldPin) || _newPin1 != _newPin2 || _oldPin == _newPin1)
+                    correct = false;
+                else
+                {
+                    StaticManager.CurrentCard.CardPassword = Encrypting.GetMd5HashForString(NewPin1);
+                    DbManager.SaveAccount(StaticManager.CurrentCard);
+                }
 
                 DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
                     StaticManager.CurrentCard, "ChangePin"));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
-            
-            MessageBox.Show("You PIN was successfully changed!");
-            NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+
+            if (correct)
+            {
+                MessageBox.Show("You PIN was successfully changed!");
+                NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
+            }
+            else
+            {
+                string txt = (_oldPin == _newPin1
+                    ? "Password wasn`t change!"
+                    : "Something is wrong! Check all information!");
+                System.Windows.Forms.MessageBox.Show(txt, "Error!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.ChangePin);
+            }
         }
 
         public ICommand MenuCommand
