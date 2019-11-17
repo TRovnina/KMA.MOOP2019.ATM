@@ -172,7 +172,7 @@ namespace AtmClient
             /* Client client = DbManager.GetClientByItn("0");
              Console.WriteLine(client.CurrentAccount().ToString());
 
-             RegularPayment regularPayment = new RegularPayment(PeriodRegularPayment.OnceMount, "regular 1",
+             RegularPayment regularPayment = new RegularPayment(PeriodRegularPayment.OnceMonth, "regular 1",
                  client.CurrentAccount(), 200, client.DepositAccount().CardNumber);
 
              DbManager.AddRegularPayment(regularPayment);

@@ -4,7 +4,7 @@
     {
         OnChanged, // при зміні коштів на карточці
         OnceWeek, // раз в тиждень
-        OnceMount, // раз в місяць
+        OnceMonth, // раз в місяць
         OnceYear, // раз в рік
         None
     }

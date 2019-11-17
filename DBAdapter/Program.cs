@@ -46,7 +46,7 @@ namespace DBAdapter
             }
             
 
-            RegularPayment regularPayment01 = new RegularPayment(PeriodRegularPayment.OnceMount, "regular 2",
+            RegularPayment regularPayment01 = new RegularPayment(PeriodRegularPayment.OnceMonth, "regular 2",
                 client01.CurrentAccount(), 200, client01.DepositAccount().CardNumber);
             
             EntityWrapper.SaveAccount(client01.CurrentAccount());

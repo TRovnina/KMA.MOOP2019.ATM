@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/DBModels" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DBModels" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:52159/ServiceATM.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="RegularPayment">
@@ -163,7 +163,7 @@
     <xs:restriction base="xs:string">
       <xs:enumeration value="OnChanged" />
       <xs:enumeration value="OnceWeek" />
-      <xs:enumeration value="OnceMount" />
+      <xs:enumeration value="OnceMonth" />
       <xs:enumeration value="OnceYear" />
       <xs:enumeration value="None" />
     </xs:restriction>
@@ -178,7 +178,7 @@
   <xs:simpleType name="PeriodRegularPayment">
     <xs:restriction base="xs:string">
       <xs:enumeration value="OnceWeek" />
-      <xs:enumeration value="OnceMount" />
+      <xs:enumeration value="OnceMonth" />
       <xs:enumeration value="OnceYear" />
       <xs:enumeration value="None" />
     </xs:restriction>
