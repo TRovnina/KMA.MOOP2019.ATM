@@ -63,7 +63,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             });
             LoaderManager.Instance.HideLoader();
             if (correct)
-                MessageBox.Show("You have successfully transfer " + Amount + " points to " + RecipientName);
+                MessageBox.Show("You have successfully transfer " + StaticManager.CurrentTransfer.Amount + " points to " + RecipientName);
             else
                 MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
