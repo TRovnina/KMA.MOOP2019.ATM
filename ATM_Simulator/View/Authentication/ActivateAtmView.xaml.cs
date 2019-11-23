@@ -7,12 +7,10 @@ namespace ATM_Simulator.View.Authentication
     /// </summary>
     internal partial class ActivateAtmView
     {
-        #region Constructor
         internal ActivateAtmView()
         {
             InitializeComponent();
             DataContext = new ActivateAtmViewModel();
         }
-        #endregion
     }
 }

@@ -91,7 +91,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
         private bool CanConfirmExecute(object obj)
         {
             return _amount != 0 && !string.IsNullOrWhiteSpace(_card) && !string.IsNullOrWhiteSpace(_name) &&
-                   _period != PeriodRegularPayment.None;
+                   _period != PeriodRegularPayment.None && _card.Replace(" ", "").Length == 16;
         }
 
         private async void Confirm(object obj)

@@ -86,7 +86,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private bool CanConfirmExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_recipient) && _amount != 0;
+            return !string.IsNullOrWhiteSpace(_recipient) && _recipient.Replace(" ", "").Length == 16 && _amount != 0;
         }
 
         public ICommand MenuCommand

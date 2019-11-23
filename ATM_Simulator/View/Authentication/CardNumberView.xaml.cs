@@ -1,4 +1,6 @@
-﻿using ATM_Simulator.ViewModel.Authentication;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Input;
+using ATM_Simulator.ViewModel.Authentication;
 
 namespace ATM_Simulator.View.Authentication
 {
@@ -11,6 +13,13 @@ namespace ATM_Simulator.View.Authentication
         {
             InitializeComponent();
             DataContext = new CardNumberViewModel();
+        }
+
+        //allow to input numbers and spaces
+        private void CardValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9' ']+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

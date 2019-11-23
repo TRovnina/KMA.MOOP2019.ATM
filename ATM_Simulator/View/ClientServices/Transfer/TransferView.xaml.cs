@@ -15,10 +15,17 @@ namespace ATM_Simulator.View.ClientServices.Transfer
             DataContext = new TransferViewModel();
         }
 
-        //allow to input numbers and spaces
+        //allow to input numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        //allow to input numbers and spaces
+        private void CardValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9' ']+");
             e.Handled = regex.IsMatch(e.Text);
         }
     }

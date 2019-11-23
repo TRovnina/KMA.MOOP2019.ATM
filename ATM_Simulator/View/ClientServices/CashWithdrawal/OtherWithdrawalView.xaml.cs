@@ -15,7 +15,7 @@ namespace ATM_Simulator.View.ClientServices.CashWithdrawal
             DataContext = new OtherWithdrawalViewModel();
         }
 
-        //allow to input numbers and spaces
+        //allow to input numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");

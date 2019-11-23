@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Input;
 using ATM_Simulator.ViewModel.Authentication;
 
@@ -9,7 +8,7 @@ namespace ATM_Simulator.View.Authentication
     /// <summary>
     /// Interaction logic for CardPinView.xaml
     /// </summary>
-    internal partial class CardPinView : UserControl
+    internal partial class CardPinView
     {
         internal CardPinView()
         {

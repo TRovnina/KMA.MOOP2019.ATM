@@ -50,7 +50,7 @@ namespace ATM_Simulator.ViewModel.Authentication
 
         private bool CanNextExecute(object obj)
         {
-            return !string.IsNullOrWhiteSpace(_number);
+            return !string.IsNullOrWhiteSpace(_number) && _number.Replace(" ", "").Length == 16;
         }
 
         private async void NextImplementation(object obj)

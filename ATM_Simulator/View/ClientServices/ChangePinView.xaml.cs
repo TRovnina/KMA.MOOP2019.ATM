@@ -15,7 +15,7 @@ namespace ATM_Simulator.View.ClientServices
             DataContext = new ChangePinViewModel();
         }
 
-        //allow to input numbers and spaces
+        //allow to input numbers
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
