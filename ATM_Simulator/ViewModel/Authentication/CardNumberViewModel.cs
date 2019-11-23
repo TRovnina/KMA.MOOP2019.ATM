@@ -4,7 +4,6 @@ using System.Windows.Input;
 using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
-using DBModels;
 
 namespace ATM_Simulator.ViewModel.Authentication
 {
@@ -70,20 +69,21 @@ namespace ATM_Simulator.ViewModel.Authentication
                 else if (StaticManager.CurrentCard.IsActive)
                     StaticManager.CurrentClient = DbManager.GetClientByItn(StaticManager.CurrentCard.ClientITN);
                 else
+                {
                     correct = false;
+                    MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
+                }
             });
             LoaderManager.Instance.HideLoader();
-            
+
             if (correct)
             {
                 StaticManager.Attempts = 3;
                 NavigationManager.Instance.Navigate(ModesEnum.CardPin);
             }
             else
-            {
-                MessageBox.Show("Wrong card number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
-            }
         }
 
         internal CardNumberViewModel()

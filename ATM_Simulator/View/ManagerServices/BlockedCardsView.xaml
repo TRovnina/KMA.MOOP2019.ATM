@@ -18,9 +18,9 @@
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Blocked Cards"/>
 
-        <DataGrid Name="DataGrid" Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemsSource="{Binding Cards, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Name="DataGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Width="550" HorizontalAlignment="Stretch" VerticalAlignment="Top" ItemsSource="{Binding Cards, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedCard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding CardNumber}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Number" Width="300"  Binding="{Binding CardNumber}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

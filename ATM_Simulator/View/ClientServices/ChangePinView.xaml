@@ -22,11 +22,11 @@
 
         <Label Name="Label" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Please, Enter New PIN"/>
 
-        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding OldPin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <controls:LabelAndPasswordControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" PreviewTextInput="NumberValidationTextBox" Password="{Binding OldPin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Caption="Old Pin" Width="500" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
-        <controls:LabelAndPasswordControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding NewPin1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <controls:LabelAndPasswordControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" PreviewTextInput="NumberValidationTextBox" Password="{Binding NewPin1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Caption="New PIN" Width="500" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
-        <controls:LabelAndPasswordControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Password="{Binding NewPin2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <controls:LabelAndPasswordControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" PreviewTextInput="NumberValidationTextBox" Password="{Binding NewPin2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                           Caption="Repeat New PIN" Width="500" Margin="10" Grid.RowSpan="2"></controls:LabelAndPasswordControl>
         
         <Button Grid.Row="4" Grid.Column="0" Content="Confirm" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Height="40" Command="{Binding ConfirmCommand}"/>

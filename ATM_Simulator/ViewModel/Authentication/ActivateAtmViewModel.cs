@@ -82,7 +82,11 @@ namespace ATM_Simulator.ViewModel.Authentication
                 var atm = client.GetATMByCode(Code);
                 StaticManager.CurrentAtm = atm;
                 if (atm == null || !atm.CheckPassword(Password))
+                {
                     correct = false;
+                    MessageBox.Show("Wrong code or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1);
+                }
                 else
                 {
                     StaticManager.CurrentAtm.Status = true;
@@ -93,11 +97,7 @@ namespace ATM_Simulator.ViewModel.Authentication
             if (correct)
                 NavigationManager.Instance.Navigate(ModesEnum.CardNumber);
             else
-            {
-                MessageBox.Show("Wrong code or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.ActivateAtm);
-            }
         }
 
 

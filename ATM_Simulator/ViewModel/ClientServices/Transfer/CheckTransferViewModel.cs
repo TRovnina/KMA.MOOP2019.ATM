@@ -25,10 +25,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         public double Amount
         {
-            get
-            {
-                return StaticManager.CurrentTransfer.AmountCommission;
-            }
+            get { return StaticManager.CurrentTransfer.AmountCommission; }
         }
 
         public string Commission
@@ -48,25 +45,24 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private async void Confirm(object obj)
         {
-            bool correct = true;
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
                 int res = DbManager.TransferMoney(StaticManager.CurrentCard,
                     StaticManager.CurrentTransfer.RecipientCard, StaticManager.CurrentTransfer.Amount);
-                if (res == -1)
-                    correct = false;
+                if (res != -1)
+                    MessageBox.Show("You have successfully transfer " + StaticManager.CurrentTransfer.Amount +
+                                    " points to " + RecipientName);
+                else
+                    MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
                 DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
-                    StaticManager.CurrentCard, StaticManager.CurrentTransfer.Amount + " Transfer", StaticManager.CurrentTransfer.RecipientCard));
+                    StaticManager.CurrentCard, StaticManager.CurrentTransfer.Amount + " Transfer",
+                    StaticManager.CurrentTransfer.RecipientCard));
                 DbManager.SaveATM(StaticManager.CurrentAtm);
             });
             LoaderManager.Instance.HideLoader();
-            if (correct)
-                MessageBox.Show("You have successfully transfer " + StaticManager.CurrentTransfer.Amount + " points to " + RecipientName);
-            else
-                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

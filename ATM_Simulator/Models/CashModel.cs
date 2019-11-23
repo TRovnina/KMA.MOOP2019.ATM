@@ -21,6 +21,7 @@ namespace ATM_Simulator.Models
             _result500 = Multiplicity(500, CountBanknotes());
         }
 
+        //remove banknotes from atm
         protected void RemoveBanknotes(int[] money)
         {
             foreach (var m in money)
@@ -80,16 +81,17 @@ namespace ATM_Simulator.Models
 
             if (sum != 0)
                 return null;
-            int[] rr = res.ToArray();
-            return rr;
+            return res.ToArray();
         }
 
+        //amount of money in ATM
         protected int AllCash()
         {
             return 500 * StaticManager.CurrentAtm.Banknote500 + 200 * StaticManager.CurrentAtm.Banknote200 +
                    100 * StaticManager.CurrentAtm.Banknote100 + 50 * StaticManager.CurrentAtm.Banknote50;
         }
 
+        //multiplicity of cash in ATM
         protected int CheckMultiplicity()
         {
             int[] list = {50, 100, 200, 500};
@@ -102,18 +104,19 @@ namespace ATM_Simulator.Models
             return 0;
         }
 
+        //get money to the client
         protected async void GetMoney(int n, int[] res)
         {
-            bool correct = true;
-            string txt = "";
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
                 int commission = DbManager.WithdrawMoney(StaticManager.CurrentCard, n);
                 if (commission == -1) //if there was an exception
-                    correct = false;
+                    MessageBox.Show("There is not enough money at your account!", "Refusal!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 else
                 {
+                    string txt = "";
                     if (commission == 0)
                         StaticManager.CurrentCard = DbManager.GetAccountByNum(StaticManager.CurrentCard.CardNumber);
                     else //if there was a commission
@@ -124,16 +127,12 @@ namespace ATM_Simulator.Models
                         n + " CashWithdrawal"));
                     RemoveBanknotes(res);
                     DbManager.SaveATM(StaticManager.CurrentAtm);
+
+                    MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
+                                    string.Join(",", res));
                 }
             });
             LoaderManager.Instance.HideLoader();
-
-            if (correct)
-                MessageBox.Show("You have successfully been issued " + n + " points!" + txt + "\nBanknotes " +
-                                string.Join(",", res));
-            else
-                MessageBox.Show("There is not enough money in your account!", "Refusal!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
 
             NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
         }

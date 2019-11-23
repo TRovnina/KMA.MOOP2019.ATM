@@ -5,7 +5,6 @@ using ATM_Simulator.Managers;
 using ATM_Simulator.Models;
 using ATM_Simulator.Tools;
 using DBModels;
-using MessageBox = System.Windows.MessageBox;
 
 namespace ATM_Simulator.ViewModel.ClientServices
 {
@@ -70,11 +69,19 @@ namespace ATM_Simulator.ViewModel.ClientServices
             await Task.Run(() =>
             {
                 if (!StaticManager.CurrentCard.CheckPassword(_oldPin) || _newPin1 != _newPin2 || _oldPin == _newPin1)
+                {
                     correct = false;
+                    string txt = (_oldPin == _newPin1
+                        ? "Password wasn`t change!"
+                        : "Something is wrong! Check all information!");
+                    MessageBox.Show(txt, "Error!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
                 else
                 {
                     StaticManager.CurrentCard.CardPassword = Encrypting.GetMd5HashForString(NewPin1);
                     DbManager.SaveAccount(StaticManager.CurrentCard);
+                    MessageBox.Show("You PIN was successfully changed!");
                 }
 
                 DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
@@ -84,19 +91,9 @@ namespace ATM_Simulator.ViewModel.ClientServices
             LoaderManager.Instance.HideLoader();
 
             if (correct)
-            {
-                MessageBox.Show("You PIN was successfully changed!");
                 NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
-            }
             else
-            {
-                string txt = (_oldPin == _newPin1
-                    ? "Password wasn`t change!"
-                    : "Something is wrong! Check all information!");
-                System.Windows.Forms.MessageBox.Show(txt, "Error!", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.ChangePin);
-            }
         }
 
         public ICommand MenuCommand

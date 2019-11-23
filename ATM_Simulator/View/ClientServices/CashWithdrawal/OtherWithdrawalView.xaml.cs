@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Input;
 using ATM_Simulator.ViewModel.ClientServices.CashWithdrawal;
 
 namespace ATM_Simulator.View.ClientServices.CashWithdrawal
@@ -12,12 +7,19 @@ namespace ATM_Simulator.View.ClientServices.CashWithdrawal
     /// <summary>
     /// Interaction logic for OtherWithdrawalView.xaml
     /// </summary>
-    internal partial class OtherWithdrawalView : UserControl
+    internal partial class OtherWithdrawalView
     {
         internal OtherWithdrawalView()
         {
             InitializeComponent();
             DataContext = new OtherWithdrawalViewModel();
+        }
+
+        //allow to input numbers and spaces
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

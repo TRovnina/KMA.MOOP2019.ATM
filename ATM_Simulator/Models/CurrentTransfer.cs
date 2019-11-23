@@ -26,12 +26,13 @@ namespace ATM_Simulator.Models
         {
             RecipientCard = recipient;
             Description = description;
-            Client client = recipient.Client; // DbManager.GetClientByItn(recipient.ClientITN);
+            Client client = recipient.Client;
             RecipientName = client.FirstName + " " + client.LastName;
             Amount = amount;
             Commission = (client.ITN == StaticManager.CurrentClient.ITN ? 0 : 1);
             AmountCommission = amount + (int)(Commission / 100 * amount);
 
+            //count commission
             CreditAccount ca = StaticManager.CurrentCard as CreditAccount;
             if (ca != null && ca.AvailableSum < amount)
             {

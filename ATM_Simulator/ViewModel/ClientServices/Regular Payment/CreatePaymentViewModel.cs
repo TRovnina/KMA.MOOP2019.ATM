@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using ATM_Simulator.Managers;
@@ -71,10 +70,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         public PeriodRegularPayment Period
         {
-            get
-            {
-                return _period;
-            }
+            get { return _period; }
             set
             {
                 _period = value;
@@ -94,7 +90,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
 
         private bool CanConfirmExecute(object obj)
         {
-            return _amount != 0 && !string.IsNullOrWhiteSpace(_card) && !string.IsNullOrWhiteSpace(_name) && _period != PeriodRegularPayment.None;
+            return _amount != 0 && !string.IsNullOrWhiteSpace(_card) && !string.IsNullOrWhiteSpace(_name) &&
+                   _period != PeriodRegularPayment.None;
         }
 
         private async void Confirm(object obj)
@@ -106,7 +103,11 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             {
                 Account destination = DbManager.GetAccountByNum(Card);
                 if (destination == null)
+                {
                     correct = false;
+                    MessageBox.Show("Destination account doesn`t exist!", "Error!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
                 else
                 {
                     RegularPayment rg = new RegularPayment(_period, _name,
@@ -114,6 +115,7 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
                         _amount, _card, _firstDate);
                     DbManager.AddRegularPayment(rg);
                     StaticManager.CurrentPayment = null;
+                    MessageBox.Show("You have successfully created regular payment " + _name);
                 }
 
                 DbManager.AddATMAccountAction(new ATMAccountAction(StaticManager.CurrentAtm,
@@ -123,15 +125,10 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             LoaderManager.Instance.HideLoader();
 
             if (correct)
-            {
-                MessageBox.Show("You have successfully created regular payment " + _name);
                 NavigationManager.Instance.Navigate(ModesEnum.AskContinue);
-            }
+
             else
-            {
-                MessageBox.Show("Destination account doesn`t exist!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.CreatePayment);
-            }
         }
 
         public ICommand MenuCommand
@@ -163,9 +160,9 @@ namespace ATM_Simulator.ViewModel.ClientServices.Regular_Payment
             _period = (StaticManager.CurrentPayment == null
                 ? PeriodRegularPayment.None
                 : StaticManager.CurrentPayment.PeriodRegularPayment);
-            _amount = (StaticManager.CurrentPayment == null 
+            _amount = (StaticManager.CurrentPayment == null
                 ? 0
-                : (int)StaticManager.CurrentPayment.Sum);
+                : (int) StaticManager.CurrentPayment.Sum);
             _card = (StaticManager.CurrentPayment == null
                 ? ""
                 : StaticManager.CurrentPayment.DestinationAccount);

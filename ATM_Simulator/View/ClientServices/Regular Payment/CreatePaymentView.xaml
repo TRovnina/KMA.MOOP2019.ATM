@@ -26,7 +26,7 @@
         <controls:LabelAndTextControl Grid.Row="2" Grid.Column="0" Text="{Binding Card, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       Caption="Card number" Margin="80,10,10,10" Width="250" Grid.RowSpan="2"></controls:LabelAndTextControl>
         <Label Grid.Row="3" Grid.Column="0" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Amount"/>
-        <TextBox Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Center" TextAlignment="Center" FontSize="18" VerticalAlignment="Center" Width="160" Height="30" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Center" TextAlignment="Center" FontSize="18" VerticalAlignment="Center" Width="160" Height="30" PreviewTextInput="NumberValidationTextBox" Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         
         <Label Grid.Row="3" Grid.Column="1" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Period"/>
         <ComboBox Grid.Row="3" Grid.Column="1" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" SelectedItem="{Binding Period}" ItemsSource="{Binding Periods}" />
