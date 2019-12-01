@@ -55,8 +55,8 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
 
         private async void Confirm(object obj)
         {
+            Recipient = _recipient.Replace(" ", "");
             Account recipient = null;
-
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
@@ -74,6 +74,12 @@ namespace ATM_Simulator.ViewModel.ClientServices.Transfer
             if (recipient == null)
             {
                 MessageBox.Show("The card " + Recipient + " does not exist!", "Error!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                NavigationManager.Instance.Navigate(ModesEnum.Transfer);
+            }
+            else if (Recipient == StaticManager.CurrentCard.CardNumber)
+            {
+                MessageBox.Show("Number of card sender and card recipient must not match!", "Error!", MessageBoxButtons.OK,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 NavigationManager.Instance.Navigate(ModesEnum.Transfer);
             }
